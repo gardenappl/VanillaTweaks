@@ -1,0 +1,7 @@
+﻿Vanilla Tweaks is a small mod that changes and rebalances some things from Terraria.
+Changes include:
+ -Set bonuses for Gladiator and Obsidian armor
+ -Slightly rebalanced Molten/Meteor Hamaxes and Meteor armor
+ -Autoswing for Night's Edge, True Night's Edge and True Excalibur
+ -Bone Blocks now drop Bones
+And some others! Visit the mod's homepage for the full list.
