@@ -1,5 +1,7 @@
 ﻿
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -79,15 +81,43 @@ namespace VanillaTweaks.Items
 					item.reuseDelay = 0;
 					item.autoReuse = true;
 					break;
+				case ItemID.Skull:
+					item.vanity = false;
+					item.defense = 3;
+					break;
+				case ItemID.SWATHelmet:
+					item.vanity = false;
+					item.rare = 8;
+					item.defense = 14;
+					AddTooltip(item, "15% increased ranged damage");
+					AddTooltip(item, "5% increased ranged critical strike chance");
+					break;
+				case ItemID.FishBowl:
+					item.vanity = false;
+					item.defense = 1;
+					break;
 			}
 		}
 		
 		public override void UpdateEquip(Item item, Player player)
 		{
-			if(item.type == ItemID.ObsidianHelm || item.type == ItemID.ObsidianShirt || item.type == ItemID.ObsidianPants)
-				player.rangedCrit += 3;
-			if(item.type == ItemID.MeteorHelmet || item.type == ItemID.MeteorSuit || item.type == ItemID.MeteorLeggings)
-				player.magicDamage /= 1.07f;
+			switch(item.type)
+			{
+				case ItemID.ObsidianHelm:
+				case ItemID.ObsidianShirt:
+				case ItemID.ObsidianPants:
+					player.rangedCrit += 3;
+					break;
+				case ItemID.MeteorHelmet:
+				case ItemID.MeteorSuit:
+				case ItemID.MeteorLeggings:
+					player.magicDamage /= 1.07f;
+					break;
+				case ItemID.SWATHelmet:
+					player.rangedCrit += 5;
+					player.rangedDamage *= 1.15f;
+					break;
+			}
 		}
 		
 		public override string IsArmorSet(Item head, Item body, Item legs)
@@ -125,6 +155,26 @@ namespace VanillaTweaks.Items
 					longTrail = true;
 					break;
 			}
+		}
+		
+		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+		{
+			if(item.type == ItemID.Skull)
+			{
+				spriteBatch.Draw(Main.itemTexture[item.type], position, null, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
+				return false;
+			}
+			return true;
+		}
+		
+		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale)
+		{
+			if(item.type == ItemID.Skull)
+			{
+				spriteBatch.Draw(Main.itemTexture[item.type], item.position - Main.screenPosition, null, lightColor.MultiplyRGB(alphaColor), rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
+				return false;
+			}
+			return true;
 		}
 	}
 }
