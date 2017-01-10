@@ -10,7 +10,7 @@ namespace VanillaTweaks
 	{
 		public override bool Drop(int x, int y, int type)
 		{
-			if(type == TileID.BoneBlock)
+			if(type == TileID.BoneBlock && Config.BoneBlockFix)
 			{
 				Item.NewItem(x * 16, y * 16, 16, 16, ItemID.Bone);
 				return false;

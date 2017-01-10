@@ -1,6 +1,6 @@
 ﻿displayName = Vanilla Tweaks
 author = goldenapple
-version = 1.2.1
+version = 2.1
 homepage = http://forums.terraria.org/index.php?threads/vanilla-tweaks-a-mod-with-no-content.37443/
 hideCode = false
 includeSource = true

@@ -44,8 +44,11 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\Steam\SteamApps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
     <Reference Include="tModLoader">
-      <HintPath>E:\Yurik\Steam\SteamApps\common\Terraria\tModLoader.exe</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Yurik\Steam\SteamApps\common\Terraria\tModLoader.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,7 +56,10 @@
     <None Include="description.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="ItemTweaks.cs" />
+    <Compile Include="NPCTweaks.cs" />
+    <Compile Include="RecipeTweaks.cs" />
     <Compile Include="TileTweaks.cs" />
     <Compile Include="VanillaTweaks.cs" />
   </ItemGroup>
