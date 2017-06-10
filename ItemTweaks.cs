@@ -3,6 +3,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
 
@@ -10,9 +11,10 @@ namespace VanillaTweaks
 {
 	public class ItemTweaks : GlobalItem
 	{
-		const string GladiatorSet = "gladiator";
-		const string ObsidianSet = "obsidian";
-		const string RainSet = "rain";
+		const string GladiatorSet = "miscellania_gladiator";
+		const string ObsidianSet = "miscellania_obsidian";
+		const string RainSet = "miscellania_rain";
+		const string SWATSet = "miscellania_swat";
 		
 		public override void SetDefaults(Item item)
 		{
@@ -22,7 +24,7 @@ namespace VanillaTweaks
 					if(Config.HammerTweaks)
 					{
 						item.hammer = 50;
-						item.axe = 70 / 5; //For some reason Terraria multiplies axe power by 5. Don't ask me why.
+						item.axe = 70 / 5;
 					}
 					return;
 				case ItemID.MoltenHamaxe:
@@ -65,27 +67,23 @@ namespace VanillaTweaks
 					if(Config.ObsidianArmorTweak)
 					{
 						item.rare = 1;
-						AddTooltip(item, "3% increased ranged critical strike chance");
 					}
 					return;
 				case ItemID.MeteorHelmet:
 					if(Config.MeteorArmorTweak)
 					{
-						item.toolTip = string.Empty;
 						item.defense = 4;
 					}
 					return;
 				case ItemID.MeteorSuit:
 					if(Config.MeteorArmorTweak)
 					{
-						item.toolTip = string.Empty;
 						item.defense = 5;
 					}
 					return;
 				case ItemID.MeteorLeggings:
 					if(Config.MeteorArmorTweak)
 					{
-						item.toolTip = string.Empty;
 						item.defense = 4;
 					}
 					return;
@@ -102,47 +100,21 @@ namespace VanillaTweaks
 						item.autoReuse = true;
 					}
 					return;
-				case ItemID.SandstoneBrick:
-					if(Config.SandstoneRename)
-					{
-						item.name = "Sand Brick";
-					}
-					return;
-				case ItemID.SandstoneBrickWall:
-					if(Config.SandstoneRename)
-					{
-						item.name = "Sand Brick Wall";
-					}
-					return;
-				case ItemID.SandstoneSlab:
-					if(Config.SandstoneRename)
-					{
-						item.name = "Sand Slab";
-					}
-					return;
-				case ItemID.CobaltShield:
-					if(Config.CobaltShieldRename)
-					{
-						item.name = "Guardian's Shield";
-					}
-					return;
 				case ItemID.SWATHelmet:
 					if(Config.SwatHelmetTweak)
 					{
 						item.vanity = false;
 						item.rare = 8;
-						item.defense = 14;
-						AddTooltip(item, "15% increased ranged damage");
-						AddTooltip(item, "5% increased ranged critical strike chance");
+						item.defense = 17;
 					}
 					return;
-				case ItemID.Skull:
-					if(Config.SkullTweak)
-					{
-						item.vanity = false;
-						item.defense = 3;
-					}
-					return;
+//				case ItemID.Skull:
+//					if(Config.SkullTweak)
+//					{
+//						item.vanity = false;
+//						item.defense = 3;
+//					}
+//					return;
 				case ItemID.FishBowl:
 					if(Config.FishBowlTweak)
 					{
@@ -167,19 +139,23 @@ namespace VanillaTweaks
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
 					if(Config.ObsidianArmorTweak)
+					{
 						player.rangedCrit += 3;
+					}
 					break;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
 					if(Config.MeteorArmorTweak)
-						player.magicDamage /= 1.07f;
+					{
+						player.magicDamage -= 0.07f;
+					}
 					break;
 				case ItemID.SWATHelmet:
 					if(Config.SwatHelmetTweak)
 					{
-						player.rangedCrit += 5;
-						player.rangedDamage *= 1.15f;
+						player.rangedCrit += 10;
+						player.rangedDamage += 0.15f;
 					}
 					break;
 			}
@@ -188,49 +164,69 @@ namespace VanillaTweaks
 		public override string IsArmorSet(Item head, Item body, Item legs)
 		{
 			if(head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
+			{
 				return GladiatorSet;
+			}
 			if(head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
+			{
 				return ObsidianSet;
+			}
 			if(head.type == ItemID.RainHat && body.type == ItemID.RainCoat)
+			{
 				return RainSet;
-			return string.Empty;
+			}
+			if(head.type == ItemID.SWATHelmet && VanillaTweaks.MiscellaniaLoaded)
+			{
+				int reinforcedVest = ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest");
+				if(reinforcedVest > 0 && body.type == reinforcedVest)
+				{
+					return SWATSet;
+				}
+			}
+			return base.IsArmorSet(head, body, legs);
 		}
 		
 		public override void UpdateArmorSet(Player player, string armorSet)
 		{
 			if(armorSet == GladiatorSet && Config.GladiatorArmorTweak)
 			{
-				player.setBonus = "15% increased critical strike chance";
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Gladiator");
 				player.meleeCrit += 15;
 				player.rangedCrit += 15;
 				player.magicCrit += 15;
 				player.thrownCrit += 15;
-				return;
 			}
-			if(armorSet == ObsidianSet && Config.ObsidianArmorTweak)
+			else if(armorSet == ObsidianSet && Config.ObsidianArmorTweak)
 			{
-				player.setBonus = "10% increased movement speed";
-				player.moveSpeed *= 1.1f;
-				return;
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian")
+				player.moveSpeed += 0.1f;
 			}
-			if(armorSet == RainSet && Config.RainArmorTweak)
+			else if(armorSet == RainSet && Config.RainArmorTweak)
 			{
-				player.setBonus = "1 defense";
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Rain");
 				player.statDefense++;
 				player.buffImmune[BuffID.Wet] = true;
-				return;
+			}
+			else if(armorSet == SWATSet && Config.SwatHelmetTweak)
+			{
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat")
+				player.endurance += 0.25f;
+				player.rangedDamage += 0.2f;
+				player.ammoCost80 = true;
 			}
 		}
 		
 		public override void ArmorSetShadows(Player player, string armorSet)
 		{
 			if(armorSet == ObsidianSet && Config.ObsidianArmorTweak)
+			{
 				player.armorEffectDrawShadow = true;
+			}
 		}
 		
 		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
 		{
-			if(item.type == ItemID.Skull && Config.SkullTweak)
+			if(ShouldFlip(item))
 			{
 				spriteBatch.Draw(Main.itemTexture[item.type], position, null, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
@@ -240,13 +236,19 @@ namespace VanillaTweaks
 		
 		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
 		{
-			if(item.type == ItemID.Skull && Config.SkullTweak)
+			if(ShouldFlip(item))
 			{
-//				var origin = new Vector2(item.width * .5f, item.height * .5f);
 				spriteBatch.Draw(Main.itemTexture[item.type], item.position - Main.screenPosition, null, lightColor.MultiplyRGB(alphaColor), rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
 			}
 			return true;
+		}
+		
+		static bool ShouldFlip(Item item)
+		{
+			bool skull = item.type == ItemID.Skull && Config.SkullTweak;
+			bool joke = DateTime.Now.Month == 4 && DateTime.Now.Day == 1;
+			return (skull || joke) && !(skull && joke);
 		}
 	}
 }

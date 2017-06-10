@@ -9,6 +9,8 @@
     <RootNamespace>VanillaTweaks</RootNamespace>
     <AssemblyName>VanillaTweaks</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -58,10 +60,14 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="ItemTweaks.cs" />
+    <Compile Include="LangTweaks.cs" />
     <Compile Include="NPCTweaks.cs" />
     <Compile Include="RecipeTweaks.cs" />
     <Compile Include="TileTweaks.cs" />
     <Compile Include="VanillaTweaks.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>E:\Yurik\Steam\SteamApps\common\Terraria\tModLoaderServer.exe -build "$(ProjectDir)\" -savedirectory "E:\Yurik\Terraria"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

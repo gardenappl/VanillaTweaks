@@ -3,7 +3,7 @@ Changes include:
  -Set bonuses for Gladiator and Obsidian armor
  -Slightly rebalanced Molten/Meteor Hamaxes and Meteor armor
  -Autoswing for Night's Edge, True Night's Edge and True Excalibur
- -Skull, SWAT Helmet and Fish Bowl are now armor pieces
+ -SWAT Helmet and Fish Bowl are now armor pieces
  -Bone Blocks now drop Bones
 And some others! Visit the mod's homepage for the full list.
 

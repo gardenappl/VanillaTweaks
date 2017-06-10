@@ -8,11 +8,11 @@ namespace VanillaTweaks
 {
 	public class TileTweaks : GlobalTile
 	{
-		public override bool Drop(int x, int y, int type)
+		public override bool Drop(int i, int j, int type)
 		{
 			if(type == TileID.BoneBlock && Config.BoneBlockFix)
 			{
-				Item.NewItem(x * 16, y * 16, 16, 16, ItemID.Bone);
+				Item.NewItem(i * 16, j * 16, 16, 16, ItemID.Bone);
 				return false;
 			}
 			return true;

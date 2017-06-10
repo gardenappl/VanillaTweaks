@@ -47,13 +47,18 @@ namespace VanillaTweaks
                 }
             }
             else
+            {
                 ConfigVersion = 0;
+            }
             
             if(ConfigVersion < LatestVersion)
+            {
                 VanillaTweaks.Log("Config is outdated! Current version: {0} Latest version: {1}", ConfigVersion, LatestVersion);
+            }
             if(ConfigVersion > LatestVersion)
+            {
                 VanillaTweaks.Log("Config is from the future?! Current version: {0} Latest version: {1}", ConfigVersion, LatestVersion);
-            
+            }
 //            BossExpertise.Log("Reading config...");
             if(!ReadConfig())
             {

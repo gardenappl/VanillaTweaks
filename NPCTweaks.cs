@@ -21,7 +21,9 @@ namespace VanillaTweaks
 				case NPCID.SquirrelGold: //Why Re-Logic why???
 				case NPCID.GoldWorm:
 					if(Config.GoldCritterDropTweak)
+					{
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldCoin, 2);
+					}
 					break;
 			}
 		}
