@@ -23,52 +23,39 @@ namespace VanillaTweaks
         public static bool BoneBlockFix = true;
         public static bool GoldCritterDropTweak = true;
         
-        static int ConfigVersion;
-        const int LatestVersion = 1;
-        static string ConfigFolderPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks");
-        static string ConfigPath = Path.Combine(ConfigFolderPath, "config.json");
-        static string ConfigVersionPath = Path.Combine(ConfigFolderPath, "config.version");
+        static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks.json");
+        
+        static string OldConfigFolderPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks");
+        static string OldConfigPath = Path.Combine(OldConfigFolderPath, "config.json");
+        static string OldConfigVersionPath = Path.Combine(OldConfigFolderPath, "config.version");
         
         static readonly Preferences Configuration = new Preferences(ConfigPath);
         
         public static void Load()
         {
-            if(File.Exists(ConfigVersionPath))
-            {
-                try
-                {
-                    int.TryParse(File.ReadAllText(ConfigVersionPath), out ConfigVersion);
-                }
-                catch(Exception e)
-                {
-                    VanillaTweaks.Log("Unable to read config version!");
-                    VanillaTweaks.Log(e.ToString());
-                    ConfigVersion = 0;
-                }
-            }
-            else
-            {
-                ConfigVersion = 0;
-            }
-            
-            if(ConfigVersion < LatestVersion)
-            {
-                VanillaTweaks.Log("Config is outdated! Current version: {0} Latest version: {1}", ConfigVersion, LatestVersion);
-            }
-            if(ConfigVersion > LatestVersion)
-            {
-                VanillaTweaks.Log("Config is from the future?! Current version: {0} Latest version: {1}", ConfigVersion, LatestVersion);
-            }
-//            BossExpertise.Log("Reading config...");
+			if(Directory.Exists(OldConfigFolderPath))
+			{
+				if(File.Exists(OldConfigPath))
+				{
+					VanillaTweaks.Log("Found config file in old folder! Moving config...");
+					File.Move(OldConfigPath, ConfigPath);
+				}
+				if(File.Exists(OldConfigVersionPath))
+				{
+					File.Delete(OldConfigVersionPath);
+				}
+				if(Directory.GetFiles(OldConfigFolderPath).Length == 0 && Directory.GetDirectories(OldConfigFolderPath).Length == 0)
+				{
+					Directory.Delete(OldConfigFolderPath);
+				}
+				else
+				{
+					VanillaTweaks.Log("Old config folder still cotains some files/directories. They will not get deleted.");
+				}
+			}
             if(!ReadConfig())
             {
                 VanillaTweaks.Log("Failed to read config file! Recreating config...");
-                SaveConfig();
-            }
-            else if(ConfigVersion != LatestVersion)
-            {
-                VanillaTweaks.Log("Replacing config with newest version...");
-                File.WriteAllText(ConfigVersionPath, LatestVersion.ToString());
                 SaveConfig();
             }
         }

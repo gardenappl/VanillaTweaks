@@ -75,20 +75,17 @@ namespace VanillaTweaks
 			var bindFlags = BindingFlags.Static | BindingFlags.NonPublic;
 			var tooltipsField = typeof(Lang).GetField("_itemTooltipCache", bindFlags);
 			var tooltips = (ItemTooltip[])tooltipsField.GetValue(null);
-			if(manager.ActiveCulture == GameCulture.English)
+			if(Config.ObsidianArmorTweak)
 			{
-				if(Config.ObsidianArmorTweak)
-				{
-					tooltips[ItemID.ObsidianHelm] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
-					tooltips[ItemID.ObsidianSink] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
-					tooltips[ItemID.ObsidianPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
-				}
-				if(Config.MeteorArmorTweak)
-				{
-					tooltips[ItemID.MeteorHelmet] = null;
-					tooltips[ItemID.MeteorSuit] = null;
-					tooltips[ItemID.MeteorLeggings] = null;
-				}
+				tooltips[ItemID.ObsidianHelm] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
+				tooltips[ItemID.ObsidianShirt] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
+				tooltips[ItemID.ObsidianPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
+			}
+			if(Config.MeteorArmorTweak)
+			{
+				tooltips[ItemID.MeteorHelmet] = null;
+				tooltips[ItemID.MeteorSuit] = null;
+				tooltips[ItemID.MeteorLeggings] = null;
 			}
 		}
 	}

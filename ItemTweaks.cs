@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.UI;
 
 namespace VanillaTweaks
 {
@@ -198,7 +199,7 @@ namespace VanillaTweaks
 			}
 			else if(armorSet == ObsidianSet && Config.ObsidianArmorTweak)
 			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian")
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian");
 				player.moveSpeed += 0.1f;
 			}
 			else if(armorSet == RainSet && Config.RainArmorTweak)
@@ -209,7 +210,7 @@ namespace VanillaTweaks
 			}
 			else if(armorSet == SWATSet && Config.SwatHelmetTweak)
 			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat")
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat");
 				player.endurance += 0.25f;
 				player.rangedDamage += 0.2f;
 				player.ammoCost80 = true;
