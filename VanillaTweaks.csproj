@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="ExtractinatorTweak.cs" />
     <Compile Include="ItemTweaks.cs" />
     <Compile Include="LangTweaks.cs" />
     <Compile Include="NPCTweaks.cs" />
