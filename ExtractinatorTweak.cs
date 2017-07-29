@@ -12,11 +12,11 @@ namespace VanillaTweaks
 	{
 		struct ExtractableItem
 		{
-			public ExtractableItem(int ut, int ua, string n)
+			public ExtractableItem(Item item)
 			{
-				UseTime = ut;
-				UseAnimation = ua;
-				Name = n;
+				UseTime = item.useTime;
+				UseAnimation = item.useAnimation;
+				Name = item.Name;
 			}
 			public int UseTime;
 			public int UseAnimation;
@@ -37,21 +37,24 @@ namespace VanillaTweaks
 
 		static void SpeedUpExtract(Item item)
 		{
-			if(Config.ExtractSpeedMultipltier == 1f)
+			if(Config.ExtractSpeedMultiplier == 1f)
 				return;
 			
-			if (IsExtractable(item))
+			if(Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
 			{
-				if (!ExtractItemsCache.ContainsKey(item.type))
-					ExtractItemsCache.Add(item.type, new ExtractableItem(item.useTime, item.useAnimation, item.Name));
-
+				if(!ExtractItemsCache.ContainsKey(item.type) && IsExtractable(item))
+					ExtractItemsCache.Add(item.type, new ExtractableItem(item));
+			}
+			
+			if(ExtractItemsCache.ContainsKey(item.type))
+			{
 				var extractItem = ExtractItemsCache[item.type];
 				if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
 				{
 					//useTime must be 2 or higher or else items dissapear
-					item.useTime = Math.Max(2, (int)(extractItem.UseTime / Config.ExtractSpeedMultipltier));
+					item.useTime = Math.Max(2, (int)(extractItem.UseTime / Config.ExtractSpeedMultiplier));
 					//useAnimation less than 4 looks really weird as there aren't enough frames
-					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / Config.ExtractSpeedMultipltier));
+					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / Config.ExtractSpeedMultiplier));
 //					item.SetNameOverride(extractItem.Name + Boost);
 				}
 				else
