@@ -21,6 +21,10 @@ namespace VanillaTweaks
 			text.SetDefault("15% increased ranged damage\n10% increased ranged critical strike chance");
 			text.AddTranslation(GameCulture.Russian, "Увеличивает урон в дальнем бою на 15%\nУвеличивает шанс крит. удара в дальнем бою на 3%");
 			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ItemTooltip.Eskimo");
+			text.SetDefault("Allows touching cold water without freezing");
+			text.AddTranslation(GameCulture.Russian, "Повзоляет прикасаться к холодной воде, не замерзая");
+			mod.AddTranslation(text);
 			
 			text = mod.CreateTranslation("ArmorSet.Obsidian");
 			text.SetDefault("10% increased movement speed");
@@ -37,6 +41,10 @@ namespace VanillaTweaks
 			text = mod.CreateTranslation("ArmorSet.Swat");
 			text.SetDefault("Reduces damage taken by 25%\n20% increased ranged damage and chance not to consume ammo");
 			text.AddTranslation(GameCulture.Russian, "Получаемый урон снижен на 25%\nУвеличивает урон в дальнем бою на 20%\nШанс 20 % не потратить боеприпасы");
+			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ArmorSet.Eskimo");
+			text.SetDefault("4 defense\nProvides warmth and immunity to chill, frostburn and freezing effects");
+			text.AddTranslation(GameCulture.Russian, "4 ед. защиты\nДаёт тепло и защищает от замораживающих эффектов и ледяного ожога");
 			mod.AddTranslation(text);
 		}
 		
@@ -86,6 +94,12 @@ namespace VanillaTweaks
 				tooltips[ItemID.MeteorHelmet] = null;
 				tooltips[ItemID.MeteorSuit] = null;
 				tooltips[ItemID.MeteorLeggings] = null;
+			}
+			if(Config.EskimoArmorTweak)
+			{
+				tooltips[ItemID.EskimoHood] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
+				tooltips[ItemID.EskimoCoat] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
+				tooltips[ItemID.EskimoPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
 			}
 		}
 	}

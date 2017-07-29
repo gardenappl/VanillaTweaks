@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,6 +17,7 @@ namespace VanillaTweaks
 		const string ObsidianSet = "miscellania_obsidian";
 		const string RainSet = "miscellania_rain";
 		const string SWATSet = "miscellania_swat";
+		const string EskimoSet = "miscellania_eskimo";
 		
 		public override void SetDefaults(Item item)
 		{
@@ -30,16 +32,12 @@ namespace VanillaTweaks
 					return;
 				case ItemID.MoltenHamaxe:
 					if(Config.HammerTweaks)
-					{
 						item.axe = 80 / 5;
-					}
 					return;
 				case ItemID.TheBreaker:
 				case ItemID.FleshGrinder:
 					if(Config.HammerTweaks)
-					{
 						item.hammer = 65;
-					}
 					return;
 				case ItemID.GladiatorHelmet:
 					if(Config.GladiatorArmorTweak)
@@ -66,40 +64,43 @@ namespace VanillaTweaks
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
 					if(Config.ObsidianArmorTweak)
-					{
 						item.rare = 1;
-					}
 					return;
 				case ItemID.MeteorHelmet:
+				case ItemID.MeteorLeggings:
 					if(Config.MeteorArmorTweak)
-					{
 						item.defense = 4;
-					}
 					return;
 				case ItemID.MeteorSuit:
 					if(Config.MeteorArmorTweak)
-					{
 						item.defense = 5;
+					return;
+				case ItemID.EskimoHood:
+				case ItemID.EskimoPants:
+				case ItemID.PinkEskimoHood:
+				case ItemID.PinkEskimoPants:
+					if(Config.EskimoArmorTweak)
+					{
+						item.defense = 3;
+						item.rare = 1;
 					}
 					return;
-				case ItemID.MeteorLeggings:
-					if(Config.MeteorArmorTweak)
+				case ItemID.EskimoCoat:
+				case ItemID.PinkEskimoCoat:
+					if(Config.EskimoArmorTweak)
 					{
 						item.defense = 4;
+						item.rare = 1;
 					}
 					return;
 				case ItemID.NightsEdge:
 					if(Config.NightsEdgeAutoswing)
-					{
 						item.autoReuse = true;
-					}
 					return;
 				case ItemID.TrueExcalibur:
 				case ItemID.TrueNightsEdge:
 					if(Config.TrueSwordsAutoswing)
-					{
 						item.autoReuse = true;
-					}
 					return;
 				case ItemID.SWATHelmet:
 					if(Config.SwatHelmetTweak)
@@ -140,50 +141,55 @@ namespace VanillaTweaks
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
 					if(Config.ObsidianArmorTweak)
-					{
 						player.rangedCrit += 3;
-					}
-					break;
+					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
 					if(Config.MeteorArmorTweak)
-					{
 						player.magicDamage -= 0.07f;
-					}
-					break;
+					return;
 				case ItemID.SWATHelmet:
 					if(Config.SwatHelmetTweak)
 					{
 						player.rangedCrit += 10;
 						player.rangedDamage += 0.15f;
 					}
-					break;
+					return;
+				case ItemID.EskimoHood:
+				case ItemID.EskimoCoat:
+				case ItemID.EskimoPants:
+				case ItemID.PinkEskimoHood:
+				case ItemID.PinkEskimoCoat:
+				case ItemID.PinkEskimoPants:
+					if(Config.EskimoArmorTweak)
+						player.arcticDivingGear = true;
+					return;
 			}
 		}
 		
 		public override string IsArmorSet(Item head, Item body, Item legs)
 		{
 			if(head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
-			{
 				return GladiatorSet;
-			}
+			
 			if(head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
-			{
 				return ObsidianSet;
-			}
+			
 			if(head.type == ItemID.RainHat && body.type == ItemID.RainCoat)
-			{
 				return RainSet;
-			}
+			
 			if(head.type == ItemID.SWATHelmet && VanillaTweaks.MiscellaniaLoaded)
 			{
 				int reinforcedVest = ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest");
 				if(reinforcedVest > 0 && body.type == reinforcedVest)
-				{
 					return SWATSet;
-				}
 			}
+			if((head.type == ItemID.EskimoHood || head.type == ItemID.PinkEskimoHood) &&
+			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) && 
+			   (legs.type == ItemID.EskimoPants || legs.type == ItemID.PinkEskimoPants))
+				return EskimoSet;
+			
 			return base.IsArmorSet(head, body, legs);
 		}
 		
@@ -214,6 +220,15 @@ namespace VanillaTweaks
 				player.endurance += 0.25f;
 				player.rangedDamage += 0.2f;
 				player.ammoCost80 = true;
+			}
+			else if(armorSet == EskimoSet && Config.EskimoArmorTweak)
+			{
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Eskimo");
+				player.statDefense += 4;
+				player.resistCold = true;
+				player.buffImmune[BuffID.Chilled] = true;
+				player.buffImmune[BuffID.Frozen] = true;
+				player.buffImmune[BuffID.Frostburn] = true;
 			}
 		}
 		
@@ -250,6 +265,24 @@ namespace VanillaTweaks
 			bool skull = item.type == ItemID.Skull && Config.SkullTweak;
 			bool joke = DateTime.Now.Month == 4 && DateTime.Now.Day == 1;
 			return (skull || joke) && !(skull && joke);
+		}
+		
+		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+		{
+			if(Config.FavoriteTooltipRemove)
+				tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Favorite"));
+			switch(item.type)
+			{
+				case ItemID.EskimoHood:
+				case ItemID.EskimoCoat:
+				case ItemID.EskimoPants:
+				case ItemID.PinkEskimoHood:
+				case ItemID.PinkEskimoCoat:
+				case ItemID.PinkEskimoPants:
+					if(Config.EskimoArmorTweak && !Main.expertMode)
+						tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Tooltip"));
+					return;
+			}
 		}
 	}
 }

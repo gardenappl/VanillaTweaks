@@ -11,14 +11,40 @@ namespace VanillaTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
-			var finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.BoneBlockWall, 4);
-			finder.AddTile(TileID.BoneWelder);
-			finder.SetResult(ItemID.BoneBlock, 1);
-			var recipe = finder.FindExactRecipe();
-			if(recipe != null)
+			if(Config.BoneBlockFix)
 			{
-				recipe.createItem.SetDefaults(ItemID.Bone);
+				var finder = new RecipeFinder();
+				finder.AddIngredient(ItemID.BoneBlockWall, 4);
+				finder.AddTile(TileID.BoneWelder);
+				finder.SetResult(ItemID.BoneBlock, 1);
+				var recipe = finder.FindExactRecipe();
+				if(recipe != null)
+					recipe.createItem.SetDefaults(ItemID.Bone);
+			}
+			var foundRecipes = new List<Recipe>();
+			if(Config.JestersArrowCraft == 0)
+			{
+				foreach(var recipe in Main.recipe)
+					if(recipe.createItem.type == ItemID.JestersArrow)
+						foundRecipes.Add(recipe);
+				foreach(var recipe in foundRecipes)
+				{
+					var editor = new RecipeEditor(recipe);
+					editor.DeleteRecipe();
+				}
+				foundRecipes.Clear();
+			}
+			else
+			{
+				foreach(var recipe in Main.recipe)
+				{
+					if(recipe.createItem.type == ItemID.JestersArrow)
+					{
+						var editor = new RecipeEditor(recipe);
+						editor.SetIngredientStack(ItemID.WoodenArrow, Config.JestersArrowCraft);
+						editor.SetResult(ItemID.JestersArrow, Config.JestersArrowCraft);
+					}
+				}
 			}
 		}
 		
