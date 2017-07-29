@@ -10,12 +10,18 @@ namespace VanillaTweaks
 {
 	public class VanillaTweaks : Mod
 	{
-		internal static bool MiscellaniaLoaded;
+		public static bool MiscellaniaLoaded;
+		public static bool FKtModSettingsLoaded;
 		
 		public override void Load()
 		{
-			Config.Load();
 			MiscellaniaLoaded = ModLoader.GetMod("GoldensMisc") != null;
+			FKtModSettingsLoaded = ModLoader.GetMod("FKTModSettings") != null;
+			
+			Config.Load();
+			if(FKtModSettingsLoaded)
+				Config.LoadFKConfig(this);
+			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditTooltips;
 			LangTweaks.EditNames(LanguageManager.Instance);
@@ -31,6 +37,18 @@ namespace VanillaTweaks
 		public override void PostAddRecipes()
 		{
 			RecipeTweaks.TweakCoins();
+		}
+		
+		public override void PostUpdateInput()
+		{
+			if(FKtModSettingsLoaded && !Main.gameMenu)
+				Config.UpdateFKConfig(this);
+		}
+		
+		public override void PreSaveAndQuit()
+		{
+			if(FKtModSettingsLoaded)
+				Config.SaveConfig();
 		}
 		
 		public static void Log(string message, params object[] formatData)

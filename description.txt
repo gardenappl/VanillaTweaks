@@ -8,3 +8,4 @@ Changes include:
 And some others! Visit the mod's homepage for the full list.
 
 NOTE: Since the 2.0 update you can now disable/enable features as you wish! Visit the mod's homepage for more info.
+Install Flashkirby's Mod Settings Configurator to change them in-game.
