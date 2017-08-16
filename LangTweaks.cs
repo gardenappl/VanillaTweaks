@@ -46,6 +46,12 @@ namespace VanillaTweaks
 			text.SetDefault("4 defense\nProvides warmth and immunity to chill, frostburn and freezing effects");
 			text.AddTranslation(GameCulture.Russian, "4 ед. защиты\nДаёт тепло и защищает от замораживающих эффектов и ледяного ожога");
 			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ArmorSet.Viking");
+			text.SetDefault("5% increased damage");
+			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ArmorSet.Cactus");
+			text.SetDefault("Reflects 1/4 of a enemy's damage on hit");
+			mod.AddTranslation(text);
 		}
 		
 		public static void EditNames(LanguageManager manager)
@@ -89,7 +95,7 @@ namespace VanillaTweaks
 				tooltips[ItemID.ObsidianShirt] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
 				tooltips[ItemID.ObsidianPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
 			}
-			if(Config.MeteorArmorTweak)
+			if(Config.MeteorArmorDamageTweak)
 			{
 				tooltips[ItemID.MeteorHelmet] = null;
 				tooltips[ItemID.MeteorSuit] = null;
