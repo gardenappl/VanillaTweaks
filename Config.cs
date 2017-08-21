@@ -15,8 +15,8 @@ namespace VanillaTweaks
 		public static bool ObsidianArmorTweak = true;
 		const string ObsidianArmorTweakKey = "ObsidianArmorTweak";
 		
-		public static bool MeteorArmorTweak = true;
-		const string MeteorArmorTweakKey = "MeteorArmorTweak";
+		public static bool MeteorArmorDamageTweak = true;
+		const string MeteorArmorDamageTweakKey = "MeteorArmorDamageTweak";
 		
 		public static bool EskimoArmorTweak = true;
 		const string EskimoArmorTweakKey = "EskimoArmorTweak";
@@ -63,13 +63,38 @@ namespace VanillaTweaks
 		public static bool FavoriteTooltipRemove = true;
 		const string FavoriteTooltipRemoveKey = "FavoriteTooltipRemove";
 		
+		public static bool WhoopieCushionTweak = true;
+		const string WhoopieCushionTweakKey = "WhoopieCushionTweak";
+		
+        public static bool WanderingEyeLensTweak = true;
+		const string WanderingEyeLensTweakKey = "WanderingEyeLensTweak";
+	
+        public static bool DripplerLensTweak = true;	
+		const string DripplerLensTweakKey = "DripplerLensTweak";
+		
+        public static bool CoinsTweak = true;
+		const string CoinsTweakKey = "CoinsTweak";		
+		
+        public static bool MolotovTweak = true;
+		const string MolotovTweakKey = "MolotovTweak";		
+		
+		public static bool VikingHelmetTweak = true;
+		const string VikingHelmetTweakKey = "VikingHelmetTweak";
+		
+		public static bool CactusArmorTweak = true;
+		const string CactusArmorTweakKey = "CactusArmorTweak";	
+				
+		public static bool MeteorArmorDefenseTweak = true;
+		const string MeteorArmorDefenseTweakKey = "MeteorArmorDefenseTweak";
+		
+		
 		static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks.json");
 		
 		static string OldConfigFolderPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks");
 		static string OldConfigPath = Path.Combine(OldConfigFolderPath, "config.json");
 		static string OldConfigVersionPath = Path.Combine(OldConfigFolderPath, "config.version");
 		
-		static readonly Preferences Configuration = new Preferences(ConfigPath);
+		static readonly Preferences setting = new Preferences(ConfigPath);
 		
 		public static void Load()
 		{
@@ -94,27 +119,35 @@ namespace VanillaTweaks
 		
 		public static bool ReadConfig()
 		{
-			if(Configuration.Load())
+			if(setting.Load())
 			{
-				Configuration.Get(GladiatorArmorTweakKey, ref GladiatorArmorTweak);
-				Configuration.Get(ObsidianArmorTweakKey, ref ObsidianArmorTweak);
-				Configuration.Get(MeteorArmorTweakKey, ref MeteorArmorTweak);
-				Configuration.Get(EskimoArmorTweakKey, ref EskimoArmorTweak);
-				Configuration.Get(RainArmorTweakKey, ref RainArmorTweak);
-				Configuration.Get(HammerTweaksKey, ref HammerTweaks);
-				Configuration.Get(NightsEdgeAutoswingKey, ref NightsEdgeAutoswing);
-				Configuration.Get(TrueSwordsAutoswingKey, ref TrueSwordsAutoswing);
-				Configuration.Get(SwatHelmetTweakKey, ref SwatHelmetTweak);
-				Configuration.Get(SkullTweakKey, ref SkullTweak);
-				Configuration.Get(FishBowlTweakKey, ref FishBowlTweak);
-				Configuration.Get(SandstoneRenameKey, ref SandstoneRename);
-				Configuration.Get(CobaltShieldRenameKey, ref CobaltShieldRename);
-				Configuration.Get(BoneBlockFixKey, ref BoneBlockFix);
-				Configuration.Get(GoldCritterDropTweakKey, ref GoldCritterDropTweak);
-				Configuration.Get("ExtractSpeedMulitplier", ref ExtractSpeedMultiplier); //bit of a typo there :P
-				Configuration.Get(ExtractSpeedMultiplierKey, ref ExtractSpeedMultiplier);
-				Configuration.Get(JestersArrowCraftKey, ref JestersArrowCraft);
-				Configuration.Get(FavoriteTooltipRemoveKey, ref FavoriteTooltipRemove);
+				setting.Get(GladiatorArmorTweakKey, ref GladiatorArmorTweak);
+				setting.Get(ObsidianArmorTweakKey, ref ObsidianArmorTweak);
+				setting.Get(MeteorArmorDefenseTweakKey, ref MeteorArmorDefenseTweak);
+				setting.Get(EskimoArmorTweakKey, ref EskimoArmorTweak);
+				setting.Get(RainArmorTweakKey, ref RainArmorTweak);
+				setting.Get(HammerTweaksKey, ref HammerTweaks);
+				setting.Get(NightsEdgeAutoswingKey, ref NightsEdgeAutoswing);
+				setting.Get(TrueSwordsAutoswingKey, ref TrueSwordsAutoswing);
+				setting.Get(SwatHelmetTweakKey, ref SwatHelmetTweak);
+				setting.Get(SkullTweakKey, ref SkullTweak);
+				setting.Get(FishBowlTweakKey, ref FishBowlTweak);
+				setting.Get(SandstoneRenameKey, ref SandstoneRename);
+				setting.Get(CobaltShieldRenameKey, ref CobaltShieldRename);
+				setting.Get(BoneBlockFixKey, ref BoneBlockFix);
+				setting.Get(GoldCritterDropTweakKey, ref GoldCritterDropTweak);
+				setting.Get("ExtractSpeedMulitplier", ref ExtractSpeedMultiplier); //bit of a typo there :P
+				setting.Get(ExtractSpeedMultiplierKey, ref ExtractSpeedMultiplier);
+				setting.Get(JestersArrowCraftKey, ref JestersArrowCraft);
+				setting.Get(FavoriteTooltipRemoveKey, ref FavoriteTooltipRemove);
+				setting.Get(VikingHelmetTweakKey, ref VikingHelmetTweak);
+				setting.Get(CactusArmorTweakKey, ref CactusArmorTweak);
+				setting.Get(MeteorArmorDamageTweakKey, ref MeteorArmorDamageTweak);
+				setting.Get(MolotovTweakKey, ref MolotovTweak);
+				setting.Get(DripplerLensTweakKey, ref DripplerLensTweak);
+				setting.Get(WanderingEyeLensTweakKey, ref WanderingEyeLensTweak);
+				setting.Get(WhoopieCushionTweakKey, ref WhoopieCushionTweak);
+				setting.Get(CoinsTweakKey, ref CoinsTweak);
 				return true;
 			}
 			return false;
@@ -122,26 +155,34 @@ namespace VanillaTweaks
 		
 		public static void SaveConfig()
 		{
-			Configuration.Clear();
-			Configuration.Put(GladiatorArmorTweakKey, GladiatorArmorTweak);
-			Configuration.Put(ObsidianArmorTweakKey, ObsidianArmorTweak);
-			Configuration.Put(MeteorArmorTweakKey, MeteorArmorTweak);
-			Configuration.Put(EskimoArmorTweakKey, EskimoArmorTweak);
-			Configuration.Put(RainArmorTweakKey, RainArmorTweak);
-			Configuration.Put(HammerTweaksKey, HammerTweaks);
-			Configuration.Put(NightsEdgeAutoswingKey, NightsEdgeAutoswing);
-			Configuration.Put(TrueSwordsAutoswingKey, TrueSwordsAutoswing);
-			Configuration.Put(SwatHelmetTweakKey, SwatHelmetTweak);
-			Configuration.Put(SkullTweakKey, SkullTweak);
-			Configuration.Put(FishBowlTweakKey, FishBowlTweak);
-			Configuration.Put(SandstoneRenameKey, SandstoneRename);
-			Configuration.Put(CobaltShieldRenameKey, CobaltShieldRename);
-			Configuration.Put(BoneBlockFixKey, BoneBlockFix);
-			Configuration.Put(GoldCritterDropTweakKey, GoldCritterDropTweak);
-			Configuration.Put(ExtractSpeedMultiplierKey, ExtractSpeedMultiplier);
-			Configuration.Put(JestersArrowCraftKey, JestersArrowCraft);
-			Configuration.Put(FavoriteTooltipRemoveKey, FavoriteTooltipRemove);
-			Configuration.Save();
+			setting.Clear();
+			setting.Put(GladiatorArmorTweakKey, GladiatorArmorTweak);
+			setting.Put(ObsidianArmorTweakKey, ObsidianArmorTweak);
+			setting.Put(MeteorArmorDefenseTweakKey, MeteorArmorDefenseTweak);
+			setting.Put(EskimoArmorTweakKey, EskimoArmorTweak);
+			setting.Put(RainArmorTweakKey, RainArmorTweak);
+			setting.Put(HammerTweaksKey, HammerTweaks);
+			setting.Put(NightsEdgeAutoswingKey, NightsEdgeAutoswing);
+			setting.Put(TrueSwordsAutoswingKey, TrueSwordsAutoswing);
+			setting.Put(SwatHelmetTweakKey, SwatHelmetTweak);
+			setting.Put(SkullTweakKey, SkullTweak);
+			setting.Put(FishBowlTweakKey, FishBowlTweak);
+			setting.Put(SandstoneRenameKey, SandstoneRename);
+			setting.Put(CobaltShieldRenameKey, CobaltShieldRename);
+			setting.Put(BoneBlockFixKey, BoneBlockFix);
+			setting.Put(GoldCritterDropTweakKey, GoldCritterDropTweak);
+			setting.Put(ExtractSpeedMultiplierKey, ExtractSpeedMultiplier);
+			setting.Put(JestersArrowCraftKey, JestersArrowCraft);
+			setting.Put(FavoriteTooltipRemoveKey, FavoriteTooltipRemove);
+			setting.Put(VikingHelmetTweakKey, VikingHelmetTweak);
+			setting.Put(CactusArmorTweakKey, CactusArmorTweak);
+			setting.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
+			setting.Put(MolotovTweakKey, MolotovTweak);
+			setting.Put(DripplerLensTweakKey, DripplerLensTweak);
+			setting.Put(WanderingEyeLensTweakKey, WanderingEyeLensTweak);
+			setting.Put(WhoopieCushionTweakKey, WhoopieCushionTweak);
+			setting.Put(CoinsTweakKey, CoinsTweak);
+			setting.Save();
 		}
 		
 		//TODO: Transmations
@@ -160,8 +201,8 @@ namespace VanillaTweaks
 			setting.AddBool(GladiatorArmorTweakKey, "Gladiator Armor Tweaks", false);
 			setting.AddComment("+3% ranged crit chance for each piece, set bonus: +10% move speed and shadow trail", commentScale);
 			setting.AddBool(ObsidianArmorTweakKey, "Obsidian Armor Tweaks", false);
-			setting.AddComment("Defense decreased*, no magic bonuses", commentScale);
-			setting.AddBool(MeteorArmorTweakKey, "Meteor Armor Tweaks", false);
+			setting.AddComment("Defense decreased*", commentScale);
+			setting.AddBool(MeteorArmorDefenseTweakKey, "Meteor Armor Defense Tweaks", false);
 			setting.AddComment("Defense increased*, immunity to cold water, set bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen", commentScale);
 			setting.AddBool(EskimoArmorTweakKey, "Eskimo Armor Tweaks", false);
 			setting.AddComment("Set bonus: +1 defense, immunity to being wet", commentScale);
@@ -189,6 +230,22 @@ namespace VanillaTweaks
 			setting.AddBool(FavoriteTooltipRemoveKey, "Remove \"Favorite Item\" Tooltips", true);
 			setting.AddComment("Setting this value to 0 will remove the recipe entirely", commentScale);
 			setting.AddInt(JestersArrowCraftKey, "Jester's Arrows Crafted per Star**", 0, 100, false);
+			setting.AddComment("Gives 5% damage when used with iron or lead armor", commentScale);
+			setting.AddBool(VikingHelmetTweakKey, "Iron or Lead Viking Tweaks", true);
+			setting.AddComment("changes the set bonus of cactus to reflect 25% of melee damage", commentScale);
+			setting.AddBool(CactusArmorTweakKey, "Cactus Armor Tweaks", true);
+			setting.AddComment("no magic bonuses", commentScale);
+			setting.AddBool(MeteorArmorDamageTweakKey, "Meteor Armor Damage Tweaks", true);
+			setting.AddComment("adds a verison of the mobile recipe for molotovs", commentScale);
+			setting.AddBool(MolotovTweakKey, "Molotov Craft Tweaks**", true);
+			setting.AddComment("Dripplers have a chance to drop to drop up to 6 lenses", commentScale);
+			setting.AddBool(DripplerLensTweakKey, "Drippler lenses Tweaks", true);
+			setting.AddComment("increases lens drop rate slightly from Wandering Eyes", commentScale);
+			setting.AddBool(WanderingEyeLensTweakKey, "Wandering Eye lenses Tweaks", true);
+			setting.AddComment("Whoopie Cushion can be used more often and is auto reuseable*", commentScale);
+			setting.AddBool(WhoopieCushionTweakKey, "Whoopie Cushion timing tweaks", true);
+			setting.AddComment("Makes Coin conversion at the end of recipe list**", commentScale);
+			setting.AddBool(CoinsTweakKey, "Coins Positioning Tweak", true);
 		}
 		
 		public static void UpdateFKConfig(Mod mod)
@@ -198,7 +255,7 @@ namespace VanillaTweaks
 			{
 				setting.Get(GladiatorArmorTweakKey, ref GladiatorArmorTweak);
 				setting.Get(ObsidianArmorTweakKey, ref ObsidianArmorTweak);
-				setting.Get(MeteorArmorTweakKey, ref MeteorArmorTweak);
+				setting.Get(MeteorArmorDefenseTweakKey, ref MeteorArmorDefenseTweak);
 				setting.Get(EskimoArmorTweakKey, ref EskimoArmorTweak);
 				setting.Get(RainArmorTweakKey, ref RainArmorTweak);
 				setting.Get(HammerTweaksKey, ref HammerTweaks);
@@ -214,6 +271,14 @@ namespace VanillaTweaks
 				setting.Get(ExtractSpeedMultiplierKey, ref ExtractSpeedMultiplier);
 				setting.Get(FavoriteTooltipRemoveKey, ref FavoriteTooltipRemove);
 				setting.Get(JestersArrowCraftKey, ref JestersArrowCraft);
+				setting.Get(VikingHelmetTweakKey, ref VikingHelmetTweak);
+				setting.Get(CactusArmorTweakKey, ref CactusArmorTweak);
+				setting.Get(MeteorArmorDamageTweakKey, ref MeteorArmorDamageTweak);
+				setting.Get(MolotovTweakKey, ref MolotovTweak);
+				setting.Get(DripplerLensTweakKey, ref DripplerLensTweak);
+				setting.Get(WanderingEyeLensTweakKey, ref WanderingEyeLensTweak);
+				setting.Get(WhoopieCushionTweakKey, ref WhoopieCushionTweak);
+				setting.Get(CoinsTweakKey, ref CoinsTweak);
 			}
 		}
 		
@@ -224,7 +289,7 @@ namespace VanillaTweaks
 				var data = new BitsByte();
 				data[0] = GladiatorArmorTweak;
 				data[1] = ObsidianArmorTweak;
-				data[2] = MeteorArmorTweak;
+				data[2] = MeteorArmorDamageTweak;
 				data[3] = RainArmorTweak;
 				data[4] = HammerTweaks;
 				data[5] = NightsEdgeAutoswing;
@@ -236,6 +301,16 @@ namespace VanillaTweaks
 				data[1] = BoneBlockFix;
 				data[2] = GoldCritterDropTweak;
 				data[3] = EskimoArmorTweak;
+				data[4] = VikingHelmetTweak;
+				data[5] = WanderingEyeLensTweak;
+				data[6] = DripplerLensTweak;
+				data[7] = CactusArmorTweak;
+				writer.Write((byte)data);
+				data.ClearAll();
+				data[0] = CoinsTweak;
+				data[1] = WhoopieCushionTweak;
+				data[2] = MolotovTweak;
+				data[3] = MeteorArmorDefenseTweak;
 				writer.Write((byte)data);
 				writer.Write(ExtractSpeedMultiplier);
 				writer.Write((short)JestersArrowCraft);
@@ -247,7 +322,7 @@ namespace VanillaTweaks
 				var data = (BitsByte)reader.ReadByte();
 				GladiatorArmorTweak = data[0];
 				ObsidianArmorTweak = data[1];
-				MeteorArmorTweak = data[2];
+				MeteorArmorDamageTweak = data[2];
 				RainArmorTweak = data[3];
 				HammerTweaks = data[4];
 				NightsEdgeAutoswing = data[5];
@@ -258,6 +333,15 @@ namespace VanillaTweaks
 				BoneBlockFix = data[1];
 				GoldCritterDropTweak = data[2];
 				EskimoArmorTweak = data[3];
+				VikingHelmetTweak = data[4];
+				WanderingEyeLensTweak = data[5];
+				DripplerLensTweak = data[6];
+				CactusArmorTweak = data[7];
+				data = (BitsByte)reader.ReadByte();
+				CoinsTweak = data[0];
+				WhoopieCushionTweak = data[1];
+				MolotovTweak = data[2];
+				MeteorArmorDefenseTweak = data[3];
 				ExtractSpeedMultiplier = reader.ReadSingle();
 				JestersArrowCraft = reader.ReadInt16();
 			}

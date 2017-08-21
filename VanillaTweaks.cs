@@ -32,6 +32,17 @@ namespace VanillaTweaks
 		{
 			LangTweaks.EditTooltips(LanguageManager.Instance);
 			RecipeTweaks.EditVanillaRecipes();
+			
+			if(Config.MolotovTweak)
+			{
+				ModRecipe recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.Ale, 5);				
+				recipe.AddIngredient(ItemID.Gel, 25);
+				recipe.AddIngredient(ItemID.Silk, 1);
+				recipe.AddIngredient(ItemID.Torch, 1);
+				recipe.SetResult(ItemID.MolotovCocktail, 5);
+				recipe.AddRecipe();
+			}
 		}
 		
 		public override void PostAddRecipes()

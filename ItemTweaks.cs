@@ -18,6 +18,8 @@ namespace VanillaTweaks
 		const string RainSet = "miscellania_rain";
 		const string SWATSet = "miscellania_swat";
 		const string EskimoSet = "miscellania_eskimo";
+		const string CactusSet = "miscellania_cactus";
+		const string VikingSet = "miscellania_viking";
 		
 		public override void SetDefaults(Item item)
 		{
@@ -68,11 +70,11 @@ namespace VanillaTweaks
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorLeggings:
-					if(Config.MeteorArmorTweak)
+					if(Config.MeteorArmorDefenseTweak)
 						item.defense = 4;
 					return;
 				case ItemID.MeteorSuit:
-					if(Config.MeteorArmorTweak)
+					if(Config.MeteorArmorDefenseTweak)
 						item.defense = 5;
 					return;
 				case ItemID.EskimoHood:
@@ -91,6 +93,19 @@ namespace VanillaTweaks
 					{
 						item.defense = 4;
 						item.rare = 1;
+					}
+					return;
+				case ItemID.CactusLeggings:
+				case ItemID.CactusHelmet:
+					if(Config.CactusArmorTweak)
+					{
+						item.defense = 1;
+					}
+					return;
+				case ItemID.CactusBreastplate:
+					if(Config.CactusArmorTweak)
+					{
+						item.defense = 2;
 					}
 					return;
 				case ItemID.NightsEdge:
@@ -125,10 +140,13 @@ namespace VanillaTweaks
 					}
 					return;
 				case ItemID.WhoopieCushion:
+					if(Config.WhoopieCushionTweak)
+					{
 					item.useTime = 5;
 					item.useAnimation = 5;
 					item.reuseDelay = 0;
 					item.autoReuse = true;
+					}
 					return;
 			}
 		}
@@ -146,7 +164,7 @@ namespace VanillaTweaks
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
-					if(Config.MeteorArmorTweak)
+					if(Config.MeteorArmorDamageTweak)
 						player.magicDamage -= 0.07f;
 					return;
 				case ItemID.SWATHelmet:
@@ -189,7 +207,15 @@ namespace VanillaTweaks
 			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) && 
 			   (legs.type == ItemID.EskimoPants || legs.type == ItemID.PinkEskimoPants))
 				return EskimoSet;
-			
+			if(head.type == ItemID.CactusHelmet && body.type == ItemID.CactusBreastplate && legs.type == ItemID.CactusLeggings)
+			{
+				return CactusSet;
+			}
+			if(head.type == ItemID.VikingHelmet && 
+			    (body.type == ItemID.IronChainmail || body.type == ItemID.LeadChainmail) && 
+			    (legs.type == ItemID.IronGreaves || legs.type == ItemID.LeadGreaves))
+				return VikingSet;
+
 			return base.IsArmorSet(head, body, legs);
 		}
 		
@@ -229,6 +255,21 @@ namespace VanillaTweaks
 				player.buffImmune[BuffID.Chilled] = true;
 				player.buffImmune[BuffID.Frozen] = true;
 				player.buffImmune[BuffID.Frostburn] = true;
+			}
+			else if(armorSet == CactusSet && Config.CactusArmorTweak)
+			{
+				player.setBonus =  Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
+				player.thorns += 0.25f;
+				player.statDefense--;
+			}
+			else if(armorSet == VikingSet && Config.VikingHelmetTweak)
+			{
+				player.setBonus =  Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking"); 
+				player.rangedDamage *= 1.05f;
+				player.meleeDamage *= 1.05f;
+				player.thrownDamage *= 1.05f;
+				player.minionDamage *= 1.05f;
+				player.magicDamage *= 1.05f;
 			}
 		}
 		
