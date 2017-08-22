@@ -25,6 +25,10 @@ namespace VanillaTweaks
 			text.SetDefault("Allows touching cold water without freezing");
 			text.AddTranslation(GameCulture.Russian, "Повзоляет прикасаться к холодной воде, не замерзая");
 			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ItemTooltip.Pharaoh");
+			text.SetDefault("Increases minion damage by 5%");
+			text.AddTranslation(GameCulture.Russian, "Увеличивает урон питомцев на 5%"); //каких нахуй питомцев?
+			mod.AddTranslation(text);
 			
 			text = mod.CreateTranslation("ArmorSet.Obsidian");
 			text.SetDefault("10% increased movement speed");
@@ -48,9 +52,15 @@ namespace VanillaTweaks
 			mod.AddTranslation(text);
 			text = mod.CreateTranslation("ArmorSet.Viking");
 			text.SetDefault("5% increased damage");
+			text.AddTranslation(GameCulture.Russian, "Увеличивает урон в ближнем бою на 5%");
 			mod.AddTranslation(text);
 			text = mod.CreateTranslation("ArmorSet.Cactus");
-			text.SetDefault("Reflects 1/4 of a enemy's damage on hit");
+			text.SetDefault("Attackers also take damage");
+			text.AddTranslation(GameCulture.Russian, "Атакующие тоже получают урон");
+			mod.AddTranslation(text);
+			text = mod.CreateTranslation("ArmorSet.Pharaoh");
+			text.SetDefault("Increases your max number of minions");
+			text.AddTranslation(GameCulture.Russian, "Увеличивает ваше максимальное количество питомцев");
 			mod.AddTranslation(text);
 		}
 		
@@ -106,6 +116,11 @@ namespace VanillaTweaks
 				tooltips[ItemID.EskimoHood] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
 				tooltips[ItemID.EskimoCoat] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
 				tooltips[ItemID.EskimoPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
+			}
+			if(Config.PharaohSetTweak)
+			{
+				tooltips[ItemID.PharaohsMask] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
+				tooltips[ItemID.PharaohsRobe] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
 			}
 		}
 	}

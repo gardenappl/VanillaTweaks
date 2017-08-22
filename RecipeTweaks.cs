@@ -11,6 +11,16 @@ namespace VanillaTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
+			if(Config.MolotovCraft > 0)
+			{
+				var recipe = new ModRecipe(VanillaTweaks.Instance);
+				recipe.AddIngredient(ItemID.Ale, 5);
+				recipe.AddIngredient(ItemID.Torch, 1);
+				recipe.AddIngredient(ItemID.Silk, 1);
+				recipe.AddIngredient(ItemID.Gel, Config.MolotovCraft);
+				recipe.SetResult(ItemID.MolotovCocktail, 5);
+				recipe.AddRecipe();
+			}
 			if(Config.BoneBlockFix)
 			{
 				var finder = new RecipeFinder();
@@ -25,8 +35,9 @@ namespace VanillaTweaks
 			if(Config.JestersArrowCraft == 0)
 			{
 				foreach(var recipe in Main.recipe)
-					if(recipe.createItem.type == ItemID.JestersArrow)
+					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
 						foundRecipes.Add(recipe);
+				
 				foreach(var recipe in foundRecipes)
 				{
 					var editor = new RecipeEditor(recipe);
@@ -38,7 +49,7 @@ namespace VanillaTweaks
 			{
 				foreach(var recipe in Main.recipe)
 				{
-					if(recipe.createItem.type == ItemID.JestersArrow)
+					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
 					{
 						var editor = new RecipeEditor(recipe);
 						editor.SetIngredientStack(ItemID.WoodenArrow, Config.JestersArrowCraft);
@@ -54,21 +65,20 @@ namespace VanillaTweaks
 			int goldToPlatinum = -1;
 			for(int i = 0; i < Recipe.numRecipes; i++)
 			{
+				if(Main.recipe[i] == null || Main.recipe[i].createItem == null || Main.recipe[i].requiredItem == null || Main.recipe[i].requiredItem.Length == 0) //i don't even fucking know
+					continue;
+				
 				if(Main.recipe[i].createItem.type == ItemID.CopperCoin && Main.recipe[i].createItem.stack == 100 && Main.recipe[i].requiredItem[0].type == ItemID.SilverCoin)
 				{
 					silverToCopper = i;
 					if(goldToPlatinum != -1)
-					{
 						break;
-					}
 				}
 				else if(Main.recipe[i].createItem.type == ItemID.PlatinumCoin && Main.recipe[i].requiredItem[0].type == ItemID.GoldCoin && Main.recipe[i].requiredItem[0].stack == 100)
 				{
 					goldToPlatinum = i;
 					if(silverToCopper != -1)
-					{
 						break;
-					}
 				}
 			}
 			int coinRecipesStart = silverToCopper < goldToPlatinum ? silverToCopper : goldToPlatinum;

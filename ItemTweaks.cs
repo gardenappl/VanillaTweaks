@@ -20,6 +20,7 @@ namespace VanillaTweaks
 		const string EskimoSet = "miscellania_eskimo";
 		const string CactusSet = "miscellania_cactus";
 		const string VikingSet = "miscellania_viking";
+		const string PharaohSet = "miscellania_pharaoh";
 		
 		public override void SetDefaults(Item item)
 		{
@@ -98,14 +99,24 @@ namespace VanillaTweaks
 				case ItemID.CactusLeggings:
 				case ItemID.CactusHelmet:
 					if(Config.CactusArmorTweak)
-					{
 						item.defense = 1;
-					}
 					return;
 				case ItemID.CactusBreastplate:
 					if(Config.CactusArmorTweak)
-					{
 						item.defense = 2;
+					return;
+				case ItemID.PharaohsMask:
+					if(Config.PharaohSetTweak)
+					{
+						item.vanity = false;
+						item.defense = 3;
+					}
+					return;
+				case ItemID.PharaohsRobe:
+					if(Config.PharaohSetTweak)
+					{
+						item.vanity = false;
+						item.defense = 4;
 					}
 					return;
 				case ItemID.NightsEdge:
@@ -142,10 +153,10 @@ namespace VanillaTweaks
 				case ItemID.WhoopieCushion:
 					if(Config.WhoopieCushionTweak)
 					{
-					item.useTime = 5;
-					item.useAnimation = 5;
-					item.reuseDelay = 0;
-					item.autoReuse = true;
+						item.useTime = 5;
+						item.useAnimation = 5;
+						item.reuseDelay = 0;
+						item.autoReuse = true;
 					}
 					return;
 			}
@@ -183,6 +194,11 @@ namespace VanillaTweaks
 					if(Config.EskimoArmorTweak)
 						player.arcticDivingGear = true;
 					return;
+				case ItemID.PharaohsMask:
+				case ItemID.PharaohsRobe:
+					if(Config.PharaohSetTweak)
+						player.minionDamage += 0.05f;
+					return;
 			}
 		}
 		
@@ -204,17 +220,20 @@ namespace VanillaTweaks
 					return SWATSet;
 			}
 			if((head.type == ItemID.EskimoHood || head.type == ItemID.PinkEskimoHood) &&
-			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) && 
+			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) &&
 			   (legs.type == ItemID.EskimoPants || legs.type == ItemID.PinkEskimoPants))
 				return EskimoSet;
+			
 			if(head.type == ItemID.CactusHelmet && body.type == ItemID.CactusBreastplate && legs.type == ItemID.CactusLeggings)
-			{
 				return CactusSet;
-			}
-			if(head.type == ItemID.VikingHelmet && 
-			    (body.type == ItemID.IronChainmail || body.type == ItemID.LeadChainmail) && 
-			    (legs.type == ItemID.IronGreaves || legs.type == ItemID.LeadGreaves))
+			
+			if(head.type == ItemID.VikingHelmet &&
+			  (body.type == ItemID.IronChainmail || body.type == ItemID.LeadChainmail) &&
+			  (legs.type == ItemID.IronGreaves || legs.type == ItemID.LeadGreaves))
 				return VikingSet;
+			
+			if(head.type == ItemID.PharaohsMask && body.type == ItemID.PharaohsRobe)
+				return PharaohSet;
 
 			return base.IsArmorSet(head, body, legs);
 		}
@@ -258,27 +277,30 @@ namespace VanillaTweaks
 			}
 			else if(armorSet == CactusSet && Config.CactusArmorTweak)
 			{
-				player.setBonus =  Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
 				player.thorns += 0.25f;
 				player.statDefense--;
 			}
 			else if(armorSet == VikingSet && Config.VikingHelmetTweak)
 			{
-				player.setBonus =  Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking"); 
-				player.rangedDamage *= 1.05f;
-				player.meleeDamage *= 1.05f;
-				player.thrownDamage *= 1.05f;
-				player.minionDamage *= 1.05f;
-				player.magicDamage *= 1.05f;
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking");
+				player.rangedDamage += 0.05f;
+				player.meleeDamage += 0.05f;
+				player.thrownDamage += 0.05f;
+				player.minionDamage += 0.05f;
+				player.magicDamage += 0.05f;
+			}
+			else if(armorSet == PharaohSet && Config.PharaohSetTweak)
+			{
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Pharaoh");
+				player.maxMinions++;
 			}
 		}
 		
 		public override void ArmorSetShadows(Player player, string armorSet)
 		{
 			if(armorSet == ObsidianSet && Config.ObsidianArmorTweak)
-			{
 				player.armorEffectDrawShadow = true;
-			}
 		}
 		
 		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
