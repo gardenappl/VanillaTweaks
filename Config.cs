@@ -133,7 +133,6 @@ namespace VanillaTweaks
 				Settings.Get(CobaltShieldRenameKey, ref CobaltShieldRename);
 				Settings.Get(BoneBlockFixKey, ref BoneBlockFix);
 				Settings.Get(GoldCritterDropTweakKey, ref GoldCritterDropTweak);
-				Settings.Get("ExtractSpeedMulitplier", ref ExtractSpeedMultiplier); //bit of a typo there :P
 				Settings.Get(ExtractSpeedMultiplierKey, ref ExtractSpeedMultiplier);
 				Settings.Get(JestersArrowCraftKey, ref JestersArrowCraft);
 				Settings.Get(FavoriteTooltipRemoveKey, ref FavoriteTooltipRemove);
@@ -153,6 +152,7 @@ namespace VanillaTweaks
 			Settings.Clear();
 			Settings.Put(GladiatorArmorTweakKey, GladiatorArmorTweak);
 			Settings.Put(ObsidianArmorTweakKey, ObsidianArmorTweak);
+			Settings.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
 			Settings.Put(MeteorArmorDefenseTweakKey, MeteorArmorDefenseTweak);
 			Settings.Put(EskimoArmorTweakKey, EskimoArmorTweak);
 			Settings.Put(RainArmorTweakKey, RainArmorTweak);
@@ -171,7 +171,6 @@ namespace VanillaTweaks
 			Settings.Put(FavoriteTooltipRemoveKey, FavoriteTooltipRemove);
 			Settings.Put(VikingHelmetTweakKey, VikingHelmetTweak);
 			Settings.Put(CactusArmorTweakKey, CactusArmorTweak);
-			Settings.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
 			Settings.Put(MolotovTweakKey, MolotovCraft);
 			Settings.Put(WhoopieCushionTweakKey, WhoopieCushionTweak);
 			Settings.Put(CoinsTweakKey, CoinsTweak);
