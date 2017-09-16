@@ -154,8 +154,12 @@ namespace VanillaTweaks
 			Settings.Put(GladiatorArmorTweakKey, GladiatorArmorTweak);
 			Settings.Put(ObsidianArmorTweakKey, ObsidianArmorTweak);
 			Settings.Put(MeteorArmorDefenseTweakKey, MeteorArmorDefenseTweak);
+			Settings.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
 			Settings.Put(EskimoArmorTweakKey, EskimoArmorTweak);
 			Settings.Put(RainArmorTweakKey, RainArmorTweak);
+			Settings.Put(PharaohSetTweakKey, PharaohSetTweak);
+			Settings.Put(VikingHelmetTweakKey, VikingHelmetTweak);
+			Settings.Put(CactusArmorTweakKey, CactusArmorTweak);
 			Settings.Put(HammerTweaksKey, HammerTweaks);
 			Settings.Put(NightsEdgeAutoswingKey, NightsEdgeAutoswing);
 			Settings.Put(TrueSwordsAutoswingKey, TrueSwordsAutoswing);
@@ -169,19 +173,15 @@ namespace VanillaTweaks
 			Settings.Put(ExtractSpeedMultiplierKey, ExtractSpeedMultiplier);
 			Settings.Put(JestersArrowCraftKey, JestersArrowCraft);
 			Settings.Put(FavoriteTooltipRemoveKey, FavoriteTooltipRemove);
-			Settings.Put(VikingHelmetTweakKey, VikingHelmetTweak);
-			Settings.Put(CactusArmorTweakKey, CactusArmorTweak);
-			Settings.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
 			Settings.Put(MolotovTweakKey, MolotovCraft);
 			Settings.Put(WhoopieCushionTweakKey, WhoopieCushionTweak);
 			Settings.Put(CoinsTweakKey, CoinsTweak);
-			Settings.Put(PharaohSetTweakKey, PharaohSetTweak);
 			Settings.Save();
 		}
 		
-		public static void LoadFKConfig(Mod mod)
+		public static void LoadFKConfig()
 		{
-			var setting = FKTModSettings.ModSettingsAPI.CreateModSettingConfig(mod);
+			var setting = FKTModSettings.ModSettingsAPI.CreateModSettingConfig(VanillaTweaks.Instance);
 
 			setting.AddComment("Features marked with an asterisk (*) require an item reset to tupdate properly.\n" +
 			                   "An item can be reset by either re-entering the world or by placing the item on an Item Frame, Weapon Rack or Mannequin.");
@@ -238,10 +238,10 @@ namespace VanillaTweaks
 			setting.AddBool(WhoopieCushionTweakKey, "Super Fun Easter Egg*", true);
 		}
 		
-		public static void UpdateFKConfig(Mod mod)
+		public static void UpdateFKConfig()
 		{
 			FKTModSettings.ModSetting setting;
-			if(FKTModSettings.ModSettingsAPI.TryGetModSetting(mod, out setting))
+			if(FKTModSettings.ModSettingsAPI.TryGetModSetting(VanillaTweaks.Instance, out setting))
 			{
 				setting.Get(GladiatorArmorTweakKey, ref GladiatorArmorTweak);
 				setting.Get(ObsidianArmorTweakKey, ref ObsidianArmorTweak);

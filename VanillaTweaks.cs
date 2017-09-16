@@ -21,13 +21,13 @@ namespace VanillaTweaks
 			FKtModSettingsLoaded = ModLoader.GetMod("FKTModSettings") != null;
 			
 			Config.Load();
-			if(FKtModSettingsLoaded)
-				Config.LoadFKConfig(this);
+			if(FKtModSettingsLoaded && !Main.dedServ)
+				Config.LoadFKConfig();
 			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditTooltips;
 			LangTweaks.EditNames(LanguageManager.Instance);
-			LangTweaks.AddText(this);
+			LangTweaks.AddText();
 		}
 		
 		public override void AddRecipes()
@@ -44,13 +44,13 @@ namespace VanillaTweaks
 		
 		public override void PostUpdateInput()
 		{
-			if(FKtModSettingsLoaded && !Main.gameMenu)
-				Config.UpdateFKConfig(this);
+			if(FKtModSettingsLoaded && !Main.dedServ && !Main.gameMenu)
+				Config.UpdateFKConfig();
 		}
 		
 		public override void PreSaveAndQuit()
 		{
-			if(FKtModSettingsLoaded)
+			if(FKtModSettingsLoaded && !Main.dedServ)
 				Config.SaveConfig();
 		}
 		

@@ -219,6 +219,7 @@ namespace VanillaTweaks
 				if(reinforcedVest > 0 && body.type == reinforcedVest)
 					return SWATSet;
 			}
+			
 			if((head.type == ItemID.EskimoHood || head.type == ItemID.PinkEskimoHood) &&
 			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) &&
 			   (legs.type == ItemID.EskimoPants || legs.type == ItemID.PinkEskimoPants))

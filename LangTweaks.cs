@@ -11,8 +11,9 @@ namespace VanillaTweaks
 {
 	public static class LangTweaks
 	{
-		public static void AddText(Mod mod)
+		public static void AddText()
 		{
+			var mod = VanillaTweaks.Instance;
 			var text = mod.CreateTranslation("ItemTooltip.ObsidianArmor");
 			text.SetDefault("3% increased ranged critical strike chance");
 			text.AddTranslation(GameCulture.Russian, "Увеличивает шанс крит. удара в дальнем бою на 3%");
@@ -81,6 +82,12 @@ namespace VanillaTweaks
 					textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrick), new object[]{ "Sand Brick" });
 					textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrickWall), new object[]{ "Sand Brick Wall" });
 					textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneSlab), new object[]{ "Sand Slab" });
+					if(VanillaTweaks.MiscellaniaLoaded)
+					{
+						int type = ModLoader.GetMod("GoldensMisc").ItemType("SandstoneSlabWall");
+						if(type > 0)
+							textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ "Sand Slab Wall"});
+					}
 				}
 			}
 			else if(manager.ActiveCulture == GameCulture.Russian)
