@@ -26,12 +26,12 @@ namespace VanillaTweaks
 			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditTooltips;
-			LangTweaks.EditNames(LanguageManager.Instance);
 			LangTweaks.AddText();
 		}
 		
 		public override void AddRecipes()
 		{
+			LangTweaks.EditNames(LanguageManager.Instance);
 			LangTweaks.EditTooltips(LanguageManager.Instance);
 			RecipeTweaks.EditVanillaRecipes();
 		}
