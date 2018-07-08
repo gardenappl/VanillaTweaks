@@ -1,0 +1,19 @@
+﻿ItemTooltip.ObsidianArmor=3% increased ranged critical strike chance
+ItemTooltip.SwatHelmet=15% increased ranged damage\n10% increased ranged critical strike chance
+ItemTooltip.Eskimo=Allows touching cold water without freezing
+ItemTooltip.Pharaoh=Increases minion damage by 5%
+
+ArmorSet.Obsidian=10% increased movement speed
+ArmorSet.Gladiator=15% increased critical strike chance
+ArmorSet.Rain=1 defense\nGrants immunity to Water Guns
+ArmorSet.Swat=Reduces damage taken by 25%\n20% increased ranged damage and chance not to consume ammo
+ArmorSet.Eskimo=4 defense\nProvides warmth and immunity to chill, frostburn and freezing effects
+ArmorSet.Viking=5% increased damage
+ArmorSet.Cactus=Attackers also take damage
+ArmorSet.Pharaoh=Increases your max number of minions
+
+ItemName.CobaltShield=Guardian's Shield
+ItemName.SandstoneBrick=Sand Brick
+ItemName.SandstoneBrickWall=Sand Brick Wall
+ItemName.SandstoneSlab=Sand Slab
+ItemName.SandstoneSlabWall=Sand Slab Wall

@@ -26,7 +26,6 @@ namespace VanillaTweaks
 			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditTooltips;
-			LangTweaks.AddText();
 		}
 		
 		public override void AddRecipes()
@@ -58,5 +57,25 @@ namespace VanillaTweaks
 		{
 			ErrorLogger.Log(String.Format("[Vanilla Tweaks][{0}] {1}", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"), string.Format(message, formatData)));
 		}
+
+		#region Hamstar's Mod Helpers integration
+
+		public static string GithubUserName { get { return "goldenapple3"; } }
+		public static string GithubProjectName { get { return "VanillaTweaks"; } }
+
+		public static string ConfigFileRelativePath { get { return "Mod Configs/Vanilla Tweaks.json"; } }
+
+		public static void ReloadConfigFromFile()
+		{
+			Config.ReadConfig();
+		}
+
+		public static void ResetConfigFromDefaults()
+		{
+			Config.SetDefaults();
+			Config.SaveConfig();
+		}
+
+		#endregion
 	}
 }

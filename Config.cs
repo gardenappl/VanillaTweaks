@@ -8,6 +8,8 @@ using Terraria.ModLoader;
 
 namespace VanillaTweaks
 {
+	//I should probably rewrite this whole thing but I'll get to it once tML officially supports config files.
+
 	public static class Config
 	{
 		static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "Vanilla Tweaks.json");
@@ -109,8 +111,40 @@ namespace VanillaTweaks
 					VanillaTweaks.Log("Old config folder still cotains some files/directories. They will not get deleted.");
 			}
 			if(!ReadConfig())
-				VanillaTweaks.Log("Failed to read config file! Recreating config...");
-			SaveConfig();
+			{
+				SetDefaults();
+				VanillaTweaks.Log("Failed to read config file! Creating config...");
+				SaveConfig();
+			}
+		}
+
+		public static void SetDefaults()
+		{
+			GladiatorArmorTweak = true;
+			ObsidianArmorTweak = true;
+			MeteorArmorDefenseTweak = true;
+			MeteorArmorDamageTweak = true;
+			EskimoArmorTweak = true;
+			HammerTweaks = true;
+			RainArmorTweak = true;
+			NightsEdgeAutoswing = true;
+			TrueSwordsAutoswing = true;
+			SwatHelmetTweak = true;
+			SkullTweak = true;
+			FishBowlTweak = true;
+			SandstoneRename = true;
+			CobaltShieldRename = true;
+			GoldCritterDropTweak = true;
+			BoneBlockFix = true;
+			ExtractSpeedMultiplier = 5f;
+			JestersArrowCraft = 50;
+			FavoriteTooltipRemove = true;
+			WhoopieCushionTweak = true;
+			CoinsTweak = true;
+			MolotovCraft = 25;
+			VikingHelmetTweak = true;
+			CactusArmorTweak = true;
+			PharaohSetTweak = true;
 		}
 		
 		public static bool ReadConfig()
