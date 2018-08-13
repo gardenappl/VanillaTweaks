@@ -30,6 +30,9 @@ namespace VanillaTweaks
 		
 		public static bool EskimoArmorTweak = true;
 		const string EskimoArmorTweakKey = "EskimoArmorTweak";
+
+		public static bool EskimoArmorDropTweak = true;
+		const string EskimoArmorDropTweakKey = "EskimoArmorDropTweak";
 		
 		public static bool RainArmorTweak = true;
 		const string RainArmorTweakKey = "RainArmorTweak";
@@ -86,7 +89,7 @@ namespace VanillaTweaks
 		const string VikingHelmetTweakKey = "VikingHelmetTweak";
 		
 		public static bool CactusArmorTweak = true;
-		const string CactusArmorTweakKey = "CactusArmorTweak";	
+		const string CactusArmorTweakKey = "CactusArmorTweak";
 				
 		public static bool MeteorArmorDefenseTweak = true;
 		const string MeteorArmorDefenseTweakKey = "MeteorArmorDefenseTweak";
@@ -114,8 +117,8 @@ namespace VanillaTweaks
 			{
 				SetDefaults();
 				VanillaTweaks.Log("Failed to read config file! Creating config...");
-				SaveConfig();
 			}
+			SaveConfig();
 		}
 
 		public static void SetDefaults()
@@ -125,6 +128,7 @@ namespace VanillaTweaks
 			MeteorArmorDefenseTweak = true;
 			MeteorArmorDamageTweak = true;
 			EskimoArmorTweak = true;
+			EskimoArmorDropTweak = true;
 			HammerTweaks = true;
 			RainArmorTweak = true;
 			NightsEdgeAutoswing = true;
@@ -156,6 +160,7 @@ namespace VanillaTweaks
 				Settings.Get(MeteorArmorDefenseTweakKey, ref MeteorArmorDefenseTweak);
 				Settings.Get(MeteorArmorDamageTweakKey, ref MeteorArmorDamageTweak);
 				Settings.Get(EskimoArmorTweakKey, ref EskimoArmorTweak);
+				Settings.Get(EskimoArmorDropTweakKey, ref EskimoArmorDropTweak);
 				Settings.Get(RainArmorTweakKey, ref RainArmorTweak);
 				Settings.Get(HammerTweaksKey, ref HammerTweaks);
 				Settings.Get(NightsEdgeAutoswingKey, ref NightsEdgeAutoswing);
@@ -190,6 +195,7 @@ namespace VanillaTweaks
 			Settings.Put(MeteorArmorDefenseTweakKey, MeteorArmorDefenseTweak);
 			Settings.Put(MeteorArmorDamageTweakKey, MeteorArmorDamageTweak);
 			Settings.Put(EskimoArmorTweakKey, EskimoArmorTweak);
+			Settings.Put(EskimoArmorDropTweakKey, EskimoArmorDropTweak);
 			Settings.Put(RainArmorTweakKey, RainArmorTweak);
 			Settings.Put(PharaohSetTweakKey, PharaohSetTweak);
 			Settings.Put(VikingHelmetTweakKey, VikingHelmetTweak);
@@ -217,7 +223,7 @@ namespace VanillaTweaks
 		{
 			var setting = FKTModSettings.ModSettingsAPI.CreateModSettingConfig(VanillaTweaks.Instance);
 
-			setting.AddComment("Features marked with an asterisk (*) require an item reset to tupdate properly.\n" +
+			setting.AddComment("Features marked with an asterisk (*) require an item reset to update properly.\n" +
 			                   "An item can be reset by either re-entering the world or by placing the item on an Item Frame, Weapon Rack or Mannequin.");
 			setting.AddComment("Features marked with two asterisks (**) require a mod reload to update properly.");
 			setting.AddComment("Most values are only modifiable in singleplayer.");
@@ -234,8 +240,10 @@ namespace VanillaTweaks
 			setting.AddBool(MeteorArmorDamageTweakKey, "Meteor Armor Damage Tweaks", false);
 			setting.AddComment("Defense increased*, immunity to cold water, set bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen", commentScale);
 			setting.AddBool(EskimoArmorTweakKey, "Eskimo Armor Tweaks", false);
-			setting.AddComment("Set bonus: +1 defense, immunity to being wet", commentScale);
-			setting.AddBool(RainArmorTweakKey, "Rain Armor Tweaks", false);
+			setting.AddComment("3% chance to drop Eskimo Armor instead of 0.67% (twice as much in Expert Mode)", commentScale);
+			setting.AddBool(EskimoArmorDropTweakKey, "Eskimo Armor Drop Increase", false);
+			setting.AddComment("Rain Armor is now Vanity", commentScale);
+			setting.AddBool(RainArmorTweakKey, "Rain Armor Tweaks*", false);
 			setting.AddComment("Viking Helmet gives 5% damage when used with Iron or Lead armor", commentScale);
 			setting.AddBool(VikingHelmetTweakKey, "Iron or Lead Viking Tweaks", false);
 			setting.AddComment("Changes the set bonus of cactus to 25% thorns", commentScale);
@@ -281,6 +289,7 @@ namespace VanillaTweaks
 				setting.Get(ObsidianArmorTweakKey, ref ObsidianArmorTweak);
 				setting.Get(MeteorArmorDefenseTweakKey, ref MeteorArmorDefenseTweak);
 				setting.Get(EskimoArmorTweakKey, ref EskimoArmorTweak);
+				setting.Get(EskimoArmorDropTweakKey, ref EskimoArmorDropTweak);
 				setting.Get(RainArmorTweakKey, ref RainArmorTweak);
 				setting.Get(HammerTweaksKey, ref HammerTweaks);
 				setting.Get(NightsEdgeAutoswingKey, ref NightsEdgeAutoswing);
@@ -309,25 +318,31 @@ namespace VanillaTweaks
 		{
 			public override void NetSend(BinaryWriter writer)
 			{
-				var data = new BitsByte();
-				data[0] = GladiatorArmorTweak;
-				data[1] = ObsidianArmorTweak;
-				data[2] = MeteorArmorDamageTweak;
-				data[3] = RainArmorTweak;
-				data[4] = HammerTweaks;
-				data[5] = NightsEdgeAutoswing;
-				data[6] = TrueSwordsAutoswing;
-				data[7] = SwatHelmetTweak;
+				var data = new BitsByte(
+					GladiatorArmorTweak,
+					ObsidianArmorTweak,
+					MeteorArmorDamageTweak,
+					RainArmorTweak,
+					HammerTweaks,
+					NightsEdgeAutoswing,
+					TrueSwordsAutoswing,
+					SwatHelmetTweak
+				);
 				writer.Write((byte)data);
-				data.ClearAll();
-				data[0] = FishBowlTweak;
-				data[1] = BoneBlockFix;
-				data[2] = GoldCritterDropTweak;
-				data[3] = EskimoArmorTweak;
-				data[4] = VikingHelmetTweak;
-				data[5] = PharaohSetTweak;
-				data[6] = MeteorArmorDefenseTweak;
-				data[7] = CactusArmorTweak;
+				data = new BitsByte(
+					FishBowlTweak,
+					BoneBlockFix,
+					GoldCritterDropTweak,
+					EskimoArmorTweak,
+					VikingHelmetTweak,
+					PharaohSetTweak,
+					MeteorArmorDefenseTweak,
+					CactusArmorTweak
+				);
+				writer.Write((byte)data);
+				data = new BitsByte(
+					EskimoArmorDropTweak
+				);
 				writer.Write((byte)data);
 				writer.Write(ExtractSpeedMultiplier);
 				writer.Write((short)JestersArrowCraft);
@@ -337,6 +352,7 @@ namespace VanillaTweaks
 			public override void NetReceive(BinaryReader reader)
 			{
 				SaveConfig();
+
 				var data = (BitsByte)reader.ReadByte();
 				GladiatorArmorTweak = data[0];
 				ObsidianArmorTweak = data[1];
@@ -346,6 +362,7 @@ namespace VanillaTweaks
 				NightsEdgeAutoswing = data[5];
 				TrueSwordsAutoswing = data[6];
 				SwatHelmetTweak = data[7];
+
 				data = (BitsByte)reader.ReadByte();
 				FishBowlTweak = data[0];
 				BoneBlockFix = data[1];
@@ -355,6 +372,10 @@ namespace VanillaTweaks
 				PharaohSetTweak = data[5];
 				MeteorArmorDefenseTweak = data[6];
 				CactusArmorTweak = data[7];
+
+				data = (BitsByte)reader.ReadByte();
+				EskimoArmorDropTweak = data[0];
+
 				ExtractSpeedMultiplier = reader.ReadSingle();
 				JestersArrowCraft = reader.ReadInt16();
 				MolotovCraft = reader.ReadInt16();

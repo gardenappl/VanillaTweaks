@@ -23,6 +23,14 @@ namespace VanillaTweaks
 					if(Config.GoldCritterDropTweak)
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldCoin, 2);
 					return;
+				case NPCID.ZombieEskimo:
+				case NPCID.ArmedZombieEskimo:
+					if(Config.EskimoArmorDropTweak)
+					{
+						if(Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
+							Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
+					}
+					return;
 			}
 		}
 	}

@@ -1,11 +1,11 @@
 ﻿ItemTooltip.ObsidianArmor=3% increased ranged critical strike chance
 ItemTooltip.SwatHelmet=15% increased ranged damage\n10% increased ranged critical strike chance
+MiscellaniaTooltip.SwatHelmet=15% increased ranged damage\n10% increased ranged critical strike chance\nProvides a set bonus when worn with the Reinforced Vest
 ItemTooltip.Eskimo=Allows touching cold water without freezing
 ItemTooltip.Pharaoh=Increases minion damage by 5%
 
 ArmorSet.Obsidian=10% increased movement speed
 ArmorSet.Gladiator=15% increased critical strike chance
-ArmorSet.Rain=1 defense\nGrants immunity to Water Guns
 ArmorSet.Swat=Reduces damage taken by 25%\n20% increased ranged damage and chance not to consume ammo
 ArmorSet.Eskimo=4 defense\nProvides warmth and immunity to chill, frostburn and freezing effects
 ArmorSet.Viking=5% increased damage

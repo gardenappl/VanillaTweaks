@@ -53,6 +53,8 @@
   <ItemGroup>
     <None Include="build.txt" />
     <None Include="description.txt" />
+    <None Include="Localization\en-US.lang" />
+    <None Include="Localization\ru-RU.lang" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />

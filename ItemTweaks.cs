@@ -15,7 +15,6 @@ namespace VanillaTweaks
 	{
 		const string GladiatorSet = "miscellania_gladiator";
 		const string ObsidianSet = "miscellania_obsidian";
-		const string RainSet = "miscellania_rain";
 		const string SWATSet = "miscellania_swat";
 		const string EskimoSet = "miscellania_eskimo";
 		const string CactusSet = "miscellania_cactus";
@@ -159,6 +158,14 @@ namespace VanillaTweaks
 						item.autoReuse = true;
 					}
 					return;
+				case ItemID.RainHat:
+				case ItemID.RainCoat:
+					if(Config.RainArmorTweak)
+					{
+						item.vanity = true;
+						item.defense = 0;
+					}
+					return;
 			}
 		}
 		
@@ -210,9 +217,6 @@ namespace VanillaTweaks
 			if(head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
 				return ObsidianSet;
 			
-			if(head.type == ItemID.RainHat && body.type == ItemID.RainCoat)
-				return RainSet;
-			
 			if(head.type == ItemID.SWATHelmet && VanillaTweaks.MiscellaniaLoaded)
 			{
 				int reinforcedVest = ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest");
@@ -253,12 +257,6 @@ namespace VanillaTweaks
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian");
 				player.moveSpeed += 0.1f;
-			}
-			else if(armorSet == RainSet && Config.RainArmorTweak)
-			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Rain");
-				player.statDefense++;
-				player.buffImmune[BuffID.Wet] = true;
 			}
 			else if(armorSet == SWATSet && Config.SwatHelmetTweak)
 			{

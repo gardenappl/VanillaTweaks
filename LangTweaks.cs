@@ -13,23 +13,28 @@ namespace VanillaTweaks
 	{
 		public static void EditNames(LanguageManager manager)
 		{
-			var bindFlags = BindingFlags.Instance | BindingFlags.NonPublic;
-			var textValueMethod = typeof(LocalizedText).GetMethod("SetValue", bindFlags);
+			//var bindFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+			//var textValueMethod = typeof(LocalizedText).GetMethod("SetValue", bindFlags);
 	
 			if(Config.CobaltShieldRename)
 			{
-				textValueMethod.Invoke(Lang.GetItemName(ItemID.CobaltShield), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.CobaltShield") });
+				Lang.GetItemName(ItemID.CobaltShield).Override = Language.GetText("Mods.VanillaTweaks.ItemName.CobaltShield");
+				//textValueMethod.Invoke(Lang.GetItemName(ItemID.CobaltShield), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.CobaltShield") });
 			}
 			if(Config.SandstoneRename && manager.ActiveCulture != GameCulture.Russian)
 			{
-				textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrick), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrick") });
-				textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrickWall), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrickWall") });
-				textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneSlab), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlab") });
+				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
+				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
+				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
+				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrick), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrick") });
+				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrickWall), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrickWall") });
+				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneSlab), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlab") });
 				if(VanillaTweaks.MiscellaniaLoaded)
 				{
 					int type = ModLoader.GetMod("GoldensMisc").ItemType("SandstoneSlabWall");
 					if(type > 0)
-						textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
+						Lang.GetItemName(type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
+						//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
 				}
 			}
 		}
@@ -45,11 +50,18 @@ namespace VanillaTweaks
 				tooltips[ItemID.ObsidianShirt] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
 				tooltips[ItemID.ObsidianPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
 			}
+			if(Config.SwatHelmetTweak)
+			{
+				if(VanillaTweaks.MiscellaniaLoaded && ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest") > 0)
+					tooltips[ItemID.SWATHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.MiscellaniaTooltip.SwatHelmet");
+				else
+					tooltips[ItemID.SWATHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.SwatHelmet");
+			}
 			if(Config.MeteorArmorDamageTweak)
 			{
-				tooltips[ItemID.MeteorHelmet] = null;
-				tooltips[ItemID.MeteorSuit] = null;
-				tooltips[ItemID.MeteorLeggings] = null;
+				tooltips[ItemID.MeteorHelmet] = ItemTooltip.None;
+				tooltips[ItemID.MeteorSuit] = ItemTooltip.None;
+				tooltips[ItemID.MeteorLeggings] = ItemTooltip.None;
 			}
 			if(Config.EskimoArmorTweak)
 			{
