@@ -96,6 +96,15 @@ namespace VanillaTweaks
 		
 		public static bool PharaohSetTweak = true;
 		const string PharaohSetTweakKey = "PharaohSetTweak";
+
+		public static bool CrimsonArmorTweak = true;
+		const string CrimsonArmorTweakKey = "CrimsonArmorTweak";
+
+		public static bool UndeadMinerTweak = true;
+		const string UndeadMinerTweakKey = "UndeadMinerDrop";
+
+		public static bool FishingPoleTweak = true;
+		const string FishingPoleTweakKey = "FishingPoleTweaks";
 		
 		public static void Load()
 		{
@@ -149,6 +158,9 @@ namespace VanillaTweaks
 			VikingHelmetTweak = true;
 			CactusArmorTweak = true;
 			PharaohSetTweak = true;
+			CrimsonArmorTweak = true;
+			UndeadMinerTweak = true;
+			FishingPoleTweak = true;
 		}
 		
 		public static bool ReadConfig()
@@ -182,6 +194,9 @@ namespace VanillaTweaks
 				Settings.Get(WhoopieCushionTweakKey, ref WhoopieCushionTweak);
 				Settings.Get(CoinsTweakKey, ref CoinsTweak);
 				Settings.Get(PharaohSetTweakKey, ref PharaohSetTweak);
+				Settings.Get(CrimsonArmorTweakKey, ref CrimsonArmorTweak);
+				Settings.Get(UndeadMinerTweakKey, ref UndeadMinerTweak);
+				Settings.Get(FishingPoleTweakKey, ref FishingPoleTweak);
 				return true;
 			}
 			return false;
@@ -216,6 +231,9 @@ namespace VanillaTweaks
 			Settings.Put(MolotovTweakKey, MolotovCraft);
 			Settings.Put(WhoopieCushionTweakKey, WhoopieCushionTweak);
 			Settings.Put(CoinsTweakKey, CoinsTweak);
+			Settings.Put(CrimsonArmorTweakKey, CrimsonArmorTweak);
+			Settings.Put(UndeadMinerTweakKey, UndeadMinerTweak);
+			Settings.Put(FishingPoleTweakKey, FishingPoleTweak);
 			Settings.Save();
 		}
 		
@@ -250,6 +268,8 @@ namespace VanillaTweaks
 			setting.AddBool(CactusArmorTweakKey, "Cactus Armor Tweaks", false);
 			setting.AddComment("Changes Pharaoh's vanity set to Summoner armor", commentScale);
 			setting.AddBool(PharaohSetTweakKey, "Pharaoh Set Tweaks*", false);
+			setting.AddComment("Crimson Armor now only increases melee damage instead of all damage", commentScale);
+			setting.AddBool(CrimsonArmorTweakKey, "Crimson Set Tweaks*", false);
 			setting.AddComment("Rebalances a few hammers/hamaxes", commentScale);
 			setting.AddBool(HammerTweaksKey, "Hammer Tweaks*", false);
 			setting.AddBool(NightsEdgeAutoswingKey, "Night's Edge Autoswing*", true);
@@ -261,13 +281,18 @@ namespace VanillaTweaks
 			setting.AddBool(SkullTweakKey, "Skull Flip", true);
 			setting.AddComment("+1 defense", commentScale);
 			setting.AddBool(FishBowlTweakKey, "Fish Bowl Tweaks*", false);
+			setting.AddComment("Undead Miners drop Mining Armor a lot more often and are detected by Lifeform Analyzer", commentScale);
+			setting.AddBool(UndeadMinerTweakKey, "Undead Miner Drops", false);
+			setting.AddComment("Sitting Duck Fishing Pole is Hardmode only and the Mechanic's Rod is sold more often\n" +
+			                   "If Miscellania is installed, the Mechanic's Rod will also be sold more often. (disable in that mod's config)", commentScale);
+			setting.AddBool(FishingPoleTweakKey, "Fishing Pole Tweaks", false);
 			setting.AddComment("Renames items such as Sandstone Brick to Sand Brick", commentScale);
 			setting.AddBool(SandstoneRenameKey, "Rename Sandstone Items**", true);
 			setting.AddComment("Renames the Cobalt Shield to Guardian's Shield", commentScale);
 			setting.AddBool(CobaltShieldRenameKey, "Rename Cobalt Shield**", true);
 			setting.AddComment("Bone Block Walls craft back into Bones**, Bone Blocks drop raw Bones when mined", commentScale);
 			setting.AddBool(BoneBlockFixKey, "Bone Block Fix", false);
-			setting.AddComment("Gold critters drop 1 Gold when killed (as opposed to 5 Gold when sold)", commentScale);
+			setting.AddComment("Gold critters drop 1 Gold when killed (still sell for 5 Gold when sold)", commentScale);
 			setting.AddBool(GoldCritterDropTweakKey, "Gold Critters Drop Coins", false);
 			setting.AddFloat(ExtractSpeedMultiplierKey, "Extractinator Speed Multiplier", 0f, 5f, false);
 			setting.AddBool(FavoriteTooltipRemoveKey, "Remove \"Favorite Item\" Tooltips", true);
@@ -311,6 +336,9 @@ namespace VanillaTweaks
 				setting.Get(PharaohSetTweakKey, ref PharaohSetTweak);
 				setting.Get(WhoopieCushionTweakKey, ref WhoopieCushionTweak);
 				setting.Get(CoinsTweakKey, ref CoinsTweak);
+				setting.Get(CrimsonArmorTweakKey, ref CrimsonArmorTweak);
+				setting.Get(UndeadMinerTweakKey, ref UndeadMinerTweak);
+				setting.Get(FishingPoleTweakKey, ref FishingPoleTweak);
 			}
 		}
 		
@@ -341,7 +369,10 @@ namespace VanillaTweaks
 				);
 				writer.Write((byte)data);
 				data = new BitsByte(
-					EskimoArmorDropTweak
+					EskimoArmorDropTweak,
+					CrimsonArmorTweak,
+					UndeadMinerTweak,
+					FishingPoleTweak
 				);
 				writer.Write((byte)data);
 				writer.Write(ExtractSpeedMultiplier);
@@ -363,7 +394,7 @@ namespace VanillaTweaks
 				TrueSwordsAutoswing = data[6];
 				SwatHelmetTweak = data[7];
 
-				data = (BitsByte)reader.ReadByte();
+				data = reader.ReadByte();
 				FishBowlTweak = data[0];
 				BoneBlockFix = data[1];
 				GoldCritterDropTweak = data[2];
@@ -373,8 +404,11 @@ namespace VanillaTweaks
 				MeteorArmorDefenseTweak = data[6];
 				CactusArmorTweak = data[7];
 
-				data = (BitsByte)reader.ReadByte();
+				data = reader.ReadByte();
 				EskimoArmorDropTweak = data[0];
+				CrimsonArmorTweak = data[1];
+				UndeadMinerTweak = data[2];
+				FishingPoleTweak = data[3];
 
 				ExtractSpeedMultiplier = reader.ReadSingle();
 				JestersArrowCraft = reader.ReadInt16();

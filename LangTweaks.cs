@@ -13,22 +13,15 @@ namespace VanillaTweaks
 	{
 		public static void EditNames(LanguageManager manager)
 		{
-			//var bindFlags = BindingFlags.Instance | BindingFlags.NonPublic;
-			//var textValueMethod = typeof(LocalizedText).GetMethod("SetValue", bindFlags);
-	
 			if(Config.CobaltShieldRename)
 			{
 				Lang.GetItemName(ItemID.CobaltShield).Override = Language.GetText("Mods.VanillaTweaks.ItemName.CobaltShield");
-				//textValueMethod.Invoke(Lang.GetItemName(ItemID.CobaltShield), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.CobaltShield") });
 			}
 			if(Config.SandstoneRename && manager.ActiveCulture != GameCulture.Russian)
 			{
 				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
 				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
 				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
-				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrick), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrick") });
-				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneBrickWall), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneBrickWall") });
-				//textValueMethod.Invoke(Lang.GetItemName(ItemID.SandstoneSlab), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlab") });
 				if(VanillaTweaks.MiscellaniaLoaded)
 				{
 					int type = ModLoader.GetMod("GoldensMisc").ItemType("SandstoneSlabWall");
@@ -73,6 +66,12 @@ namespace VanillaTweaks
 			{
 				tooltips[ItemID.PharaohsMask] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
 				tooltips[ItemID.PharaohsRobe] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
+			}
+			if(Config.CrimsonArmorTweak)
+			{
+				tooltips[ItemID.CrimsonHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
+				tooltips[ItemID.CrimsonScalemail] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
+				tooltips[ItemID.CrimsonGreaves] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
 			}
 		}
 	}

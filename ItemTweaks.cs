@@ -206,6 +206,18 @@ namespace VanillaTweaks
 					if(Config.PharaohSetTweak)
 						player.minionDamage += 0.05f;
 					return;
+				case ItemID.CrimsonHelmet:
+				case ItemID.CrimsonScalemail:
+				case ItemID.CrimsonGreaves:
+					if(Config.CrimsonArmorTweak)
+					{
+						player.meleeDamage += 0.02f;
+						player.magicDamage -= 0.02f;
+						player.rangedDamage -= 0.02f;
+						player.minionDamage -= 0.02f;
+						player.thrownDamage -= 0.02f;
+					}
+					return;
 			}
 		}
 		
