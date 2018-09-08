@@ -14,7 +14,4 @@ ArmorSet.Cactus=反弹所受伤害
 ArmorSet.Pharaoh=增加你的最大召唤物数量
 
 ItemName.CobaltShield=守卫者之盾
-ItemName.SandstoneBrick=沙岩块
-ItemName.SandstoneBrickWall=沙岩墙壁
-ItemName.SandstoneSlab=沙石板
-ItemName.SandstoneSlabWall=沙石板壁
+// 使用改良中文Mod（IMPCN）后无需更改
