@@ -14,4 +14,7 @@ ArmorSet.Cactus=Атакующие тоже получают урон
 ArmorSet.Pharaoh=Увеличивает ваше максимальное количество питомцев
 
 ItemName.CobaltShield=Щит хранителя
-// Песчаниковые блоки в русском языке не меняют названия.
+ItemName.SandstoneBrick=Песчаный кирпич
+ItemName.SandstoneBrickWall=Стена из песчаного кирпича
+ItemName.SandstoneSlab=Песчаная плита
+ItemName.SandstoneSlabWall=Стена из песчаной плиты

@@ -17,7 +17,7 @@ namespace VanillaTweaks
 			{
 				Lang.GetItemName(ItemID.CobaltShield).Override = Language.GetText("Mods.VanillaTweaks.ItemName.CobaltShield");
 			}
-			if(Config.SandstoneRename && manager.ActiveCulture != GameCulture.Russian)
+			if(Config.SandstoneRename)
 			{
 				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
 				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
