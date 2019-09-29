@@ -6,10 +6,9 @@ Changes include:
  -Autoswing for Night's Edge, True Night's Edge and True Excalibur
 And some other things! Visit the mod's homepage for the full list.
 
-NOTE: Since the 2.0 update you can now disable/enable features as you wish! Visit the mod's homepage for more info.
-Install Flashkirby's Mod Settings Configurator to change them in-game.
+NOTE: Since the 2.0 update you can now disable/enable features as you wish! Go to your Mods menu and click on the config icon.
 
 Credits:
- -Pop000100 for help with various tweaks
+ -Pop000100 for help with various tweaks and updating the mod
  -Hulvdan for the Extractinator tweak code
  -lots of people for their suggestions
