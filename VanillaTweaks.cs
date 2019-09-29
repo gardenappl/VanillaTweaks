@@ -19,13 +19,12 @@ namespace VanillaTweaks
 			MiscellaniaLoaded = ModLoader.GetMod("GoldensMisc") != null;
 			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
-			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditTooltips;
 		}
 		
 		public override void AddRecipes()
 		{
 			LangTweaks.EditNames(LanguageManager.Instance);
-			LangTweaks.EditTooltips(LanguageManager.Instance);
+			LangTweaks.EditTooltips();
 			RecipeTweaks.EditVanillaRecipes();
 		}
 		
@@ -33,6 +32,11 @@ namespace VanillaTweaks
 		{
 			if(ServerConfig.Instance.CoinsTweak)
 				RecipeTweaks.TweakCoins();
+		}
+
+		public override void Unload()
+		{
+			LangTweaks.ResetTooltips();
 		}
 
 		public static void Log(object message)

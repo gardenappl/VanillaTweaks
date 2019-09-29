@@ -1,3 +1,6 @@
+-- tML has a weird bug where the first line of the .lang file is always ignored
+-- so I'm adding random stuff here.
+
 ItemTooltip.ObsidianArmor=增加3%远程暴击率
 ItemTooltip.SwatHelmet=增加15%远程伤害\n添加10%远程暴击率
 MiscellaniaTooltip.SwatHelmet=增加15%远程伤害\n添加10%远程暴击率\n搭配装甲之躯能获得套装效果

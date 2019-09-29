@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
@@ -11,68 +12,108 @@ namespace VanillaTweaks
 {
 	public static class LangTweaks
 	{
+		class ReplacedTooltipLine
+		{
+			public ItemTooltip Line;
+			public short ItemID;
+
+			public ReplacedTooltipLine(ItemTooltip line, short itemID)
+			{
+				this.Line = line;
+				this.ItemID = itemID;
+			}
+		}
+
+		static List<ReplacedTooltipLine> ReplacedTooltips = new List<ReplacedTooltipLine>();
+
 		public static void EditNames(LanguageManager manager)
 		{
-			if(ClientConfig.Instance.CobaltShieldRename)
+			if (ClientConfig.Instance == null)
+			{
+				VanillaTweaks.Instance.Logger.Error("config is null"); //not sure why this happens, can't reproduce
+				return;
+			}
+			if (ClientConfig.Instance.CobaltShieldRename)
 			{
 				Lang.GetItemName(ItemID.CobaltShield).Override = Language.GetText("Mods.VanillaTweaks.ItemName.CobaltShield");
 			}
-			if(ClientConfig.Instance.SandstoneRename)
+			if (ClientConfig.Instance.SandstoneRename)
 			{
 				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
 				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
 				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
-				if(VanillaTweaks.MiscellaniaLoaded)
+				if (VanillaTweaks.MiscellaniaLoaded)
 				{
 					int type = ModLoader.GetMod("GoldensMisc").ItemType("SandstoneSlabWall");
-					if(type > 0)
+					if (type > 0)
 						Lang.GetItemName(type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
-						//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
+					//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
 				}
 			}
 		}
-		
-		public static void EditTooltips(LanguageManager manager)
+
+		static void ReplaceTooltip(ItemTooltip[] tooltipArray, string newTooltip, short itemID)
+		{
+			ReplacedTooltips.Add(new ReplacedTooltipLine(tooltipArray[itemID], itemID));
+			if (newTooltip == null)
+				tooltipArray[itemID] = ItemTooltip.None;
+			else
+				tooltipArray[itemID] = ItemTooltip.FromLanguageKey(newTooltip);
+		}
+
+		public static void EditTooltips()
 		{
 			var bindFlags = BindingFlags.Static | BindingFlags.NonPublic;
 			var tooltipsField = typeof(Lang).GetField("_itemTooltipCache", bindFlags);
 			var tooltips = (ItemTooltip[])tooltipsField.GetValue(null);
-			if(ServerConfig.Instance.ObsidianArmorTweak)
+			if (ServerConfig.Instance.ObsidianArmorTweak)
 			{
-				tooltips[ItemID.ObsidianHelm] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
-				tooltips[ItemID.ObsidianShirt] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
-				tooltips[ItemID.ObsidianPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.ObsidianArmor");
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianHelm);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianShirt);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianPants);
 			}
-			if(ServerConfig.Instance.SwatHelmetTweak)
+			if (ServerConfig.Instance.SwatHelmetTweak)
 			{
-				if(VanillaTweaks.MiscellaniaLoaded && ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest") > 0)
-					tooltips[ItemID.SWATHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.MiscellaniaTooltip.SwatHelmet");
+				if (VanillaTweaks.MiscellaniaLoaded && ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest") > 0)
+					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.MiscellaniaTooltip.SwatHelmet", ItemID.SWATHelmet);
 				else
-					tooltips[ItemID.SWATHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.SwatHelmet");
+					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.SwatHelmet", ItemID.SWATHelmet);
 			}
-			if(ServerConfig.Instance.MeteorArmorDamageTweak)
+			if (ServerConfig.Instance.MeteorArmorDamageTweak)
 			{
-				tooltips[ItemID.MeteorHelmet] = ItemTooltip.None;
-				tooltips[ItemID.MeteorSuit] = ItemTooltip.None;
-				tooltips[ItemID.MeteorLeggings] = ItemTooltip.None;
+				ReplaceTooltip(tooltips, null, ItemID.MeteorHelmet);
+				ReplaceTooltip(tooltips, null, ItemID.MeteorSuit);
+				ReplaceTooltip(tooltips, null, ItemID.MeteorLeggings);
 			}
-			if(ServerConfig.Instance.EskimoArmorTweak)
+			if (ServerConfig.Instance.EskimoArmorTweak)
 			{
-				tooltips[ItemID.EskimoHood] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
-				tooltips[ItemID.EskimoCoat] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
-				tooltips[ItemID.EskimoPants] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Eskimo");
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoHood);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoCoat);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoPants);
 			}
-			if(ServerConfig.Instance.PharaohSetTweak)
+			if (ServerConfig.Instance.PharaohSetTweak)
 			{
-				tooltips[ItemID.PharaohsMask] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
-				tooltips[ItemID.PharaohsRobe] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Pharaoh");
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Pharaoh", ItemID.PharaohsMask);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Pharaoh", ItemID.PharaohsRobe);
 			}
-			if(ServerConfig.Instance.CrimsonArmorTweak)
+			if (ServerConfig.Instance.CrimsonArmorTweak)
 			{
-				tooltips[ItemID.CrimsonHelmet] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
-				tooltips[ItemID.CrimsonScalemail] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
-				tooltips[ItemID.CrimsonGreaves] = ItemTooltip.FromLanguageKey("Mods.VanillaTweaks.ItemTooltip.Crimson");
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Crimson", ItemID.CrimsonHelmet);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Crimson", ItemID.CrimsonScalemail);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Crimson", ItemID.CrimsonGreaves);
 			}
+		}
+
+		public static void ResetTooltips()
+		{
+			var bindFlags = BindingFlags.Static | BindingFlags.NonPublic;
+			var tooltipsField = typeof(Lang).GetField("_itemTooltipCache", bindFlags);
+			var tooltips = (ItemTooltip[])tooltipsField.GetValue(null);
+			foreach (var tooltip in ReplacedTooltips)
+			{
+				tooltips[tooltip.ItemID] = tooltip.Line;
+			}
+			ReplacedTooltips.Clear();
 		}
 	}
 }

@@ -40,11 +40,13 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.ObsidianArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.ObsidianArmorTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool ObsidianArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.MeteorArmorDamageTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.MeteorArmorDamageTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool MeteorArmorDamageTweak;
 
@@ -55,6 +57,7 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.EskimoArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.EskimoArmorTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool EskimoArmorTweak;
 
@@ -75,16 +78,19 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.PharaohSetTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.PharaohSetTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool PharaohSetTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.CrimsonArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.CrimsonArmorTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool CrimsonArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.SwatHelmetTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.SwatHelmetTweak.Desc")]
+		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool SwatHelmetTweak;
 
@@ -124,7 +130,6 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.FishingPoleTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.FishingPoleTweak.Desc")]
-		[ReloadRequired]
 		[DefaultValue(true)]
 		public bool FishingPoleTweak;
 
