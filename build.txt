@@ -5,4 +5,3 @@ homepage = http://forums.terraria.org/index.php?threads/vanilla-tweaks-a-mod-wit
 hideCode = false
 includeSource = true
 buildIgnore = obj\*, bin\*, *.csproj, .git\*, .gitattributes, .gitignore
-weakReferences = FKTModSettings
