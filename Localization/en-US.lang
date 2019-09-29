@@ -42,8 +42,7 @@ Config.EskimoArmorDropTweak.Desc=3% chance to drop Eskimo Armor instead of 0.67%
 Config.EskimoArmorTweak=Eskimo Armor Tweaks
 Config.EskimoArmorTweak.Desc=Defense increased, immunity to cold water\nSet bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen
 
-Config.RainArmorTweak=Rain Armor Tweak
-Config.RainArmorTweak.Desc=Rain Armor is now vanity.
+Config.RainArmorTweak=Rain Armor is now Vanity
 
 Config.HammerTweaks=Hammer Tweaks
 Config.HammerTweaks.Desc=Rebalances a few hammers/hamaxes.
@@ -60,13 +59,13 @@ Config.BoneBlockFix.Desc=Bone Blocks drop raw Bones when mined.
 Config.GoldCritterDropTweak=Gold Critters Drop Coins
 Config.GoldCritterDropTweak.Desc=Gold critters drop 1 Gold when killed (still sell for 5 Gold when sold).
 
-Config.WhoopieCushionTweak=Easter egg
+Config.WhoopieCushionTweak=Easter Egg
 
 Config.VikingHelmetTweak=Viking Helmet Tweaks
-Config.VikingHelmetTweak.Desc=Viking Helmet gives 5% damage when used with Iron or Lead armor.
+Config.VikingHelmetTweak.Desc=Viking Helmet gives +5% damage when used with Iron or Lead armor.
 
 Config.CactusArmorTweak=Cactus Armor Tweaks
-Config.CactusArmorTweak.Desc=Changes the set bonus of cactus to 25% thorns.
+Config.CactusArmorTweak.Desc=Changes the set bonus of cactus to 25% chance of thorns.
 
 Config.MeteorArmorDefenseTweak=Meteor Armor Defense Tweaks
 Config.MeteorArmorDefenseTweak.Desc=Defense decreased from 5/6/5 to 4/5/4.
@@ -78,16 +77,16 @@ Config.CrimsonArmorTweak=Crimson Set Tweak
 Config.CrimsonArmorTweak.Desc=Crimson Armor now only increases melee damage instead of all damage.
 
 Config.UndeadMinerDropRateTweak=Undead Miner Drop Rate Tweak
-Config.UndeadMinerDropRateTweak.Desc=Changes the drop rate of mining clothes to a 33% chance (50% in Expert mode).
+Config.UndeadMinerDropRateTweak.Desc=Changes the drop rate of mining clothes to a 1/4 chance (1/3 in Expert mode).
 
-Config.UndeadMinerTweak=Undead Miner Lifeform Tweak
-Config.UndeadMinerTweak.Desc=Makes the Undead Miner show up on the Lifeform Analyzer.
+Config.UndeadMinerRareLifeform=Undead Miner Rare Lifeform
+Config.UndeadMinerRareLifeform.Desc=Makes the Undead Miner show up on the Lifeform Analyzer.
 
 Config.FishingPoleTweak=Fishing Pole Tweaks
 Config.FishingPoleTweak.Desc=Sitting Duck Fishing Pole is Hardmode only and the Mechanic's Rod is sold more often\nIf Miscellania is installed, the Mechanic's Rod will also be sold more often.\n(disable in that mod's config.)
 
 Config.ExtractSpeedMultiplier=Extractinator Speed Multiplier
-Config.ExtractSpeedMultiplier.Desc=Decreases the amount of time it takes to use the Extractionator(Higher is Faster).
+Config.ExtractSpeedMultiplier.Desc=Decreases the amount of time it takes to use the Extractionator (higher is faster).
 
 Config.JestersArrowCraft=Jester's Arrows Crafted per Star
 Config.JestersArrowCraft.Desc=Jester's Arrows Crafted per Star.\nSetting this value to 0 will remove the recipe entirely.
@@ -103,10 +102,8 @@ Config.ClientConfig=Client-side Settings
 
 
 Config.NightsEdgeAutoswing=Night's Edge Autoswing
-Config.NightsEdgeAutoswing.Desc=Night's Edge can autoswing.
 
 Config.TrueSwordsAutoswing=True Swords Autoswing
-Config.TrueSwordsAutoswing.Desc=The True Swords can autoswing.
 
 Config.CobaltShieldRename=Rename Cobalt Shield
 Config.CobaltShieldRename.Desc=Renames the Cobalt Shield to Guardian's Shield.

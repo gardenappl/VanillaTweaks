@@ -67,7 +67,6 @@ namespace VanillaTweaks
 		public bool EskimoArmorDropTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.RainArmorTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.RainArmorTweak.Desc")]
 		[DefaultValue(true)]
 		public bool RainArmorTweak;
 
@@ -114,8 +113,8 @@ namespace VanillaTweaks
 		[DefaultValue(true)]
 		public bool GoldCritterDropTweak;
 
-		[Label("$Mods.VanillaTweaks.Config.UndeadMinerTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerTweak.Desc")]
+		[Label("$Mods.VanillaTweaks.Config.UndeadMinerRareLifeform")]
+		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerRareLifeform.Desc")]
 		[DefaultValue(true)]
 		public bool UndeadMinerRareLifeform;
 
@@ -206,12 +205,10 @@ namespace VanillaTweaks
 		public bool SkullTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.NightsEdgeAutoswing")]
-		[Tooltip("$Mods.VanillaTweaks.Config.NightsEdgeAutoswing.Desc")]
 		[DefaultValue(true)]
 		public bool NightsEdgeAutoswing;
 
 		[Label("$Mods.VanillaTweaks.Config.TrueSwordsAutoswing")]
-		[Tooltip("$Mods.VanillaTweaks.Config.TrueSwordsAutoswing.Desc")]
 		[DefaultValue(true)]
 		public bool TrueSwordsAutoswing;
 	}
