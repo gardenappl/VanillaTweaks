@@ -11,13 +11,13 @@ namespace VanillaTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
-			if(ServerConfig.Instance.MolotovCraft > 0)
+			if(ServerConfig.Instance.MolotovBlueGelCraft > 0)
 			{
 				var recipe = new ModRecipe(VanillaTweaks.Instance);
 				recipe.AddIngredient(ItemID.Ale, 5);
 				recipe.AddIngredient(ItemID.Torch, 1);
 				recipe.AddIngredient(ItemID.Silk, 1);
-				recipe.AddIngredient(ItemID.Gel, ServerConfig.Instance.MolotovCraft);
+				recipe.AddIngredient(ItemID.Gel, ServerConfig.Instance.MolotovBlueGelCraft);
 				recipe.SetResult(ItemID.MolotovCocktail, 5);
 				recipe.AddRecipe();
 			}

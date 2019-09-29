@@ -117,21 +117,21 @@ namespace VanillaTweaks
 		[Label("$Mods.VanillaTweaks.Config.UndeadMinerTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerTweak.Desc")]
 		[DefaultValue(true)]
-		public bool UndeadMinerTweak;
+		public bool UndeadMinerRareLifeform;
 
 		[Label("$Mods.VanillaTweaks.Config.UndeadMinerDropRateTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerDropRateTweak.Desc")]
 		[DefaultValue(true)]
-		public bool UndeadMinerDropRateTweak;
+		public bool UndeadMinerDrop;
 
 		[Label("$Mods.VanillaTweaks.Config.WhoopieCushionTweak")]
 		[DefaultValue(true)]
-		public bool WhoopieCushionTweak;
+		public bool EasterEgg;
 
 		[Label("$Mods.VanillaTweaks.Config.FishingPoleTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.FishingPoleTweak.Desc")]
 		[DefaultValue(true)]
-		public bool FishingPoleTweak;
+		public bool FishingPoleTweaks;
 
 		[Label("$Mods.VanillaTweaks.Config.BoneBlockFix")]
 		[Tooltip("$Mods.VanillaTweaks.Config.BoneBlockFix.Desc")]
@@ -156,7 +156,7 @@ namespace VanillaTweaks
 		[ReloadRequired]
 		[Range(0, 100)]
 		[DefaultValue(25f)]
-		public int MolotovCraft;
+		public int MolotovBlueGelCraft;
 
 		[Label("$Mods.VanillaTweaks.Config.CoinsTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.CoinsTweak.Desc")]
@@ -164,7 +164,7 @@ namespace VanillaTweaks
 		[DefaultValue(true)]
 		//I'm not sure what would happen if the server and the client had mismatched recipe lists...
 		//Putting this in the ServerConfig just in case.
-		public bool CoinsTweak;
+		public bool CoinRecipesAtEndofList;
 		
 	}
 

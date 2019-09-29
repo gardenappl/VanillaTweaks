@@ -150,7 +150,7 @@ namespace VanillaTweaks
 					}
 					return;
 				case ItemID.WhoopieCushion:
-					if(ServerConfig.Instance.WhoopieCushionTweak)
+					if(ServerConfig.Instance.EasterEgg)
 					{
 						item.useTime = 5;
 						item.useAnimation = 5;

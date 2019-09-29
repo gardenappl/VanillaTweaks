@@ -13,6 +13,11 @@ namespace VanillaTweaks
 		public static VanillaTweaks Instance;
 		public static bool MiscellaniaLoaded;
 		
+		public VanillaTweaks()
+		{
+			LegacyConfig.Load();
+		}
+
 		public override void Load()
 		{
 			Instance = this;
@@ -30,7 +35,7 @@ namespace VanillaTweaks
 		
 		public override void PostAddRecipes()
 		{
-			if(ServerConfig.Instance.CoinsTweak)
+			if(ServerConfig.Instance.CoinRecipesAtEndofList)
 				RecipeTweaks.TweakCoins();
 		}
 

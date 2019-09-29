@@ -13,7 +13,7 @@ namespace VanillaTweaks
 			switch(npc.type)
 			{
 				case NPCID.UndeadMiner:
-					if(ServerConfig.Instance.UndeadMinerTweak)
+					if(ServerConfig.Instance.UndeadMinerRareLifeform)
 						npc.rarity = 1;
 					break;
 			}
@@ -40,7 +40,7 @@ namespace VanillaTweaks
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
 					break;
 				case NPCID.UndeadMiner:
-					if(ServerConfig.Instance.UndeadMinerDropRateTweak && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
+					if(ServerConfig.Instance.UndeadMinerDrop && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningShirt, ItemID.MiningPants));
 					break;
 			}
@@ -48,7 +48,7 @@ namespace VanillaTweaks
 
 		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
-			if(ServerConfig.Instance.FishingPoleTweak && !Main.hardMode)
+			if(ServerConfig.Instance.FishingPoleTweaks && !Main.hardMode)
 			{
 				for(int i = 0; i < shop.Length; i++)
 				{
@@ -70,7 +70,7 @@ namespace VanillaTweaks
 			switch(type)
 			{
 				case NPCID.Mechanic:
-					if(ServerConfig.Instance.FishingPoleTweak && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
+					if(ServerConfig.Instance.FishingPoleTweaks && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
 					{
 						bool mechRodFound = false;
 
