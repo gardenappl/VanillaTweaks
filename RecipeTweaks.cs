@@ -11,17 +11,17 @@ namespace VanillaTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
-			if(Config.MolotovCraft > 0)
+			if(ServerConfig.Instance.MolotovCraft > 0)
 			{
 				var recipe = new ModRecipe(VanillaTweaks.Instance);
 				recipe.AddIngredient(ItemID.Ale, 5);
 				recipe.AddIngredient(ItemID.Torch, 1);
 				recipe.AddIngredient(ItemID.Silk, 1);
-				recipe.AddIngredient(ItemID.Gel, Config.MolotovCraft);
+				recipe.AddIngredient(ItemID.Gel, ServerConfig.Instance.MolotovCraft);
 				recipe.SetResult(ItemID.MolotovCocktail, 5);
 				recipe.AddRecipe();
 			}
-			if(Config.BoneBlockFix)
+			if(ServerConfig.Instance.BoneBlockCraftFix)
 			{
 				var finder = new RecipeFinder();
 				finder.AddIngredient(ItemID.BoneBlockWall, 4);
@@ -32,7 +32,7 @@ namespace VanillaTweaks
 					recipe.createItem.SetDefaults(ItemID.Bone);
 			}
 			var foundRecipes = new List<Recipe>();
-			if(Config.JestersArrowCraft == 0)
+			if(ServerConfig.Instance.JestersArrowCraft == 0)
 			{
 				foreach(var recipe in Main.recipe)
 					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
@@ -52,8 +52,8 @@ namespace VanillaTweaks
 					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
 					{
 						var editor = new RecipeEditor(recipe);
-						editor.SetIngredientStack(ItemID.WoodenArrow, Config.JestersArrowCraft);
-						editor.SetResult(ItemID.JestersArrow, Config.JestersArrowCraft);
+						editor.SetIngredientStack(ItemID.WoodenArrow, ServerConfig.Instance.JestersArrowCraft);
+						editor.SetResult(ItemID.JestersArrow, ServerConfig.Instance.JestersArrowCraft);
 					}
 				}
 			}

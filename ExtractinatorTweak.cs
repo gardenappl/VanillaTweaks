@@ -37,7 +37,7 @@ namespace VanillaTweaks
 
 		static void SpeedUpExtract(Item item)
 		{
-			if(Config.ExtractSpeedMultiplier == 1f)
+			if(ServerConfig.Instance.ExtractSpeedMultiplier == 1f)
 				return;
 			
 			if(Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
@@ -52,9 +52,9 @@ namespace VanillaTweaks
 				if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
 				{
 					//useTime must be 2 or higher or else items dissapear
-					item.useTime = Math.Max(2, (int)(extractItem.UseTime / Config.ExtractSpeedMultiplier));
+					item.useTime = Math.Max(2, (int)(extractItem.UseTime / ServerConfig.Instance.ExtractSpeedMultiplier));
 					//useAnimation less than 4 looks really weird as there aren't enough frames
-					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / Config.ExtractSpeedMultiplier));
+					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / ServerConfig.Instance.ExtractSpeedMultiplier));
 //					item.SetNameOverride(extractItem.Name + Boost);
 				}
 				else
@@ -78,7 +78,7 @@ namespace VanillaTweaks
 //		public override void UpdateInventory(Item item, Player player)
 //		{
 //			//if (bfmtweaks.tweak_extractinator)
-//			if(Config.ExtractSpeedMultipltier != 1f)
+//			if(ServerConfig.Instance.ExtractSpeedMultipltier != 1f)
 //				ExtractinatorTweak.OnItemUse(item);
 //		}
 		
