@@ -25,15 +25,6 @@ namespace VanillaTweaks
 
 		static int[] VanillaExtractables = { ItemID.SiltBlock, ItemID.SlushBlock, ItemID.DesertFossil };
 		static Dictionary<int, ExtractableItem> ExtractItemsCache = new Dictionary<int, ExtractableItem>();
-//		static string Boost = " [Boosted]";
-
-//		private static ExtractableItem GetItemValue(int i)
-//		{
-//			ExtractableItem v;
-//			if (ExtractableItemsCache.TryGetValue(i, out v))
-//				return v;
-//			return new ExtractableItem(2, 4, "BFMTWEAKERROR");
-//		}
 
 		static void SpeedUpExtract(Item item)
 		{
@@ -55,32 +46,14 @@ namespace VanillaTweaks
 					item.useTime = Math.Max(2, (int)(extractItem.UseTime / ServerConfig.Instance.ExtractSpeedMultiplier));
 					//useAnimation less than 4 looks really weird as there aren't enough frames
 					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / ServerConfig.Instance.ExtractSpeedMultiplier));
-//					item.SetNameOverride(extractItem.Name + Boost);
 				}
 				else
 				{
-//					item.SetNameOverride(extractItem.Name);
 					item.useTime = extractItem.UseTime;
 					item.useAnimation = extractItem.UseAnimation;
 				}
 			}
 		}
-
-		/*
-  public override bool UseItem(Item item, Player player)
-  {
-  if (bfmtweaks.tweak_extractinator)
-  ExtractinatorTweaker.onItemUse(item);
-  
-  return false;
-  }*/
-
-//		public override void UpdateInventory(Item item, Player player)
-//		{
-//			//if (bfmtweaks.tweak_extractinator)
-//			if(ServerConfig.Instance.ExtractSpeedMultipltier != 1f)
-//				ExtractinatorTweak.OnItemUse(item);
-//		}
 		
 		public override bool CanUseItem(Item item, Player player)
 		{

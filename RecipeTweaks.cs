@@ -21,16 +21,7 @@ namespace VanillaTweaks
 				recipe.SetResult(ItemID.MolotovCocktail, 5);
 				recipe.AddRecipe();
 			}
-			if(ServerConfig.Instance.BoneBlockCraftFix)
-			{
-				var finder = new RecipeFinder();
-				finder.AddIngredient(ItemID.BoneBlockWall, 4);
-				finder.AddTile(TileID.BoneWelder);
-				finder.SetResult(ItemID.BoneBlock, 1);
-				var recipe = finder.FindExactRecipe();
-				if(recipe != null)
-					recipe.createItem.SetDefaults(ItemID.Bone);
-			}
+
 			var foundRecipes = new List<Recipe>();
 			if(ServerConfig.Instance.JestersArrowCraft == 0)
 			{
@@ -65,7 +56,7 @@ namespace VanillaTweaks
 			int goldToPlatinum = -1;
 			for(int i = 0; i < Recipe.numRecipes; i++)
 			{
-				if(Main.recipe[i] == null || Main.recipe[i].createItem == null || Main.recipe[i].requiredItem == null || Main.recipe[i].requiredItem.Length == 0) //i don't even fucking know
+				if(Main.recipe[i] == null || Main.recipe[i].createItem == null || Main.recipe[i].requiredItem == null || Main.recipe[i].requiredItem.Length == 0)
 					continue;
 				
 				if(Main.recipe[i].createItem.type == ItemID.CopperCoin && Main.recipe[i].createItem.stack == 100 && Main.recipe[i].requiredItem[0].type == ItemID.SilverCoin)

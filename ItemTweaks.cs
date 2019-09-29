@@ -119,12 +119,12 @@ namespace VanillaTweaks
 					}
 					return;
 				case ItemID.NightsEdge:
-					if(ServerConfig.Instance.NightsEdgeAutoswing)
+					if(ClientConfig.Instance.NightsEdgeAutoswing)
 						item.autoReuse = true;
 					return;
 				case ItemID.TrueExcalibur:
 				case ItemID.TrueNightsEdge:
-					if(ServerConfig.Instance.TrueSwordsAutoswing)
+					if(ClientConfig.Instance.TrueSwordsAutoswing)
 						item.autoReuse = true;
 					return;
 				case ItemID.SWATHelmet:

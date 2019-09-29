@@ -40,8 +40,8 @@ namespace VanillaTweaks
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
 					break;
 				case NPCID.UndeadMiner:
-					if(ServerConfig.Instance.UndeadMinerDropRateTweak && Main.rand.Next(Main.expertMode ? 2 : 3) == 0)
-						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningHelmet, ItemID.MiningShirt, ItemID.MiningPants));
+					if(ServerConfig.Instance.UndeadMinerDropRateTweak && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
+						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningShirt, ItemID.MiningPants));
 					break;
 			}
 		}

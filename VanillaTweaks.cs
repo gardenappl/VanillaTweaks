@@ -31,7 +31,7 @@ namespace VanillaTweaks
 		
 		public override void PostAddRecipes()
 		{
-			if(ClientConfig.Instance.CoinsTweak)
+			if(ServerConfig.Instance.CoinsTweak)
 				RecipeTweaks.TweakCoins();
 		}
 		
