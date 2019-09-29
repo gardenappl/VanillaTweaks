@@ -13,7 +13,7 @@ namespace VanillaTweaks
 			switch(npc.type)
 			{
 				case NPCID.UndeadMiner:
-					if(Config.UndeadMinerTweak)
+					if(ServerConfig.Instance.UndeadMinerTweak)
 						npc.rarity = 1;
 					break;
 			}
@@ -31,16 +31,16 @@ namespace VanillaTweaks
 				case NPCID.GoldMouse:
 				case NPCID.SquirrelGold: //Why Re-Logic why???
 				case NPCID.GoldWorm:
-					if(Config.GoldCritterDropTweak)
+					if(ServerConfig.Instance.GoldCritterDropTweak)
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldCoin, 2);
 					break;
 				case NPCID.ZombieEskimo:
 				case NPCID.ArmedZombieEskimo:
-					if(Config.EskimoArmorDropTweak && Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
+					if(ServerConfig.Instance.EskimoArmorDropTweak && Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
 					break;
 				case NPCID.UndeadMiner:
-					if(Config.UndeadMinerTweak && Main.rand.Next(Main.expertMode ? 2 : 3) == 0)
+					if(ServerConfig.Instance.UndeadMinerDropRateTweak && Main.rand.Next(Main.expertMode ? 2 : 3) == 0)
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningHelmet, ItemID.MiningShirt, ItemID.MiningPants));
 					break;
 			}
@@ -48,7 +48,7 @@ namespace VanillaTweaks
 
 		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
-			if(Config.FishingPoleTweak && !Main.hardMode)
+			if(ServerConfig.Instance.FishingPoleTweak && !Main.hardMode)
 			{
 				for(int i = 0; i < shop.Length; i++)
 				{
@@ -70,7 +70,7 @@ namespace VanillaTweaks
 			switch(type)
 			{
 				case NPCID.Mechanic:
-					if(Config.FishingPoleTweak && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
+					if(ServerConfig.Instance.FishingPoleTweak && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
 					{
 						bool mechRodFound = false;
 
