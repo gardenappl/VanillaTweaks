@@ -41,6 +41,7 @@ namespace VanillaTweaks
 
 		public override void Unload()
 		{
+            Instance = null;
 			LangTweaks.ResetTooltips();
 		}
 
