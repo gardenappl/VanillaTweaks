@@ -25,8 +25,6 @@ namespace VanillaTweaks
 
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		public static ServerConfig Instance;
-
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
 			message = Language.GetTextValue("Mods.VanillaTweaks.Config.ServerBlocked");
@@ -180,8 +178,6 @@ namespace VanillaTweaks
 		}
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
-
-		public static ClientConfig Instance;
 
 		[Label("$Mods.VanillaTweaks.Config.CobaltShieldRename")]
 		[Tooltip("$Mods.VanillaTweaks.Config.CobaltShieldRename.Desc")]

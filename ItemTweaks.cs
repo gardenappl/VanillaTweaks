@@ -7,7 +7,8 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.UI;
+
+using static Terraria.ModLoader.ModContent;
 
 namespace VanillaTweaks
 {
@@ -26,37 +27,37 @@ namespace VanillaTweaks
 			switch(item.type)
 			{
 				case ItemID.MeteorHamaxe:
-					if(ServerConfig.Instance.HammerTweaks)
+					if(GetInstance<ServerConfig>().HammerTweaks)
 					{
 						item.hammer = 50;
 						item.axe = 70 / 5;
 					}
 					return;
 				case ItemID.MoltenHamaxe:
-					if(ServerConfig.Instance.HammerTweaks)
+					if(GetInstance<ServerConfig>().HammerTweaks)
 						item.axe = 80 / 5;
 					return;
 				case ItemID.TheBreaker:
 				case ItemID.FleshGrinder:
-					if(ServerConfig.Instance.HammerTweaks)
+					if(GetInstance<ServerConfig>().HammerTweaks)
 						item.hammer = 65;
 					return;
 				case ItemID.GladiatorHelmet:
-					if(ServerConfig.Instance.GladiatorArmorTweak)
+					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
 						item.rare = 1;
 						item.defense = 5;
 					}
 					return;
 				case ItemID.GladiatorBreastplate:
-					if(ServerConfig.Instance.GladiatorArmorTweak)
+					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
 						item.rare = 1;
 						item.defense = 6;
 					}
 					return;
 				case ItemID.GladiatorLeggings:
-					if(ServerConfig.Instance.GladiatorArmorTweak)
+					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
 						item.rare = 1;
 						item.defense = 5;
@@ -65,23 +66,23 @@ namespace VanillaTweaks
 				case ItemID.ObsidianHelm:
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
-					if(ServerConfig.Instance.ObsidianArmorTweak)
+					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
 						item.rare = 1;
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorLeggings:
-					if(ServerConfig.Instance.MeteorArmorDefenseTweak)
+					if(GetInstance<ServerConfig>().MeteorArmorDefenseTweak)
 						item.defense = 4;
 					return;
 				case ItemID.MeteorSuit:
-					if(ServerConfig.Instance.MeteorArmorDefenseTweak)
+					if(GetInstance<ServerConfig>().MeteorArmorDefenseTweak)
 						item.defense = 5;
 					return;
 				case ItemID.EskimoHood:
 				case ItemID.EskimoPants:
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoPants:
-					if(ServerConfig.Instance.EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().EskimoArmorTweak)
 					{
 						item.defense = 3;
 						item.rare = 1;
@@ -89,7 +90,7 @@ namespace VanillaTweaks
 					return;
 				case ItemID.EskimoCoat:
 				case ItemID.PinkEskimoCoat:
-					if(ServerConfig.Instance.EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().EskimoArmorTweak)
 					{
 						item.defense = 4;
 						item.rare = 1;
@@ -97,38 +98,38 @@ namespace VanillaTweaks
 					return;
 				case ItemID.CactusLeggings:
 				case ItemID.CactusHelmet:
-					if(ServerConfig.Instance.CactusArmorTweak)
+					if(GetInstance<ServerConfig>().CactusArmorTweak)
 						item.defense = 1;
 					return;
 				case ItemID.CactusBreastplate:
-					if(ServerConfig.Instance.CactusArmorTweak)
+					if(GetInstance<ServerConfig>().CactusArmorTweak)
 						item.defense = 2;
 					return;
 				case ItemID.PharaohsMask:
-					if(ServerConfig.Instance.PharaohSetTweak)
+					if(GetInstance<ServerConfig>().PharaohSetTweak)
 					{
 						item.vanity = false;
 						item.defense = 3;
 					}
 					return;
 				case ItemID.PharaohsRobe:
-					if(ServerConfig.Instance.PharaohSetTweak)
+					if(GetInstance<ServerConfig>().PharaohSetTweak)
 					{
 						item.vanity = false;
 						item.defense = 4;
 					}
 					return;
 				case ItemID.NightsEdge:
-					if(ClientConfig.Instance.NightsEdgeAutoswing)
+					if(GetInstance<ClientConfig>().NightsEdgeAutoswing)
 						item.autoReuse = true;
 					return;
 				case ItemID.TrueExcalibur:
 				case ItemID.TrueNightsEdge:
-					if(ClientConfig.Instance.TrueSwordsAutoswing)
+					if(GetInstance<ClientConfig>().TrueSwordsAutoswing)
 						item.autoReuse = true;
 					return;
 				case ItemID.SWATHelmet:
-					if(ServerConfig.Instance.SwatHelmetTweak)
+					if(GetInstance<ServerConfig>().SwatHelmetTweak)
 					{
 						item.vanity = false;
 						item.rare = 8;
@@ -136,21 +137,21 @@ namespace VanillaTweaks
 					}
 					return;
 //				case ItemID.Skull:
-//					if(ServerConfig.Instance.SkullTweak)
+//					if(GetInstance<ServerConfig>().SkullTweak)
 //					{
 //						item.vanity = false;
 //						item.defense = 3;
 //					}
 //					return;
 				case ItemID.FishBowl:
-					if(ServerConfig.Instance.FishBowlTweak)
+					if(GetInstance<ServerConfig>().FishBowlTweak)
 					{
 						item.vanity = false;
 						item.defense = 1;
 					}
 					return;
 				case ItemID.WhoopieCushion:
-					if(ServerConfig.Instance.EasterEgg)
+					if(GetInstance<ServerConfig>().EasterEgg)
 					{
 						item.useTime = 5;
 						item.useAnimation = 5;
@@ -160,7 +161,7 @@ namespace VanillaTweaks
 					return;
 				case ItemID.RainHat:
 				case ItemID.RainCoat:
-					if(ServerConfig.Instance.RainArmorTweak)
+					if(GetInstance<ServerConfig>().RainArmorTweak)
 					{
 						item.vanity = true;
 						item.defense = 0;
@@ -176,17 +177,17 @@ namespace VanillaTweaks
 				case ItemID.ObsidianHelm:
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
-					if(ServerConfig.Instance.ObsidianArmorTweak)
+					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
 						player.rangedCrit += 3;
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
-					if(ServerConfig.Instance.MeteorArmorDamageTweak)
+					if(GetInstance<ServerConfig>().MeteorArmorDamageTweak)
 						player.magicDamage -= 0.07f;
 					return;
 				case ItemID.SWATHelmet:
-					if(ServerConfig.Instance.SwatHelmetTweak)
+					if(GetInstance<ServerConfig>().SwatHelmetTweak)
 					{
 						player.rangedCrit += 10;
 						player.rangedDamage += 0.15f;
@@ -198,18 +199,18 @@ namespace VanillaTweaks
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoCoat:
 				case ItemID.PinkEskimoPants:
-					if(ServerConfig.Instance.EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().EskimoArmorTweak)
 						player.arcticDivingGear = true;
 					return;
 				case ItemID.PharaohsMask:
 				case ItemID.PharaohsRobe:
-					if(ServerConfig.Instance.PharaohSetTweak)
+					if(GetInstance<ServerConfig>().PharaohSetTweak)
 						player.minionDamage += 0.05f;
 					return;
 				case ItemID.CrimsonHelmet:
 				case ItemID.CrimsonScalemail:
 				case ItemID.CrimsonGreaves:
-					if(ServerConfig.Instance.CrimsonArmorTweak)
+					if(GetInstance<ServerConfig>().CrimsonArmorTweak)
 					{
 						player.meleeDamage += 0.02f;
 						player.magicDamage -= 0.02f;
@@ -257,7 +258,7 @@ namespace VanillaTweaks
 		
 		public override void UpdateArmorSet(Player player, string armorSet)
 		{
-			if(armorSet == GladiatorSet && ServerConfig.Instance.GladiatorArmorTweak)
+			if(armorSet == GladiatorSet && GetInstance<ServerConfig>().GladiatorArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Gladiator");
 				player.meleeCrit += 15;
@@ -265,19 +266,19 @@ namespace VanillaTweaks
 				player.magicCrit += 15;
 				player.thrownCrit += 15;
 			}
-			else if(armorSet == ObsidianSet && ServerConfig.Instance.ObsidianArmorTweak)
+			else if(armorSet == ObsidianSet && GetInstance<ServerConfig>().ObsidianArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian");
 				player.moveSpeed += 0.1f;
 			}
-			else if(armorSet == SWATSet && ServerConfig.Instance.SwatHelmetTweak)
+			else if(armorSet == SWATSet && GetInstance<ServerConfig>().SwatHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat");
 				player.endurance += 0.25f;
 				player.rangedDamage += 0.2f;
 				player.ammoCost80 = true;
 			}
-			else if(armorSet == EskimoSet && ServerConfig.Instance.EskimoArmorTweak)
+			else if(armorSet == EskimoSet && GetInstance<ServerConfig>().EskimoArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Eskimo");
 				player.statDefense += 4;
@@ -286,13 +287,13 @@ namespace VanillaTweaks
 				player.buffImmune[BuffID.Frozen] = true;
 				player.buffImmune[BuffID.Frostburn] = true;
 			}
-			else if(armorSet == CactusSet && ServerConfig.Instance.CactusArmorTweak)
+			else if(armorSet == CactusSet && GetInstance<ServerConfig>().CactusArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
 				player.thorns += 0.25f;
 				player.statDefense--;
 			}
-			else if(armorSet == VikingSet && ServerConfig.Instance.VikingHelmetTweak)
+			else if(armorSet == VikingSet && GetInstance<ServerConfig>().VikingHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking");
 				player.rangedDamage += 0.05f;
@@ -301,7 +302,7 @@ namespace VanillaTweaks
 				player.minionDamage += 0.05f;
 				player.magicDamage += 0.05f;
 			}
-			else if(armorSet == PharaohSet && ServerConfig.Instance.PharaohSetTweak)
+			else if(armorSet == PharaohSet && GetInstance<ServerConfig>().PharaohSetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Pharaoh");
 				player.maxMinions++;
@@ -310,7 +311,7 @@ namespace VanillaTweaks
 		
 		public override void ArmorSetShadows(Player player, string armorSet)
 		{
-			if(armorSet == ObsidianSet && ServerConfig.Instance.ObsidianArmorTweak)
+			if(armorSet == ObsidianSet && GetInstance<ServerConfig>().ObsidianArmorTweak)
 				player.armorEffectDrawShadow = true;
 		}
 		
@@ -336,14 +337,14 @@ namespace VanillaTweaks
 		
 		static bool ShouldFlip(Item item)
 		{
-			bool skull = item.type == ItemID.Skull && ClientConfig.Instance.SkullTweak;
+			bool skull = item.type == ItemID.Skull && GetInstance<ClientConfig>().SkullTweak;
 			bool joke = DateTime.Now.Month == 4 && DateTime.Now.Day == 1;
 			return (skull || joke) && !(skull && joke);
 		}
 		
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			if(ClientConfig.Instance.FavoriteTooltipRemove)
+			if(GetInstance<ClientConfig>().FavoriteTooltipRemove)
 				tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Favorite"));
 			switch(item.type)
 			{
@@ -353,7 +354,7 @@ namespace VanillaTweaks
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoCoat:
 				case ItemID.PinkEskimoPants:
-					if(ServerConfig.Instance.EskimoArmorTweak && !Main.expertMode)
+					if(GetInstance<ServerConfig>().EskimoArmorTweak && !Main.expertMode)
 						tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Tooltip"));
 					return;
 			}

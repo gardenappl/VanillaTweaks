@@ -115,8 +115,16 @@ namespace VanillaTweaks
 			{
 				if (File.Exists(OldConfigPath))
 				{
-					Logger.Warn("Found config file in old folder! Moving config...");
-					File.Move(OldConfigPath, ConfigPath);
+					if(File.Exists(ConfigPath))
+					{
+						Logger.Warn("Found config file in old folder! Deleting...");
+						File.Delete(OldConfigPath);
+					}
+					else
+					{
+						Logger.Warn("Found config file in old folder! Moving config...");
+						File.Move(OldConfigPath, ConfigPath);
+					}
 				}
 				if (File.Exists(OldConfigVersionPath))
 					File.Delete(OldConfigVersionPath);

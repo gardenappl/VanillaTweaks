@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using static Terraria.ModLoader.ModContent;
+
 namespace VanillaTweaks
 {
 	public class NPCTweaks : GlobalNPC
@@ -13,7 +15,7 @@ namespace VanillaTweaks
 			switch(npc.type)
 			{
 				case NPCID.UndeadMiner:
-					if(ServerConfig.Instance.UndeadMinerRareLifeform)
+					if(GetInstance<ServerConfig>().UndeadMinerRareLifeform)
 						npc.rarity = 1;
 					break;
 			}
@@ -31,16 +33,16 @@ namespace VanillaTweaks
 				case NPCID.GoldMouse:
 				case NPCID.SquirrelGold: //Why Re-Logic why???
 				case NPCID.GoldWorm:
-					if(ServerConfig.Instance.GoldCritterDropTweak)
+					if(GetInstance<ServerConfig>().GoldCritterDropTweak)
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldCoin, 2);
 					break;
 				case NPCID.ZombieEskimo:
 				case NPCID.ArmedZombieEskimo:
-					if(ServerConfig.Instance.EskimoArmorDropTweak && Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
+					if(GetInstance<ServerConfig>().EskimoArmorDropTweak && Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
 					break;
 				case NPCID.UndeadMiner:
-					if(ServerConfig.Instance.UndeadMinerDrop && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
+					if(GetInstance<ServerConfig>().UndeadMinerDrop && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
 						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningShirt, ItemID.MiningPants));
 					break;
 			}
@@ -48,7 +50,7 @@ namespace VanillaTweaks
 
 		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
-			if(ServerConfig.Instance.FishingPoleTweaks && !Main.hardMode)
+			if(GetInstance<ServerConfig>().FishingPoleTweaks && !Main.hardMode)
 			{
 				for(int i = 0; i < shop.Length; i++)
 				{
@@ -70,7 +72,7 @@ namespace VanillaTweaks
 			switch(type)
 			{
 				case NPCID.Mechanic:
-					if(ServerConfig.Instance.FishingPoleTweaks && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
+					if(GetInstance<ServerConfig>().FishingPoleTweaks && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
 					{
 						bool mechRodFound = false;
 

@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using System.Linq;
 
+using static Terraria.ModLoader.ModContent;
+
 namespace VanillaTweaks
 {
 	//original code by Hulvdan, modified by goldenapple
@@ -28,7 +30,7 @@ namespace VanillaTweaks
 
 		static void SpeedUpExtract(Item item)
 		{
-			if(ServerConfig.Instance.ExtractSpeedMultiplier == 1f)
+			if(GetInstance<ServerConfig>().ExtractSpeedMultiplier == 1f)
 				return;
 			
 			if(Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
@@ -43,9 +45,9 @@ namespace VanillaTweaks
 				if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
 				{
 					//useTime must be 2 or higher or else items dissapear
-					item.useTime = Math.Max(2, (int)(extractItem.UseTime / ServerConfig.Instance.ExtractSpeedMultiplier));
+					item.useTime = Math.Max(2, (int)(extractItem.UseTime / GetInstance<ServerConfig>().ExtractSpeedMultiplier));
 					//useAnimation less than 4 looks really weird as there aren't enough frames
-					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / ServerConfig.Instance.ExtractSpeedMultiplier));
+					item.useAnimation = Math.Max(6, (int)(extractItem.UseAnimation / GetInstance<ServerConfig>().ExtractSpeedMultiplier));
 				}
 				else
 				{

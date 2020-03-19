@@ -1,12 +1,12 @@
 ﻿Vanilla Tweaks is a small mod that changes and rebalances some things from Terraria.
-Changes include:
+Notable changes include:
  -Cool set bonuses for weak armor/vanity sets, such as Eskimo, Pharaoh, Obsidian, Gladiator etc.
  -Faster Extractinator
  -Some items are renamed (Cobalt Shield => Guardian's Shield, Sandstone Slab => Sand Slab)
  -Autoswing for Night's Edge, True Night's Edge and True Excalibur
-And some other things! Visit the mod's homepage for the full list.
+And many other things! Visit the mod's homepage for the full list.
 
-NOTE: Since the 2.0 update you can now disable/enable features as you wish! Go to your Mods menu and click on the config icon.
+NOTE: you can disable/enable features as you wish! Go to your Mods menu and click on the config icon.
 
 Credits:
  -Pop000100 for help with various tweaks and updating the mod

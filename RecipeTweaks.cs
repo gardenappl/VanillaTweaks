@@ -5,25 +5,27 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using static Terraria.ModLoader.ModContent;
+
 namespace VanillaTweaks
 {
 	public static class RecipeTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
-			if(ServerConfig.Instance.MolotovBlueGelCraft > 0)
+			if(GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
 			{
-				var recipe = new ModRecipe(VanillaTweaks.Instance);
+				var recipe = new ModRecipe(GetInstance<VanillaTweaks>());
 				recipe.AddIngredient(ItemID.Ale, 5);
 				recipe.AddIngredient(ItemID.Torch, 1);
 				recipe.AddIngredient(ItemID.Silk, 1);
-				recipe.AddIngredient(ItemID.Gel, ServerConfig.Instance.MolotovBlueGelCraft);
+				recipe.AddIngredient(ItemID.Gel, GetInstance<ServerConfig>().MolotovBlueGelCraft);
 				recipe.SetResult(ItemID.MolotovCocktail, 5);
 				recipe.AddRecipe();
 			}
 
 			var foundRecipes = new List<Recipe>();
-			if(ServerConfig.Instance.JestersArrowCraft == 0)
+			if(GetInstance<ServerConfig>().JestersArrowCraft == 0)
 			{
 				foreach(var recipe in Main.recipe)
 					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
@@ -43,8 +45,8 @@ namespace VanillaTweaks
 					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
 					{
 						var editor = new RecipeEditor(recipe);
-						editor.SetIngredientStack(ItemID.WoodenArrow, ServerConfig.Instance.JestersArrowCraft);
-						editor.SetResult(ItemID.JestersArrow, ServerConfig.Instance.JestersArrowCraft);
+						editor.SetIngredientStack(ItemID.WoodenArrow, GetInstance<ServerConfig>().JestersArrowCraft);
+						editor.SetResult(ItemID.JestersArrow, GetInstance<ServerConfig>().JestersArrowCraft);
 					}
 				}
 			}

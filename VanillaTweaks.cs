@@ -10,7 +10,6 @@ namespace VanillaTweaks
 {
 	public class VanillaTweaks : Mod
 	{
-		public static VanillaTweaks Instance;
 		public static bool MiscellaniaLoaded;
 		
 		public VanillaTweaks()
@@ -20,7 +19,6 @@ namespace VanillaTweaks
 
 		public override void Load()
 		{
-			Instance = this;
 			MiscellaniaLoaded = ModLoader.GetMod("GoldensMisc") != null;
 			
 			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
@@ -35,24 +33,23 @@ namespace VanillaTweaks
 		
 		public override void PostAddRecipes()
 		{
-			if(ServerConfig.Instance.CoinRecipesAtEndofList)
+			if(ModContent.GetInstance<ServerConfig>().CoinRecipesAtEndofList)
 				RecipeTweaks.TweakCoins();
 		}
 
 		public override void Unload()
 		{
-            Instance = null;
 			LangTweaks.ResetTooltips();
 		}
 
 		public static void Log(object message)
 		{
-			Instance.Logger.Info(message);
+			ModContent.GetInstance<VanillaTweaks>().Logger.Info(message);
 		}
-		
+
 		public static void Log(string message, params object[] formatData)
 		{
-			Instance.Logger.Info(string.Format(message, formatData));
+			ModContent.GetInstance<VanillaTweaks>().Logger.Info(string.Format(message, formatData));
 		}
 	}
 }
