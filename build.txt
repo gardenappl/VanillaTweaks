@@ -1,5 +1,5 @@
 ﻿displayName = Vanilla Tweaks
-author = goldenapple
+author = gardenapple
 version = 3.0.4
 homepage = http://forums.terraria.org/index.php?threads/vanilla-tweaks-a-mod-with-no-content.37443/
 hideCode = false
