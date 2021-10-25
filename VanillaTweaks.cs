@@ -11,7 +11,9 @@ namespace VanillaTweaks
 	public class VanillaTweaks : Mod
 	{
 		public static bool MiscellaniaLoaded;
-		
+		public static Mod Miscellania;
+		public static ModItem reinforcedVestModItem;
+
 		public VanillaTweaks()
 		{
 			LegacyConfig.Load();
@@ -19,16 +21,45 @@ namespace VanillaTweaks
 
 		public override void Load()
 		{
-			MiscellaniaLoaded = ModLoader.GetMod("GoldensMisc") != null;
+			MiscellaniaLoaded = ModLoader.TryGetMod("GoldensMisc", out Mod MiscellaniaMod);
+			if (MiscellaniaLoaded == true)
+            {
+				Miscellania = MiscellaniaMod;
+				bool foundVest;
+				foundVest = MiscellaniaMod.TryFind<ModItem>("ReinforcedVest", out ModItem reinforcedVest);
+				if (reinforcedVest != null)
+				{
+					reinforcedVestModItem = reinforcedVest;
+				}
+				else
+				{
+					reinforcedVestModItem = null;
+				}
+			}
+			else
+            {
+				Miscellania = null; 
+            }
 			
-			LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
+			
+			LangTweaks.EditTooltips();
+            LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 		}
 		
 		public override void AddRecipes()
 		{
 			LangTweaks.EditNames(LanguageManager.Instance);
-			LangTweaks.EditTooltips();
+			if (ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
+			{
+				CreateRecipe(ItemID.MolotovCocktail, 5)
+					.AddIngredient(ItemID.Ale, 5)
+					.AddIngredient(ItemID.Torch, 1)
+					.AddIngredient(ItemID.Silk, 1)
+					.AddIngredient(ItemID.Gel, ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft)
+					.Register();
+			}
 			RecipeTweaks.EditVanillaRecipes();
+			
 		}
 		
 		public override void PostAddRecipes()
@@ -39,6 +70,8 @@ namespace VanillaTweaks
 
 		public override void Unload()
 		{
+			Miscellania = null;
+			reinforcedVestModItem = null;
 			LangTweaks.ResetTooltips();
 		}
 

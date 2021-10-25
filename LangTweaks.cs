@@ -41,9 +41,10 @@ namespace VanillaTweaks
 				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
 				if (VanillaTweaks.MiscellaniaLoaded)
 				{
-					int type = ModLoader.GetMod("GoldensMisc").ItemType("SandstoneSlabWall");
-					if (type > 0)
-						Lang.GetItemName(type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
+					ModLoader.TryGetMod("GoldensMisc", out Mod MiscellaniaMod);
+					bool FoundWall = MiscellaniaMod.TryFind<ModItem>("SandstoneSlabWall", out ModItem SandstoneSlabWall);
+					if (FoundWall)
+						Lang.GetItemName(SandstoneSlabWall.Type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
 					//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
 				}
 			}
@@ -63,6 +64,7 @@ namespace VanillaTweaks
 			var bindFlags = BindingFlags.Static | BindingFlags.NonPublic;
 			var tooltipsField = typeof(Lang).GetField("_itemTooltipCache", bindFlags);
 			var tooltips = (ItemTooltip[])tooltipsField.GetValue(null);
+				
 			if (GetInstance<ServerConfig>().ObsidianArmorTweak)
 			{
 				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianHelm);
@@ -71,7 +73,7 @@ namespace VanillaTweaks
 			}
 			if (GetInstance<ServerConfig>().SwatHelmetTweak)
 			{
-				if (VanillaTweaks.MiscellaniaLoaded && ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest") > 0)
+				if (VanillaTweaks.reinforcedVestModItem != null)
 					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.MiscellaniaTooltip.SwatHelmet", ItemID.SWATHelmet);
 				else
 					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.SwatHelmet", ItemID.SWATHelmet);

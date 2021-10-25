@@ -1,0 +1,222 @@
+Mods: {
+	VanillaTweaks: {
+		ItemTooltip: {
+			ObsidianArmor: 3% increased ranged critical strike chance
+			SwatHelmet:
+				'''
+				15% increased ranged damage
+				10% increased ranged critical strike chance
+				'''
+			Eskimo: Allows touching cold water without freezing
+			Pharaoh: Increases minion damage by 5%
+			Crimson: 4% increased melee damage
+		}
+
+		MiscellaniaTooltip: {
+			SwatHelmet:
+				'''
+				15% increased ranged damage
+				10% increased ranged critical strike chance
+				Provides a set bonus when worn with the Reinforced Vest
+				'''
+		}
+
+		ArmorSet: {
+			Obsidian: 10% increased movement speed
+			Gladiator: 15% increased critical strike chance
+			Swat:
+				'''
+				Reduces damage taken by 25%
+				20% increased ranged damage and chance not to consume ammo
+				'''
+			Eskimo:
+				'''
+				4 defense
+				Provides warmth and immunity to chill, frostburn and freezing effects
+				'''
+			Viking: 5% increased damage
+			Cactus: Attackers also take damage
+			Pharaoh: Increases your max number of minions
+		}
+
+		ItemName: {
+			CobaltShield: Guardian's Shield
+			SandstoneBrick: Sand Brick
+			SandstoneBrickWall: Sand Brick Wall
+			SandstoneSlab: Sand Slab
+			SandstoneSlabWall: Sand Slab Wall
+		}
+
+		Config: {
+			ServerConfig: General Settings
+			ServerBlocked: Only the server owner can change these mod settings.
+
+			GladiatorArmorTweak: {
+				$parentVal: Gladiator Armor Tweaks
+				Desc:
+					'''
+					Defense increased from 2/3/2 to 5/6/5
+					Set bonus: +15% crit chance
+					'''
+			}
+
+			ObsidianArmorTweak: {
+				$parentVal: Obsidian Armor Tweaks
+				Desc:
+					'''
+					+3% ranged crit chance for each piece
+					Set bonus: +10% move speed and shadow trail
+					'''
+			}
+
+			MeteorArmorDamageTweak: {
+				$parentVal: Meteor Armor Damage Tweaks
+				Desc: Remove magic damage boosts from Meteor Armor.
+			}
+
+			EskimoArmorDropTweak: {
+				$parentVal: Eskimo Armor Drop Rate Increase
+				Desc: 3% chance to drop Eskimo Armor instead of 0.67% (twice as much in Expert Mode).
+			}
+
+			EskimoArmorTweak: {
+				$parentVal: Eskimo Armor Tweaks
+				Desc:
+					'''
+					Defense increased, immunity to cold water
+					Set bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen
+					'''
+			}
+
+			RainArmorTweak: Rain Armor is now Vanity
+
+			HammerTweaks: {
+				$parentVal: Hammer Tweaks
+				Desc: Rebalances a few hammers/hamaxes.
+			}
+
+			SwatHelmetTweak: {
+				$parentVal: SWAT Helmet Tweaks
+				Desc:
+					'''
+					+14 defense, +15% ranged damage (all types), +5% ranged crit chance
+					If Miscellania is installed, equipping a SWAT Helmet and a Reinforced Vest grants a set bonus of:
+					  Increase ranged damage by 20%
+					  Reduces damage taken by 25%
+					  20% chance to not consume ammo
+					'''
+			}
+
+			FishBowlTweak: {
+				$parentVal: Fish Bowl Tweak
+				Desc: Gives the Fish Bowl +1 defense.
+			}
+
+			BoneBlockFix: {
+				$parentVal: Bone Block Fix
+				Desc: Bone Blocks drop raw Bones when mined.
+			}
+
+			GoldCritterDropTweak: {
+				$parentVal: Gold Critters Drop Coins
+				Desc: Gold critters drop 1 Gold when killed (still sell for 5 Gold when sold).
+			}
+
+			WhoopieCushionTweak: Easter Egg
+
+			VikingHelmetTweak: {
+				$parentVal: Viking Helmet Tweaks
+				Desc: Viking Helmet gives +5% damage when used with Iron or Lead armor.
+			}
+
+			CactusArmorTweak: {
+				$parentVal: Cactus Armor Tweaks
+				Desc: Changes the set bonus of cactus to 25% chance of thorns.
+			}
+
+			MeteorArmorDefenseTweak: {
+				$parentVal: Meteor Armor Defense Tweaks
+				Desc: Defense decreased from 5/6/5 to 4/5/4.
+			}
+
+			PharaohSetTweak: {
+				$parentVal: Pharaoh Set Tweaks
+				Desc: Changes Pharaoh's vanity set to Summoner armor.
+			}
+
+			CrimsonArmorTweak: {
+				$parentVal: Crimson Set Tweak
+				Desc: Crimson Armor now only increases melee damage instead of all damage.
+			}
+
+			UndeadMinerDropRateTweak: {
+				$parentVal: Undead Miner Drop Rate Tweak
+				Desc: Changes the drop rate of mining clothes to a 1/4 chance (1/3 in Expert mode).
+			}
+
+			UndeadMinerRareLifeform: {
+				$parentVal: Undead Miner Rare Lifeform
+				Desc: Makes the Undead Miner show up on the Lifeform Analyzer.
+			}
+
+			FishingPoleTweak: {
+				$parentVal: Fishing Pole Tweaks
+				Desc:
+					'''
+					Sitting Duck Fishing Pole is Hardmode only and the Mechanic's Rod is sold more often
+					If Miscellania is installed, the Mechanic's Rod will also be sold more often.
+					(disable in that mod's config.)
+					'''
+			}
+
+			ExtractSpeedMultiplier: {
+				$parentVal: Extractinator Speed Multiplier
+				Desc: Decreases the amount of time it takes to use the Extractionator (higher is faster).
+			}
+
+			JestersArrowCraft: {
+				$parentVal: Jester's Arrows Crafted per Star
+				Desc:
+					'''
+					Jester's Arrows Crafted per Star.
+					Setting this value to 0 will remove the recipe entirely.
+					'''
+			}
+
+			MolotovCraft: {
+				$parentVal: Molotov Craft Tweaks
+				Desc:
+					'''
+					Allows crafting Molotov Cocktails with regular Gel.
+					Adjust number to change the amount of Gel per every 5 cocktails, or set to 0 to remove the recipe.
+					'''
+			}
+
+			CoinsTweak: {
+				$parentVal: Coin Recipe Tweak
+				Desc: Puts coin conversion recipes at the end of recipe list.
+			}
+
+			ClientConfig: Client-side Settings
+			NightsEdgeAutoswing: Night's Edge Autoswing
+			TrueSwordsAutoswing: True Swords Autoswing
+
+			CobaltShieldRename: {
+				$parentVal: Rename Cobalt Shield
+				Desc: Renames the Cobalt Shield to Guardian's Shield.
+			}
+
+			SandstoneRename: {
+				$parentVal: Rename Sandstone Items
+				Desc: Renames items such as Sandstone Brick to Sand Brick.
+			}
+
+			FavoriteTooltipRemove: Remove "Favorite Item" tooltips
+
+			SkullTweak: {
+				$parentVal: Skull Flip
+				Desc: Flips the Skull sprite so that it faces to the right like other armor/vanity.
+			}
+		}
+	}
+}
