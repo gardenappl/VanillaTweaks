@@ -12,7 +12,7 @@ using Terraria.ModLoader.Config;
 namespace VanillaTweaks
 {
 	[Label("$Mods.VanillaTweaks.Config.ServerConfig")]
-	class ServerConfig : ModConfig
+	public class ServerConfig : ModConfig
 	{
 		[JsonIgnore]
 		public const string ConfigName = "Server";
@@ -33,13 +33,13 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.GladiatorArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.GladiatorArmorTweak.Desc")]
-		[DefaultValue(true)]
+		[DefaultValue(false)]
 		public bool GladiatorArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.ObsidianArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.ObsidianArmorTweak.Desc")]
 		[ReloadRequired]
-		[DefaultValue(true)]
+		[DefaultValue(false)]
 		public bool ObsidianArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.MeteorArmorDamageTweak")]
@@ -70,7 +70,7 @@ namespace VanillaTweaks
 
 		[Label("$Mods.VanillaTweaks.Config.CactusArmorTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.CactusArmorTweak.Desc")]
-		[DefaultValue(true)]
+		[DefaultValue(false)]
 		public bool CactusArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.PharaohSetTweak")]
@@ -166,7 +166,7 @@ namespace VanillaTweaks
 	}
 
 	[Label("$Mods.VanillaTweaks.Config.ClientConfig")]
-	class ClientConfig : ModConfig
+	public class ClientConfig : ModConfig
 	{
 		[JsonIgnore]
 		public const string ConfigName = "Client";

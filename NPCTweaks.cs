@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,7 +22,7 @@ namespace VanillaTweaks
 			}
 		}
 
-		public override void NPCLoot(NPC npc)
+		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{
 			switch(npc.type)
 			{
@@ -33,17 +34,23 @@ namespace VanillaTweaks
 				case NPCID.GoldMouse:
 				case NPCID.SquirrelGold: //Why Re-Logic why???
 				case NPCID.GoldWorm:
-					if(GetInstance<ServerConfig>().GoldCritterDropTweak)
-						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldCoin, 2);
+					if (GetInstance<ServerConfig>().GoldCritterDropTweak)
+						npcLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 1, 2, 2));
 					break;
 				case NPCID.ZombieEskimo:
 				case NPCID.ArmedZombieEskimo:
-					if(GetInstance<ServerConfig>().EskimoArmorDropTweak && Main.rand.Next(Main.expertMode ? 5 : 10) == 0)
-						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
+					if (GetInstance<ServerConfig>().EskimoArmorDropTweak)
+                    {
+						int[] eskimoPool = new int[] { ItemID.EskimoCoat, ItemID.EskimoHood, ItemID.EskimoPants };
+						npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(10, 5, eskimoPool));
+					}
 					break;
 				case NPCID.UndeadMiner:
-					if(GetInstance<ServerConfig>().UndeadMinerDrop && Main.rand.Next(Main.expertMode ? 3 : 4) == 0)
-						Item.NewItem(npc.Hitbox, Utils.SelectRandom(Main.rand, ItemID.MiningShirt, ItemID.MiningPants));
+					if(GetInstance<ServerConfig>().UndeadMinerDrop)
+					{
+						int[] minerPool = new int[] { ItemID.MiningShirt, ItemID.MiningPants};
+						npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(4, 3, minerPool));
+					}
 					break;
 			}
 		}

@@ -45,21 +45,21 @@ namespace VanillaTweaks
 				case ItemID.GladiatorHelmet:
 					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 						item.defense = 5;
 					}
 					return;
 				case ItemID.GladiatorBreastplate:
 					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 						item.defense = 6;
 					}
 					return;
 				case ItemID.GladiatorLeggings:
 					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
 					{
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 						item.defense = 5;
 					}
 					return;
@@ -67,7 +67,7 @@ namespace VanillaTweaks
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
 					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorLeggings:
@@ -85,7 +85,7 @@ namespace VanillaTweaks
 					if(GetInstance<ServerConfig>().EskimoArmorTweak)
 					{
 						item.defense = 3;
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 					}
 					return;
 				case ItemID.EskimoCoat:
@@ -93,7 +93,7 @@ namespace VanillaTweaks
 					if(GetInstance<ServerConfig>().EskimoArmorTweak)
 					{
 						item.defense = 4;
-						item.rare = 1;
+						item.rare = ItemRarityID.Blue;
 					}
 					return;
 				case ItemID.CactusLeggings:
@@ -122,17 +122,21 @@ namespace VanillaTweaks
 				case ItemID.NightsEdge:
 					if(GetInstance<ClientConfig>().NightsEdgeAutoswing)
 						item.autoReuse = true;
+					else
+						item.autoReuse = false;
 					return;
 				case ItemID.TrueExcalibur:
 				case ItemID.TrueNightsEdge:
 					if(GetInstance<ClientConfig>().TrueSwordsAutoswing)
 						item.autoReuse = true;
+					else
+						item.autoReuse = false;
 					return;
 				case ItemID.SWATHelmet:
 					if(GetInstance<ServerConfig>().SwatHelmetTweak)
 					{
 						item.vanity = false;
-						item.rare = 8;
+						item.rare = ItemRarityID.Yellow;
 						item.defense = 17;
 					}
 					return;
@@ -178,19 +182,19 @@ namespace VanillaTweaks
 				case ItemID.ObsidianShirt:
 				case ItemID.ObsidianPants:
 					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
-						player.rangedCrit += 3;
+						player.GetCritChance(DamageClass.Ranged) += 3;
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
 					if(GetInstance<ServerConfig>().MeteorArmorDamageTweak)
-						player.magicDamage -= 0.07f;
+						player.GetDamage(DamageClass.Magic) -= 0.09f;
 					return;
 				case ItemID.SWATHelmet:
 					if(GetInstance<ServerConfig>().SwatHelmetTweak)
 					{
-						player.rangedCrit += 10;
-						player.rangedDamage += 0.15f;
+						player.GetCritChance(DamageClass.Ranged) += 10;
+						player.GetDamage(DamageClass.Ranged) += 0.15f;
 					}
 					return;
 				case ItemID.EskimoHood:
@@ -205,18 +209,15 @@ namespace VanillaTweaks
 				case ItemID.PharaohsMask:
 				case ItemID.PharaohsRobe:
 					if(GetInstance<ServerConfig>().PharaohSetTweak)
-						player.minionDamage += 0.05f;
+						player.GetDamage(DamageClass.Summon) += 0.05f;
 					return;
 				case ItemID.CrimsonHelmet:
 				case ItemID.CrimsonScalemail:
 				case ItemID.CrimsonGreaves:
 					if(GetInstance<ServerConfig>().CrimsonArmorTweak)
 					{
-						player.meleeDamage += 0.02f;
-						player.magicDamage -= 0.02f;
-						player.rangedDamage -= 0.02f;
-						player.minionDamage -= 0.02f;
-						player.thrownDamage -= 0.02f;
+						player.GetDamage(DamageClass.Melee) += 0.04f;
+						player.GetDamage(DamageClass.Generic) -= 0.02f;
 					}
 					return;
 			}
@@ -224,15 +225,15 @@ namespace VanillaTweaks
 		
 		public override string IsArmorSet(Item head, Item body, Item legs)
 		{
-			if(head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
+			if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
 				return GladiatorSet;
 			
 			if(head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
 				return ObsidianSet;
 			
-			if(head.type == ItemID.SWATHelmet && VanillaTweaks.MiscellaniaLoaded)
+			if(head.type == ItemID.SWATHelmet && VanillaTweaks.reinforcedVestModItem != null)
 			{
-				int reinforcedVest = ModLoader.GetMod("GoldensMisc").ItemType("ReinforcedVest");
+				int reinforcedVest = VanillaTweaks.reinforcedVestModItem.Type;
 				if(reinforcedVest > 0 && body.type == reinforcedVest)
 					return SWATSet;
 			}
@@ -261,21 +262,22 @@ namespace VanillaTweaks
 			if(armorSet == GladiatorSet && GetInstance<ServerConfig>().GladiatorArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Gladiator");
-				player.meleeCrit += 15;
-				player.rangedCrit += 15;
-				player.magicCrit += 15;
-				player.thrownCrit += 15;
+				player.GetCritChance(DamageClass.Generic) += 15;
+				player.noKnockback = false;
 			}
 			else if(armorSet == ObsidianSet && GetInstance<ServerConfig>().ObsidianArmorTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian");
 				player.moveSpeed += 0.1f;
+				player.GetDamage(DamageClass.Summon) -= 0.15f;
+				player.whipRangeMultiplier -= 0.5f;
+				player.whipUseTimeMultiplier *= 0.74074f;
 			}
 			else if(armorSet == SWATSet && GetInstance<ServerConfig>().SwatHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat");
 				player.endurance += 0.25f;
-				player.rangedDamage += 0.2f;
+				player.GetDamage(DamageClass.Ranged) += 0.05f;
 				player.ammoCost80 = true;
 			}
 			else if(armorSet == EskimoSet && GetInstance<ServerConfig>().EskimoArmorTweak)
@@ -291,16 +293,12 @@ namespace VanillaTweaks
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
 				player.thorns += 0.25f;
-				player.statDefense--;
+				player.cactusThorns = false;
 			}
 			else if(armorSet == VikingSet && GetInstance<ServerConfig>().VikingHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking");
-				player.rangedDamage += 0.05f;
-				player.meleeDamage += 0.05f;
-				player.thrownDamage += 0.05f;
-				player.minionDamage += 0.05f;
-				player.magicDamage += 0.05f;
+				player.GetDamage(DamageClass.Generic) += 0.05f;
 			}
 			else if(armorSet == PharaohSet && GetInstance<ServerConfig>().PharaohSetTweak)
 			{
@@ -319,7 +317,7 @@ namespace VanillaTweaks
 		{
 			if(ShouldFlip(item))
 			{
-				spriteBatch.Draw(Main.itemTexture[item.type], position, null, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
+				spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[item.type].Value, position, null, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
 			}
 			return true;
@@ -329,7 +327,7 @@ namespace VanillaTweaks
 		{
 			if(ShouldFlip(item))
 			{
-				spriteBatch.Draw(Main.itemTexture[item.type], item.position - Main.screenPosition, null, lightColor.MultiplyRGB(alphaColor), rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
+				spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[item.type].Value, item.position - Main.screenPosition, null, lightColor.MultiplyRGB(alphaColor), rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
 			}
 			return true;

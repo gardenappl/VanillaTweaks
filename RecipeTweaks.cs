@@ -13,16 +13,7 @@ namespace VanillaTweaks
 	{
 		public static void EditVanillaRecipes()
 		{
-			if(GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
-			{
-				var recipe = new ModRecipe(GetInstance<VanillaTweaks>());
-				recipe.AddIngredient(ItemID.Ale, 5);
-				recipe.AddIngredient(ItemID.Torch, 1);
-				recipe.AddIngredient(ItemID.Silk, 1);
-				recipe.AddIngredient(ItemID.Gel, GetInstance<ServerConfig>().MolotovBlueGelCraft);
-				recipe.SetResult(ItemID.MolotovCocktail, 5);
-				recipe.AddRecipe();
-			}
+			
 
 			var foundRecipes = new List<Recipe>();
 			if(GetInstance<ServerConfig>().JestersArrowCraft == 0)
@@ -33,8 +24,7 @@ namespace VanillaTweaks
 				
 				foreach(var recipe in foundRecipes)
 				{
-					var editor = new RecipeEditor(recipe);
-					editor.DeleteRecipe();
+					recipe.RemoveRecipe();
 				}
 				foundRecipes.Clear();
 			}
@@ -44,9 +34,10 @@ namespace VanillaTweaks
 				{
 					if(recipe != null && recipe.createItem != null && recipe.createItem.type == ItemID.JestersArrow)
 					{
-						var editor = new RecipeEditor(recipe);
-						editor.SetIngredientStack(ItemID.WoodenArrow, GetInstance<ServerConfig>().JestersArrowCraft);
-						editor.SetResult(ItemID.JestersArrow, GetInstance<ServerConfig>().JestersArrowCraft);
+						recipe.TryGetIngredient(ItemID.WoodenArrow, out Item ArrowIn);
+						ArrowIn.stack = GetInstance<ServerConfig>().JestersArrowCraft;
+						recipe.TryGetResult(ItemID.JestersArrow, out Item ArrowOut);
+						ArrowOut.stack = GetInstance<ServerConfig>().JestersArrowCraft;
 					}
 				}
 			}
@@ -58,7 +49,7 @@ namespace VanillaTweaks
 			int goldToPlatinum = -1;
 			for(int i = 0; i < Recipe.numRecipes; i++)
 			{
-				if(Main.recipe[i] == null || Main.recipe[i].createItem == null || Main.recipe[i].requiredItem == null || Main.recipe[i].requiredItem.Length == 0)
+				if(Main.recipe[i] == null || Main.recipe[i].createItem == null || Main.recipe[i].requiredItem == null || Main.recipe[i].requiredItem.Count == 0)
 					continue;
 				
 				if(Main.recipe[i].createItem.type == ItemID.CopperCoin && Main.recipe[i].createItem.stack == 100 && Main.recipe[i].requiredItem[0].type == ItemID.SilverCoin)
