@@ -39,12 +39,10 @@ namespace VanillaTweaks
 				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
 				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
 				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
-				if (VanillaTweaks.MiscellaniaLoaded)
+				if (VanillaTweaks.Miscellania != null)
 				{
-					ModLoader.TryGetMod("GoldensMisc", out Mod MiscellaniaMod);
-					bool FoundWall = MiscellaniaMod.TryFind<ModItem>("SandstoneSlabWall", out ModItem SandstoneSlabWall);
-					if (FoundWall)
-						Lang.GetItemName(SandstoneSlabWall.Type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
+					if (VanillaTweaks.Miscellania_SandstoneSlabWall != null)
+						Lang.GetItemName(VanillaTweaks.Miscellania_SandstoneSlabWall.Type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
 					//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
 				}
 			}
@@ -65,15 +63,9 @@ namespace VanillaTweaks
 			var tooltipsField = typeof(Lang).GetField("_itemTooltipCache", bindFlags);
 			var tooltips = (ItemTooltip[])tooltipsField.GetValue(null);
 				
-			if (GetInstance<ServerConfig>().ObsidianArmorTweak)
-			{
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianHelm);
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianShirt);
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.ObsidianArmor", ItemID.ObsidianPants);
-			}
 			if (GetInstance<ServerConfig>().SwatHelmetTweak)
 			{
-				if (VanillaTweaks.reinforcedVestModItem != null)
+				if (VanillaTweaks.Miscellania_ReinforcedVest != null)
 					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.MiscellaniaTooltip.SwatHelmet", ItemID.SWATHelmet);
 				else
 					ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.SwatHelmet", ItemID.SWATHelmet);
@@ -113,6 +105,7 @@ namespace VanillaTweaks
 				tooltips[tooltip.ItemID] = tooltip.Line;
 			}
 			ReplacedTooltips.Clear();
+
 		}
 	}
 }

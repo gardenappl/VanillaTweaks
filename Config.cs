@@ -31,17 +31,6 @@ namespace VanillaTweaks
 			return false;
 		}
 
-		[Label("$Mods.VanillaTweaks.Config.GladiatorArmorTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.GladiatorArmorTweak.Desc")]
-		[DefaultValue(false)]
-		public bool GladiatorArmorTweak;
-
-		[Label("$Mods.VanillaTweaks.Config.ObsidianArmorTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.ObsidianArmorTweak.Desc")]
-		[ReloadRequired]
-		[DefaultValue(false)]
-		public bool ObsidianArmorTweak;
-
 		[Label("$Mods.VanillaTweaks.Config.MeteorArmorDamageTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.MeteorArmorDamageTweak.Desc")]
 		[ReloadRequired]
@@ -67,11 +56,6 @@ namespace VanillaTweaks
 		[Label("$Mods.VanillaTweaks.Config.RainArmorTweak")]
 		[DefaultValue(true)]
 		public bool RainArmorTweak;
-
-		[Label("$Mods.VanillaTweaks.Config.CactusArmorTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.CactusArmorTweak.Desc")]
-		[DefaultValue(false)]
-		public bool CactusArmorTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.PharaohSetTweak")]
 		[Tooltip("$Mods.VanillaTweaks.Config.PharaohSetTweak.Desc")]
@@ -199,13 +183,5 @@ namespace VanillaTweaks
 		[Tooltip("$Mods.VanillaTweaks.Config.SkullTweak.Desc")]
 		[DefaultValue(true)]
 		public bool SkullTweak;
-
-		[Label("$Mods.VanillaTweaks.Config.NightsEdgeAutoswing")]
-		[DefaultValue(true)]
-		public bool NightsEdgeAutoswing;
-
-		[Label("$Mods.VanillaTweaks.Config.TrueSwordsAutoswing")]
-		[DefaultValue(true)]
-		public bool TrueSwordsAutoswing;
 	}
 }
