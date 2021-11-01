@@ -14,11 +14,8 @@ namespace VanillaTweaks
 {
 	public class ItemTweaks : GlobalItem
 	{
-		const string GladiatorSet = "miscellania_gladiator";
-		const string ObsidianSet = "miscellania_obsidian";
 		const string SWATSet = "miscellania_swat";
 		const string EskimoSet = "miscellania_eskimo";
-		const string CactusSet = "miscellania_cactus";
 		const string VikingSet = "miscellania_viking";
 		const string PharaohSet = "miscellania_pharaoh";
 		
@@ -41,33 +38,6 @@ namespace VanillaTweaks
 				case ItemID.FleshGrinder:
 					if(GetInstance<ServerConfig>().HammerTweaks)
 						item.hammer = 65;
-					return;
-				case ItemID.GladiatorHelmet:
-					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
-					{
-						item.rare = ItemRarityID.Blue;
-						item.defense = 5;
-					}
-					return;
-				case ItemID.GladiatorBreastplate:
-					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
-					{
-						item.rare = ItemRarityID.Blue;
-						item.defense = 6;
-					}
-					return;
-				case ItemID.GladiatorLeggings:
-					if(GetInstance<ServerConfig>().GladiatorArmorTweak)
-					{
-						item.rare = ItemRarityID.Blue;
-						item.defense = 5;
-					}
-					return;
-				case ItemID.ObsidianHelm:
-				case ItemID.ObsidianShirt:
-				case ItemID.ObsidianPants:
-					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
-						item.rare = ItemRarityID.Blue;
 					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorLeggings:
@@ -96,15 +66,6 @@ namespace VanillaTweaks
 						item.rare = ItemRarityID.Blue;
 					}
 					return;
-				case ItemID.CactusLeggings:
-				case ItemID.CactusHelmet:
-					if(GetInstance<ServerConfig>().CactusArmorTweak)
-						item.defense = 1;
-					return;
-				case ItemID.CactusBreastplate:
-					if(GetInstance<ServerConfig>().CactusArmorTweak)
-						item.defense = 2;
-					return;
 				case ItemID.PharaohsMask:
 					if(GetInstance<ServerConfig>().PharaohSetTweak)
 					{
@@ -118,19 +79,6 @@ namespace VanillaTweaks
 						item.vanity = false;
 						item.defense = 4;
 					}
-					return;
-				case ItemID.NightsEdge:
-					if(GetInstance<ClientConfig>().NightsEdgeAutoswing)
-						item.autoReuse = true;
-					else
-						item.autoReuse = false;
-					return;
-				case ItemID.TrueExcalibur:
-				case ItemID.TrueNightsEdge:
-					if(GetInstance<ClientConfig>().TrueSwordsAutoswing)
-						item.autoReuse = true;
-					else
-						item.autoReuse = false;
 					return;
 				case ItemID.SWATHelmet:
 					if(GetInstance<ServerConfig>().SwatHelmetTweak)
@@ -178,12 +126,6 @@ namespace VanillaTweaks
 		{
 			switch(item.type)
 			{
-				case ItemID.ObsidianHelm:
-				case ItemID.ObsidianShirt:
-				case ItemID.ObsidianPants:
-					if(GetInstance<ServerConfig>().ObsidianArmorTweak)
-						player.GetCritChance(DamageClass.Ranged) += 3;
-					return;
 				case ItemID.MeteorHelmet:
 				case ItemID.MeteorSuit:
 				case ItemID.MeteorLeggings:
@@ -225,16 +167,11 @@ namespace VanillaTweaks
 		
 		public override string IsArmorSet(Item head, Item body, Item legs)
 		{
-			if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
-				return GladiatorSet;
 			
-			if(head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
-				return ObsidianSet;
-			
-			if(head.type == ItemID.SWATHelmet && VanillaTweaks.reinforcedVestModItem != null)
+			if(head.type == ItemID.SWATHelmet && VanillaTweaks.Miscellania_ReinforcedVest != null)
 			{
-				int reinforcedVest = VanillaTweaks.reinforcedVestModItem.Type;
-				if(reinforcedVest > 0 && body.type == reinforcedVest)
+				int reinforcedVest = VanillaTweaks.Miscellania_ReinforcedVest.Type;
+				if(body.type == reinforcedVest)
 					return SWATSet;
 			}
 			
@@ -242,9 +179,6 @@ namespace VanillaTweaks
 			   (body.type == ItemID.EskimoCoat || body.type == ItemID.PinkEskimoCoat) &&
 			   (legs.type == ItemID.EskimoPants || legs.type == ItemID.PinkEskimoPants))
 				return EskimoSet;
-			
-			if(head.type == ItemID.CactusHelmet && body.type == ItemID.CactusBreastplate && legs.type == ItemID.CactusLeggings)
-				return CactusSet;
 			
 			if(head.type == ItemID.VikingHelmet &&
 			  (body.type == ItemID.IronChainmail || body.type == ItemID.LeadChainmail) &&
@@ -259,21 +193,8 @@ namespace VanillaTweaks
 		
 		public override void UpdateArmorSet(Player player, string armorSet)
 		{
-			if(armorSet == GladiatorSet && GetInstance<ServerConfig>().GladiatorArmorTweak)
-			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Gladiator");
-				player.GetCritChance(DamageClass.Generic) += 15;
-				player.noKnockback = false;
-			}
-			else if(armorSet == ObsidianSet && GetInstance<ServerConfig>().ObsidianArmorTweak)
-			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Obsidian");
-				player.moveSpeed += 0.1f;
-				player.GetDamage(DamageClass.Summon) -= 0.15f;
-				player.whipRangeMultiplier -= 0.5f;
-				player.whipUseTimeMultiplier *= 0.74074f;
-			}
-			else if(armorSet == SWATSet && GetInstance<ServerConfig>().SwatHelmetTweak)
+
+			if(armorSet == SWATSet && GetInstance<ServerConfig>().SwatHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Swat");
 				player.endurance += 0.25f;
@@ -289,12 +210,6 @@ namespace VanillaTweaks
 				player.buffImmune[BuffID.Frozen] = true;
 				player.buffImmune[BuffID.Frostburn] = true;
 			}
-			else if(armorSet == CactusSet && GetInstance<ServerConfig>().CactusArmorTweak)
-			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Cactus");
-				player.thorns += 0.25f;
-				player.cactusThorns = false;
-			}
 			else if(armorSet == VikingSet && GetInstance<ServerConfig>().VikingHelmetTweak)
 			{
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Viking");
@@ -305,12 +220,6 @@ namespace VanillaTweaks
 				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Pharaoh");
 				player.maxMinions++;
 			}
-		}
-		
-		public override void ArmorSetShadows(Player player, string armorSet)
-		{
-			if(armorSet == ObsidianSet && GetInstance<ServerConfig>().ObsidianArmorTweak)
-				player.armorEffectDrawShadow = true;
 		}
 		
 		public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

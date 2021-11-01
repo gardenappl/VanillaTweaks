@@ -10,10 +10,9 @@ namespace VanillaTweaks
 {
 	public class VanillaTweaks : Mod
 	{
-		public static bool MiscellaniaLoaded;
 		public static Mod Miscellania;
-		public static ModItem reinforcedVestModItem;
-
+		public static ModItem Miscellania_ReinforcedVest;
+		public static ModItem Miscellania_SandstoneSlabWall;
 		public VanillaTweaks()
 		{
 			LegacyConfig.Load();
@@ -21,25 +20,12 @@ namespace VanillaTweaks
 
 		public override void Load()
 		{
-			MiscellaniaLoaded = ModLoader.TryGetMod("GoldensMisc", out Mod MiscellaniaMod);
-			if (MiscellaniaLoaded == true)
-            {
-				Miscellania = MiscellaniaMod;
-				bool foundVest;
-				foundVest = MiscellaniaMod.TryFind<ModItem>("ReinforcedVest", out ModItem reinforcedVest);
-				if (reinforcedVest != null)
-				{
-					reinforcedVestModItem = reinforcedVest;
-				}
-				else
-				{
-					reinforcedVestModItem = null;
-				}
+			ModLoader.TryGetMod("GoldensMisc", out Miscellania);
+			if (Miscellania != null)
+			{
+				Miscellania.TryFind<ModItem>("SandstoneSlabWall", out Miscellania_SandstoneSlabWall);
+				Miscellania.TryFind<ModItem>("ReinforcedVest", out Miscellania_ReinforcedVest);
 			}
-			else
-            {
-				Miscellania = null; 
-            }
 			
 			
 			LangTweaks.EditTooltips();
@@ -71,7 +57,8 @@ namespace VanillaTweaks
 		public override void Unload()
 		{
 			Miscellania = null;
-			reinforcedVestModItem = null;
+			Miscellania_ReinforcedVest = null;
+			Miscellania_SandstoneSlabWall = null;
 			LangTweaks.ResetTooltips();
 		}
 
