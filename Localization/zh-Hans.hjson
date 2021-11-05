@@ -1,0 +1,50 @@
+Mods: {
+	VanillaTweaks: {
+		ItemTooltip: {
+			ObsidianArmor: 增加3%远程暴击率
+			SwatHelmet:
+				'''
+				增加15%远程伤害
+				添加10%远程暴击率
+				'''
+			Eskimo: 允许你接触冰水而不被冻结
+			Pharaoh: 增加5%召唤伤害
+			Crimson: 增加4%近战伤害
+		}
+
+		MiscellaniaTooltip: {
+			SwatHelmet:
+				'''
+				增加15%远程伤害
+				添加10%远程暴击率
+				搭配装甲之躯能获得套装效果
+				'''
+		}
+
+		ArmorSet: {
+			Obsidian: 增加10%移动速度
+			Gladiator: 增加15%暴击率
+			Swat:
+				'''
+				减少25%所受伤害
+				增加20%远程伤害且20%几率不消耗弹药
+				'''
+			Eskimo:
+				'''
+				增加4防御
+				使你免疫寒冷、冰冻及寒焰
+				'''
+			Viking: 增加5%伤害
+			Cactus: 反弹所受伤害
+			Pharaoh: 增加你的最大召唤物数量
+		}
+
+		ItemName: {
+			CobaltShield: 守卫者之盾
+			SandstoneBrick: 砂岩块
+			SandstoneBrickWall: 砂岩块
+			SandstoneSlab: 砂石板
+			SandstoneSlabWall: 砂石板墙
+		}
+	}
+}
