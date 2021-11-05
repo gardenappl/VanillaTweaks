@@ -27,87 +27,88 @@ Config.ServerConfig=Общие настройки
 Config.ClientConfig=Настройки клиента
 Config.ServerBlocked=Только владелец сервера может менять Общие настройки.
 
-Config.GladiatorArmorTweak.Desc=Увеличена защита, бонус сета: +15% шанс крита.
+
 Config.GladiatorArmorTweak=Броня гладиатора улучшена
+Config.GladiatorArmorTweak.Desc=Увеличена защита, бонус сета: +15% шанс крита.
 
-Config.ObsidianArmorTweak.Desc=+3% шанс крита для дальнего боя, бонус сета: +10% скорость передвижения.
 Config.ObsidianArmorTweak=Обсидиановая броня улучшена
+Config.ObsidianArmorTweak.Desc=+3% шанс крита для дальнего боя, бонус сета: +10% скорость передвижения.
 
-Config.MeteorArmorDefenseTweak.Desc=Защита ухуджена.
 Config.MeteorArmorDefenseTweak=Метеоритовая броня - нерф защиты
+Config.MeteorArmorDefenseTweak.Desc=Защита ухуджена.
 
-Config.MeteorArmorDamageTweak.Desc=Броня больше не дает бонус к магическому урону.
 Config.MeteorArmorDamageTweak=Метеоритовая броня - нерф бонусов
+Config.MeteorArmorDamageTweak.Desc=Броня больше не дает бонус к магическому урону.
 
-Config.EskimoArmorTweak.Desc=Улучшена защита, иммунитет к холодной воде.\nБонус сета: бафф Согревание, иммунитет к Заморозке, Охлаждению и Ледяному ожогу.
 Config.EskimoArmorTweak=Броня єскимоса улучшена
+Config.EskimoArmorTweak.Desc=Улучшена защита, иммунитет к холодной воде.\nБонус сета: бафф Согревание, иммунитет к Заморозке, Охлаждению и Ледяному ожогу.
 
-Config.EskimoArmorDropTweak.Desc=3% шанс выпадения вместо 0.67% (в режиме Эксперта в 2 раза выше).
 Config.EskimoArmorDropTweak=Броня эскимоса - частый дроп
+Config.EskimoArmorDropTweak.Desc=3% шанс выпадения вместо 0.67% (в режиме Эксперта в 2 раза выше).
 
 Config.RainArmorTweak=Дождевая броня - декорация
 
-Config.VikingHelmetTweak.Desc=Шлем викинга теперь дает +5% к урону, если носить вместе с Железной/Свинцовой броней.
 Config.VikingHelmetTweak=Шлем викинга - бонус сета
+Config.VikingHelmetTweak.Desc=Шлем викинга теперь дает +5% к урону, если носить вместе с Железной/Свинцовой броней.
 
-Config.CactusArmorTweak.Desc=Бонус сета кактусовой брони - 25% шанс шипов.
 Config.CactusArmorTweak=Кактусовая броня - бонус сета
+Config.CactusArmorTweak.Desc=Бонус сета кактусовой брони - 25% шанс шипов.
 
-Config.PharaohSetTweak.Desc=Костюм фараона - теперь броня для призывателя.
 Config.PharaohSetTweak=Костюм фараона - броня
+Config.PharaohSetTweak.Desc=Костюм фараона - теперь броня для призывателя.
 
-Config.CrimsonArmorTweak.Desc=Багряная броня теперь дает бонусный урон только к ближнему бою, а не ко всем видам оружия.
 Config.CrimsonArmorTweak=Багряная броня - нерф
+Config.CrimsonArmorTweak.Desc=Багряная броня теперь дает бонусный урон только к ближнему бою, а не ко всем видам оружия.
 
-Config.HammerTweaks.Desc=Меняет баланс некоторых молотов и молотопоров.
 Config.HammerTweaks=Молоты - улучшения и нерфы
+Config.HammerTweaks.Desc=Меняет баланс некоторых молотов и молотопоров.
 
 Config.NightsEdgeAutoswing=Грань ночи - авто-атака
 
 Config.TrueSwordsAutoswing=Истинные мечи - авто-атака
 
-Config.SwatHelmetTweak.Desc=+14 защиты, +15% урона к дальнему бою, +5% крита в дальнем бою\nЕсли установлена Miscellania, то шлем даст бонус сета, если носить с Бронежилетом.
 Config.SwatHelmetTweak=Шлем SWAT улучшен
+Config.SwatHelmetTweak.Desc=+14 защиты, +15% урона к дальнему бою, +5% крита в дальнем бою\nЕсли установлена Miscellania, то шлем даст бонус сета, если носить с Бронежилетом.
 
-Config.SkullTweak.Desc=Отзеркаливает спрайт Черепа, чтобы он смотрел направо, как остальные шлемы/шляпы.
 Config.SkullTweak=Отзеркаленый Череп
+Config.SkullTweak.Desc=Отзеркаливает спрайт Черепа, чтобы он смотрел направо, как остальные шлемы/шляпы.
 
-Config.FishBowlTweak.Desc=+1 защита
 Config.FishBowlTweak=Аквариум улучшен
+Config.FishBowlTweak.Desc=+1 защита
 
-Config.UndeadMinerRareLifeform.Desc=Мертвые шахтеры распознаются Анализатором форм жизни.
 Config.UndeadMinerRareLifeform=Мертвые шахтеры - "редкая форма жизни"
+Config.UndeadMinerRareLifeform.Desc=Мертвые шахтеры распознаются Анализатором форм жизни.
 
-Config.UndeadMinerDropRateTweak.Desc=Мертвые шахтеры дропают Броню шахтера гораздо чаще\n(шанс 1/3 в Нормальном режиме, 1/6 в режиме Эксперта)
 Config.UndeadMinerDropRateTweak=Мертвые шахтеры - улучшен дроп
+Config.UndeadMinerDropRateTweak.Desc=Мертвые шахтеры дропают Броню шахтера гораздо чаще\n(шанс 1/3 в Нормальном режиме, 1/6 в режиме Эксперта)
 
-Config.FishingPoleTweak.Desc=Удочка сидячей утки теперь доступна только в Хардмоде, Удочка Механика продается чаще.
 Config.FishingPoleTweak=Удочки - улучшения и нерфы
+Config.FishingPoleTweak.Desc=Удочка сидячей утки теперь доступна только в Хардмоде, Удочка Механика продается чаще.
 
-Config.SandstoneRename.Desc=Меняет названия Sandstone Brick на Sand Brick в англ. версии игры.
 Config.SandstoneRename=Переименованы стройматериалы из песка
+Config.SandstoneRename.Desc=Меняет названия Sandstone Brick на Sand Brick в англ. версии игры.
 
-Config.CobaltShieldRename.Desc=Кобальтовый щит переименован на Щит хранителя.
 Config.CobaltShieldRename=Переименован Кобальтовый щит
+Config.CobaltShieldRename.Desc=Кобальтовый щит переименован на Щит хранителя.
 
-Config.BoneBlockFix.Desc=Костяные блоки теперь дропают Кости.
 Config.BoneBlockFix=Исправлены Костяные блоки
+Config.BoneBlockFix.Desc=Костяные блоки теперь дропают Кости.
 
-Config.GoldCritterDropTweak.Desc=Золотые животные теперь дропают 1 золото при убийстве.
 Config.GoldCritterDropTweak=Золотые животные дроают золото
+Config.GoldCritterDropTweak.Desc=Золотые животные теперь дропают 1 золото при убийстве.
 
 Config.ExtractSpeedMultiplier=Скорость Обогатителя
 Config.ExtractSpeedMultiplier.Desc=В сколько раз увеличить скорость Обогатителя?
 
 Config.FavoriteTooltipRemove=Убрать надписи про "избранные предметы"
 
-Config.JestersArrowCraft.Desc=Если выставить значение 0, рецепт вообще удалится.
 Config.JestersArrowCraft=Сколько Стрел Джестера крафтится за 1 звезду
+Config.JestersArrowCraft.Desc=Если выставить значение 0, рецепт вообще удалится.
 
-Config.MolotovCraft.Desc=Позволяет крафтить Коктейли Молотова из обычного Геля.\nИзменяйте число, чтобы указать, сколько Геля нужно на каждые 5 Коктейлей.\nЗначение 0 отключает рецепт.
 Config.MolotovCraft=Коктейль Молотова из обычного Геля
+Config.MolotovCraft.Desc=Позволяет крафтить Коктейли Молотова из обычного Геля.\nИзменяйте число, чтобы указать, сколько Геля нужно на каждые 5 Коктейлей.\nЗначение 0 отключает рецепт.
 
-Config.CoinsTweak.Desc=Рецепты для размена монет переносятся в конец списка.
 Config.CoinsTweak=Пересортировать рецепты с монетами
+Config.CoinsTweak.Desc=Рецепты для размена монет переносятся в конец списка.
 
 Config.WhoopieCushionTweak=веселая посхалка))
