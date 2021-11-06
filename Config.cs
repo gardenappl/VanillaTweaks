@@ -42,16 +42,16 @@ namespace VanillaTweaks
 		[DefaultValue(true)]
 		public bool MeteorArmorDefenseTweak;
 
-		[Label("$Mods.VanillaTweaks.Config.EskimoArmorTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.EskimoArmorTweak.Desc")]
+		[Label("$Mods.VanillaTweaks.Config.SnowArmorTweak")]
+		[Tooltip("$Mods.VanillaTweaks.Config.SnowArmorTweak.Desc")]
 		[ReloadRequired]
 		[DefaultValue(true)]
-		public bool EskimoArmorTweak;
+		public bool SnowArmorTweak;
 
-		[Label("$Mods.VanillaTweaks.Config.EskimoArmorDropTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.EskimoArmorDropTweak.Desc")]
+		[Label("$Mods.VanillaTweaks.Config.SnowArmorDropTweak")]
+		[Tooltip("$Mods.VanillaTweaks.Config.SnowArmorDropTweak.Desc")]
 		[DefaultValue(true)]
-		public bool EskimoArmorDropTweak;
+		public bool SnowArmorDropTweak;
 
 		[Label("$Mods.VanillaTweaks.Config.RainArmorTweak")]
 		[DefaultValue(true)]
@@ -95,29 +95,9 @@ namespace VanillaTweaks
 		[DefaultValue(true)]
 		public bool GoldCritterDropTweak;
 
-		[Label("$Mods.VanillaTweaks.Config.UndeadMinerRareLifeform")]
-		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerRareLifeform.Desc")]
-		[DefaultValue(true)]
-		public bool UndeadMinerRareLifeform;
-
-		[Label("$Mods.VanillaTweaks.Config.UndeadMinerDropRateTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.UndeadMinerDropRateTweak.Desc")]
-		[DefaultValue(true)]
-		public bool UndeadMinerDrop;
-
 		[Label("$Mods.VanillaTweaks.Config.WhoopieCushionTweak")]
 		[DefaultValue(true)]
 		public bool EasterEgg;
-
-		[Label("$Mods.VanillaTweaks.Config.FishingPoleTweak")]
-		[Tooltip("$Mods.VanillaTweaks.Config.FishingPoleTweak.Desc")]
-		[DefaultValue(true)]
-		public bool FishingPoleTweaks;
-
-		[Label("$Mods.VanillaTweaks.Config.BoneBlockFix")]
-		[Tooltip("$Mods.VanillaTweaks.Config.BoneBlockFix.Desc")]
-		[DefaultValue(true)]
-		public bool BoneBlockFix;
 
 		[Label("$Mods.VanillaTweaks.Config.ExtractSpeedMultiplier")]
 		[Tooltip("$Mods.VanillaTweaks.Config.ExtractSpeedMultiplier.Desc")]
@@ -129,7 +109,7 @@ namespace VanillaTweaks
 		[Tooltip("$Mods.VanillaTweaks.Config.JestersArrowCraft.Desc")]
 		[ReloadRequired]
 		[Range(0, 50)]
-		[DefaultValue(50)]
+		[DefaultValue(25)]
 		public int JestersArrowCraft;
 
 		[Label("$Mods.VanillaTweaks.Config.MolotovCraft")]

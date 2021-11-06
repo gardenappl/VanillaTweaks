@@ -11,16 +11,6 @@ namespace VanillaTweaks
 {
 	public class NPCTweaks : GlobalNPC
 	{
-		public override void SetDefaults(NPC npc)
-		{
-			switch(npc.type)
-			{
-				case NPCID.UndeadMiner:
-					if(GetInstance<ServerConfig>().UndeadMinerRareLifeform)
-						npc.rarity = 1;
-					break;
-			}
-		}
 
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{
@@ -34,72 +24,25 @@ namespace VanillaTweaks
 				case NPCID.GoldMouse:
 				case NPCID.SquirrelGold: //Why Re-Logic why???
 				case NPCID.GoldWorm:
+				case NPCID.GoldDragonfly:
+				case NPCID.GoldLadyBug:
+				case NPCID.GoldWaterStrider:
+				case NPCID.GoldSeahorse:
+				case NPCID.GoldGoldfishWalker:
+				case NPCID.GoldGoldfish:
 					if (GetInstance<ServerConfig>().GoldCritterDropTweak)
 						npcLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 1, 2, 2));
 					break;
 				case NPCID.ZombieEskimo:
 				case NPCID.ArmedZombieEskimo:
-					if (GetInstance<ServerConfig>().EskimoArmorDropTweak)
+					if (GetInstance<ServerConfig>().SnowArmorDropTweak)
                     {
 						int[] eskimoPool = new int[] { ItemID.EskimoCoat, ItemID.EskimoHood, ItemID.EskimoPants };
 						npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(10, 5, eskimoPool));
 					}
 					break;
-				case NPCID.UndeadMiner:
-					if(GetInstance<ServerConfig>().UndeadMinerDrop)
-					{
-						int[] minerPool = new int[] { ItemID.MiningShirt, ItemID.MiningPants};
-						npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(4, 3, minerPool));
-					}
-					break;
 			}
 		}
 
-		public override void SetupTravelShop(int[] shop, ref int nextSlot)
-		{
-			if(GetInstance<ServerConfig>().FishingPoleTweaks && !Main.hardMode)
-			{
-				for(int i = 0; i < shop.Length; i++)
-				{
-					if(shop[i] == ItemID.SittingDucksFishingRod)
-					{
-						for(int j = i + 1; j < shop.Length; j++)
-						{
-							shop[j - 1] = shop[j];
-						}
-						shop[shop.Length - 1] = 0;
-						nextSlot--;
-					}
-				}
-			}
-		}
-
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
-		{
-			switch(type)
-			{
-				case NPCID.Mechanic:
-					if(GetInstance<ServerConfig>().FishingPoleTweaks && Main.hardMode && Main.moonPhase < 3 && NPC.AnyNPCs(NPCID.Angler))
-					{
-						bool mechRodFound = false;
-
-						for(int i = 0; i < shop.item.Length; i++)
-						{
-							if(shop.item[i] != null && shop.item[i].type == ItemID.MechanicsRod)
-							{
-								mechRodFound = true;
-								break;
-							}
-						}
-
-						if(!mechRodFound)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.MechanicsRod);
-							nextSlot++;
-						}
-					}
-					break;
-			}
-		}
 	}
 }

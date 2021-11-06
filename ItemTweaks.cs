@@ -52,7 +52,7 @@ namespace VanillaTweaks
 				case ItemID.EskimoPants:
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoPants:
-					if(GetInstance<ServerConfig>().EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().SnowArmorTweak)
 					{
 						item.defense = 3;
 						item.rare = ItemRarityID.Blue;
@@ -60,7 +60,7 @@ namespace VanillaTweaks
 					return;
 				case ItemID.EskimoCoat:
 				case ItemID.PinkEskimoCoat:
-					if(GetInstance<ServerConfig>().EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().SnowArmorTweak)
 					{
 						item.defense = 4;
 						item.rare = ItemRarityID.Blue;
@@ -145,7 +145,7 @@ namespace VanillaTweaks
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoCoat:
 				case ItemID.PinkEskimoPants:
-					if(GetInstance<ServerConfig>().EskimoArmorTweak)
+					if(GetInstance<ServerConfig>().SnowArmorTweak)
 						player.arcticDivingGear = true;
 					return;
 				case ItemID.PharaohsMask:
@@ -201,9 +201,9 @@ namespace VanillaTweaks
 				player.GetDamage(DamageClass.Ranged) += 0.05f;
 				player.ammoCost80 = true;
 			}
-			else if(armorSet == EskimoSet && GetInstance<ServerConfig>().EskimoArmorTweak)
+			else if(armorSet == EskimoSet && GetInstance<ServerConfig>().SnowArmorTweak)
 			{
-				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Eskimo");
+				player.setBonus = Language.GetTextValue("Mods.VanillaTweaks.ArmorSet.Snow");
 				player.statDefense += 4;
 				player.resistCold = true;
 				player.buffImmune[BuffID.Chilled] = true;
@@ -261,7 +261,7 @@ namespace VanillaTweaks
 				case ItemID.PinkEskimoHood:
 				case ItemID.PinkEskimoCoat:
 				case ItemID.PinkEskimoPants:
-					if(GetInstance<ServerConfig>().EskimoArmorTweak && !Main.expertMode)
+					if(GetInstance<ServerConfig>().SnowArmorTweak && !Main.expertMode)
 						tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Tooltip"));
 					return;
 			}
