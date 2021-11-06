@@ -76,11 +76,11 @@ namespace VanillaTweaks
 				ReplaceTooltip(tooltips, null, ItemID.MeteorSuit);
 				ReplaceTooltip(tooltips, null, ItemID.MeteorLeggings);
 			}
-			if (GetInstance<ServerConfig>().EskimoArmorTweak)
+			if (GetInstance<ServerConfig>().SnowArmorTweak)
 			{
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoHood);
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoCoat);
-				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Eskimo", ItemID.EskimoPants);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Snow", ItemID.EskimoHood);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Snow", ItemID.EskimoCoat);
+				ReplaceTooltip(tooltips, "Mods.VanillaTweaks.ItemTooltip.Snow", ItemID.EskimoPants);
 			}
 			if (GetInstance<ServerConfig>().PharaohSetTweak)
 			{
