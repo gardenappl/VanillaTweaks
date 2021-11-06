@@ -117,19 +117,6 @@ Mods: {
 				Desc: Crimson Armor now only increases melee damage instead of all damage.
 			}
 
-			UndeadMinerDropRateTweak: {
-				$parentVal: Undead Miner Drop Rate Tweak
-				Desc: Changes the drop rate of mining clothes to a 1/4 chance (1/3 in Expert mode).
-			}
-
-			FishingPoleTweak: {
-				$parentVal: Fishing Pole Tweaks
-				Desc:
-					'''
-					Sitting Duck Fishing Pole is Hardmode only and the Mechanic's Rod is sold more often.
-					'''
-			}
-
 			ExtractSpeedMultiplier: {
 				$parentVal: Extractinator Speed Multiplier
 				Desc: Decreases the amount of time it takes to use the Extractionator (higher is faster).
