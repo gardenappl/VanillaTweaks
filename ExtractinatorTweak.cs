@@ -33,7 +33,7 @@ namespace VanillaTweaks
 			if(GetInstance<ServerConfig>().ExtractSpeedMultiplier == 1f)
 				return;
 			
-			if(Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
+			if(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType == TileID.Extractinator)
 			{
 				if(!ExtractItemsCache.ContainsKey(item.type) && IsExtractable(item))
 					ExtractItemsCache.Add(item.type, new ExtractableItem(item));
@@ -42,7 +42,7 @@ namespace VanillaTweaks
 			if(ExtractItemsCache.ContainsKey(item.type))
 			{
 				var extractItem = ExtractItemsCache[item.type];
-				if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.Extractinator)
+				if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileType == TileID.Extractinator)
 				{
 					//useTime must be 2 or higher or else items dissapear
 					item.useTime = Math.Max(2, (int)(extractItem.UseTime / GetInstance<ServerConfig>().ExtractSpeedMultiplier));

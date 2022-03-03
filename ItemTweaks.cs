@@ -96,7 +96,8 @@ namespace VanillaTweaks
 //					}
 //					return;
 				case ItemID.FishBowl:
-					if(GetInstance<ServerConfig>().FishBowlTweak)
+				case ItemID.GoldGoldfishBowl:
+					if (GetInstance<ServerConfig>().FishBowlTweak)
 					{
 						item.vanity = false;
 						item.defense = 1;
