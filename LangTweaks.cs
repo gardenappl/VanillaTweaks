@@ -28,7 +28,7 @@ namespace VanillaTweaks
 
 		static List<ReplacedTooltipLine> ReplacedTooltips = new List<ReplacedTooltipLine>();
 
-		public static void EditNames(LanguageManager manager)
+		public static void EditNames(LanguageManager _)
 		{
 			if (GetInstance<ClientConfig>().CobaltShieldRename)
 			{
