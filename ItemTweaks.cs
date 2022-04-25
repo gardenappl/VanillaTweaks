@@ -253,7 +253,7 @@ namespace VanillaTweaks
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
 			if(GetInstance<ClientConfig>().FavoriteTooltipRemove)
-				tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Favorite"));
+				tooltips.RemoveAll(line => line.Mod == "Terraria" && line.Name.StartsWith("Favorite"));
 			switch(item.type)
 			{
 				case ItemID.EskimoHood:
@@ -263,7 +263,7 @@ namespace VanillaTweaks
 				case ItemID.PinkEskimoCoat:
 				case ItemID.PinkEskimoPants:
 					if(GetInstance<ServerConfig>().SnowArmorTweak && !Main.expertMode)
-						tooltips.RemoveAll(line => line.mod == "Terraria" && line.Name.StartsWith("Tooltip"));
+						tooltips.RemoveAll(line => line.Mod == "Terraria" && line.Name.StartsWith("Tooltip"));
 					return;
 			}
 		}
