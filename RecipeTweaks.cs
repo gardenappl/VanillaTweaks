@@ -24,7 +24,7 @@ namespace VanillaTweaks
 				
 				foreach(var recipe in foundRecipes)
 				{
-					recipe.RemoveRecipe();
+					recipe.DisableRecipe();
 				}
 				foundRecipes.Clear();
 			}
