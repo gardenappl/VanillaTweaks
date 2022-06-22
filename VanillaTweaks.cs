@@ -37,7 +37,7 @@ namespace VanillaTweaks
 			LangTweaks.EditNames(LanguageManager.Instance);
 			if (ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
 			{
-				CreateRecipe(ItemID.MolotovCocktail, 5)
+				Recipe.Create(ItemID.MolotovCocktail, 5)
 					.AddIngredient(ItemID.Ale, 5)
 					.AddIngredient(ItemID.Torch, 1)
 					.AddIngredient(ItemID.Silk, 1)
