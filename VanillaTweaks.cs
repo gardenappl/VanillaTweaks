@@ -31,28 +31,6 @@ namespace VanillaTweaks
 			LangTweaks.EditTooltips();
             LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 		}
-		
-		public override void AddRecipes()
-		{
-			LangTweaks.EditNames(LanguageManager.Instance);
-			if (ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
-			{
-				Recipe.Create(ItemID.MolotovCocktail, 5)
-					.AddIngredient(ItemID.Ale, 5)
-					.AddIngredient(ItemID.Torch, 1)
-					.AddIngredient(ItemID.Silk, 1)
-					.AddIngredient(ItemID.Gel, ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft)
-					.Register();
-			}
-			RecipeTweaks.EditVanillaRecipes();
-			
-		}
-		
-		public override void PostAddRecipes()
-		{
-			if(ModContent.GetInstance<ServerConfig>().CoinRecipesAtEndofList)
-				RecipeTweaks.TweakCoins();
-		}
 
 		public override void Unload()
 		{
@@ -70,6 +48,31 @@ namespace VanillaTweaks
 		public static void Log(string message, params object[] formatData)
 		{
 			ModContent.GetInstance<VanillaTweaks>().Logger.Info(string.Format(message, formatData));
+		}
+	}
+
+	public class VanillaTweaksSystem : ModSystem
+    {
+		public override void AddRecipes()
+		{
+			LangTweaks.EditNames(LanguageManager.Instance);
+			if (ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
+			{
+				Recipe.Create(ItemID.MolotovCocktail, 5)
+					.AddIngredient(ItemID.Ale, 5)
+					.AddIngredient(ItemID.Torch, 1)
+					.AddIngredient(ItemID.Silk, 1)
+					.AddIngredient(ItemID.Gel, ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft)
+					.Register();
+			}
+			RecipeTweaks.EditVanillaRecipes();
+
+		}
+
+		public override void PostAddRecipes()
+		{
+			if (ModContent.GetInstance<ServerConfig>().CoinRecipesAtEndofList)
+				RecipeTweaks.TweakCoins();
 		}
 	}
 }
