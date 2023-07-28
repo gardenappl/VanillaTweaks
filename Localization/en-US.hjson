@@ -1,24 +1,27 @@
 Mods: {
 	VanillaTweaks: {
-		ItemTooltip: {
-			SwatHelmet:
+		Items: {
+			SwatHelmet.Tooltip:
 				'''
 				15% increased ranged damage
 				10% increased ranged critical strike chance
 				'''
-			Snow: Allows touching cold water without freezing
-			Pharaoh: Increases minion damage by 5%
-			Crimson: 4% increased melee damage
+			Snow.Tooltip: Allows touching cold water without freezing
+			Pharaoh.Tooltip: Increases minion damage by 5%
+			Crimson.Tooltip: 4% increased melee damage
+			CobaltShield.DisplayName: Guardian's Shield
+			SandstoneBrick.DisplayName: Sand Brick
+			SandstoneBrickWall.DisplayName: Sand Brick Wall
+			SandstoneSlab.DisplayName: Sand Slab
+			SandstoneSlabWall.DisplayName: Sand Slab Wall
 		}
 
-		MiscellaniaTooltip: {
-			SwatHelmet:
-				'''
-				15% increased ranged damage
-				10% increased ranged critical strike chance
-				Provides a set bonus when worn with the Reinforced Vest
-				'''
-		}
+		MiscellaniaTooltip.SwatHelmet:
+			'''
+			15% increased ranged damage
+			10% increased ranged critical strike chance
+			Provides a set bonus when worn with the Reinforced Vest
+			'''
 
 		ArmorSet: {
 			Swat:
@@ -35,133 +38,144 @@ Mods: {
 			Pharaoh: Increases your max number of minions
 		}
 
-		ItemName: {
-			CobaltShield: Guardian's Shield
-			SandstoneBrick: Sand Brick
-			SandstoneBrickWall: Sand Brick Wall
-			SandstoneSlab: Sand Slab
-			SandstoneSlabWall: Sand Slab Wall
-		}
+		Configs: {
+			Client.DisplayName: Client-side Settings
 
-		Config: {
-			ServerConfig: General Settings
-			ServerBlocked: Only the server owner can change these mod settings.
+			ClientConfig: {
+				CobaltShieldRename: {
+					Label: Rename Cobalt Shield
+					Tooltip: Renames the Cobalt Shield to Guardian's Shield.
+				}
 
-			MeteorArmorDamageTweak: {
-				$parentVal: Meteor Armor Damage Tweaks
-				Desc: Remove magic damage boosts from Meteor Armor.
+				SandstoneRename: {
+					Label: Rename Sandstone Items
+					Tooltip: Renames items such as Sandstone Brick to Sand Brick.
+				}
+
+				FavoriteTooltipRemove: {
+					Label: Remove "Favorite Item" tooltips
+					Tooltip: ""
+				}
+
+				SkullTweak: {
+					Label: Skull Flip
+					Tooltip: Flips the Skull sprite so that it faces to the right like other armor/vanity.
+				}
 			}
 
-			SnowArmorDropTweak: {
-				$parentVal: Snow Armor Drop Rate Increase
-				Desc: 3% chance to drop Snow Armor instead of 0.67% (twice as much in Expert Mode).
-			}
+			Server.DisplayName: ServerConfig: General Settings
 
-			SnowArmorTweak: {
-				$parentVal: Snow Armor Tweaks
-				Desc:
-					'''
-					Defense increased, immunity to cold water
-					Set bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen
-					'''
-			}
+			ServerConfig: {
+				ServerBlocked: Only the server owner can change these mod settings.
 
-			RainArmorTweak: Rain Armor is now Vanity
+				MeteorArmorDamageTweak: {
+					Label: Meteor Armor Damage Tweaks
+					Tooltip: Remove magic damage boosts from Meteor Armor.
+				}
 
-			HammerTweaks: {
-				$parentVal: Hammer Tweaks
-				Desc: Rebalances a few hammers/hamaxes.
-			}
+				MeteorArmorDefenseTweak: {
+					Label: Meteor Armor Defense Tweaks
+					Tooltip: Defense decreased from 5/6/5 to 4/5/4.
+				}
 
-			SwatHelmetTweak: {
-				$parentVal: SWAT Helmet Tweaks
-				Desc:
-					'''
-					+14 defense, +15% ranged damage (all types), +5% ranged crit chance
-					If Miscellania is installed, equipping a SWAT Helmet and a Reinforced Vest grants a set bonus of:
-					  Increase ranged damage by 20%
-					  Reduces damage taken by 25%
-					  20% chance to not consume ammo
-					'''
-			}
+				SnowArmorTweak: {
+					Label: Snow Armor Tweaks
+					Tooltip:
+						'''
+						Defense increased, immunity to cold water
+						Set bonus: Warmth buff, immunity to Frostburn, Chilled and Frozen
+						'''
+				}
 
-			FishBowlTweak: {
-				$parentVal: Fish Bowl Tweak
-				Desc: Gives the Fish Bowl +1 defense.
-			}
+				SnowArmorDropTweak: {
+					Label: Snow Armor Expert Drop Rate Increase
+					Tooltip: Snow Armor drop rate becomes 6% in expert+.
+				}
 
-			GoldCritterDropTweak: {
-				$parentVal: Gold Critters Drop Coins
-				Desc: Gold critters drop 1 Gold when killed (still sell for 5 Gold when sold).
-			}
+				RainArmorTweak: {
+					Label: Rain Armor is now Vanity
+					Tooltip:
+						'''
+						For reference: 
+						The hat gives 1 defense
+						The coat gives 2 defense
+						'''
+				}
 
-			WhoopieCushionTweak: Easter Egg
+				PharaohSetTweak: {
+					Label: Pharaoh Set Tweaks
+					Tooltip: Changes Pharaoh's vanity set to Summoner armor.
+				}
 
-			VikingHelmetTweak: {
-				$parentVal: Viking Helmet Tweaks
-				Desc: Viking Helmet gives +5% damage when used with Iron or Lead armor.
-			}
+				CrimsonArmorTweak: {
+					Label: Crimson Set Tweak
+					Tooltip: Crimson Armor now only increases melee damage instead of all damage.
+				}
 
-			MeteorArmorDefenseTweak: {
-				$parentVal: Meteor Armor Defense Tweaks
-				Desc: Defense decreased from 5/6/5 to 4/5/4.
-			}
+				SwatHelmetTweak: {
+					Label: SWAT Helmet Tweaks
+					Tooltip:
+						'''
+						+14 defense, +15% ranged damage (all types), +5% ranged crit chance
+						If Miscellania is installed, equipping a SWAT Helmet and a Reinforced Vest grants a set bonus of:
+						  Increase ranged damage by 20%
+						  Reduces damage taken by 25%
+						  20% chance to not consume ammo
+						'''
+				}
 
-			PharaohSetTweak: {
-				$parentVal: Pharaoh Set Tweaks
-				Desc: Changes Pharaoh's vanity set to Summoner armor.
-			}
+				FishBowlTweak: {
+					Label: Fish Bowl Tweak
+					Tooltip: Gives the Fish Bowl +1 defense.
+				}
 
-			CrimsonArmorTweak: {
-				$parentVal: Crimson Set Tweak
-				Desc: Crimson Armor now only increases melee damage instead of all damage.
-			}
+				VikingHelmetTweak: {
+					Label: Viking Helmet Tweaks
+					Tooltip: Viking Helmet gives +5% damage when used with Iron or Lead armor.
+				}
 
-			ExtractSpeedMultiplier: {
-				$parentVal: Extractinator Speed Multiplier
-				Desc: Decreases the amount of time it takes to use the Extractionator (higher is faster).
-			}
+				HammerTweaks: {
+					Label: Hammer Tweaks
+					Tooltip: Rebalances a few hammers/hamaxes.
+				}
 
-			JestersArrowCraft: {
-				$parentVal: Jester's Arrows Crafted per Star
-				Desc:
-					'''
-					Jester's Arrows Crafted per Star.
-					Setting this value to 0 will remove the recipe entirely.
-					'''
-			}
+				GoldCritterDropTweak: {
+					Label: Gold Critters Drop Money
+					Tooltip: Gold critters drop 1 Gold when killed (still sell for 5 Gold when sold).
+				}
 
-			MolotovCraft: {
-				$parentVal: Molotov Craft Tweaks
-				Desc:
-					'''
-					Allows crafting Molotov Cocktails with regular Gel.
-					Adjust number to change the amount of Gel per every 5 cocktails, or set to 0 to remove the recipe.
-					'''
-			}
+				EasterEgg: {
+					Label: Easter Egg
+					Tooltip: ""
+				}
 
-			CoinsTweak: {
-				$parentVal: Coin Recipe Tweak
-				Desc: Puts coin conversion recipes at the end of recipe list.
-			}
+				ExtractSpeedMultiplier: {
+					Label: Extractinator Speed Multiplier
+					Tooltip: Decreases the amount of time it takes to use the Extractionator (higher is faster).
+				}
 
-			ClientConfig: Client-side Settings
+				JestersArrowCraft: {
+					Label: Jester's Arrows Crafted per Star
+					Tooltip:
+						'''
+						Jester's Arrows Crafted per Star.
+						Setting this value to 0 will remove the recipe entirely.
+						'''
+				}
 
-			CobaltShieldRename: {
-				$parentVal: Rename Cobalt Shield
-				Desc: Renames the Cobalt Shield to Guardian's Shield.
-			}
+				MolotovBlueGelCraft: {
+					Label: Molotov Craft Tweaks
+					Tooltip:
+						'''
+						Allows crafting Molotov Cocktails with regular Gel.
+						Adjust number to change the amount of Gel per every 5 cocktails, or set to 0 to remove the recipe.
+						'''
+				}
 
-			SandstoneRename: {
-				$parentVal: Rename Sandstone Items
-				Desc: Renames items such as Sandstone Brick to Sand Brick.
-			}
-
-			FavoriteTooltipRemove: Remove "Favorite Item" tooltips
-
-			SkullTweak: {
-				$parentVal: Skull Flip
-				Desc: Flips the Skull sprite so that it faces to the right like other armor/vanity.
+				CoinRecipesAtEndofList: {
+					Label: Coin Recipe Tweak
+					Tooltip: Puts coin conversion recipes at the end of recipe list.
+				}
 			}
 		}
 	}

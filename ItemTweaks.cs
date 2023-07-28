@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -18,10 +20,19 @@ namespace VanillaTweaks
 		const string EskimoSet = "miscellania_eskimo";
 		const string VikingSet = "miscellania_viking";
 		const string PharaohSet = "miscellania_pharaoh";
-		
+
 		public override void SetDefaults(Item item)
 		{
-			switch(item.type)
+
+			if (GetInstance<ClientConfig>().SandstoneRename)
+			{
+				if (VanillaTweaks.Miscellania != null && VanillaTweaks.Miscellania_SandstoneSlabWall != null && item.type == VanillaTweaks.Miscellania_SandstoneSlabWall.Item.type)
+				{
+					item.SetNameOverride(Language.GetTextValue("Mods.VanillaTweaks.Items.SandstoneSlabWall.DisplayName"));
+				}
+			}
+
+			switch (item.type)
 			{
 				case ItemID.MeteorHamaxe:
 					if(GetInstance<ServerConfig>().HammerTweaks)
@@ -120,10 +131,34 @@ namespace VanillaTweaks
 						item.defense = 0;
 					}
 					return;
+				case ItemID.CobaltShield:
+					if (GetInstance<ClientConfig>().CobaltShieldRename)
+					{
+						item.SetNameOverride(Language.GetTextValue("Mods.VanillaTweaks.Items.CobaltShield.DisplayName"));
+					}
+					return;
+				case ItemID.SandstoneBrick:
+					if (GetInstance<ClientConfig>().SandstoneRename)
+					{
+						item.SetNameOverride(Language.GetTextValue("Mods.VanillaTweaks.Items.SandstoneBrick.DisplayName"));
+					}
+					return;
+				case ItemID.SandstoneBrickWall:
+					if (GetInstance<ClientConfig>().SandstoneRename)
+					{
+						item.SetNameOverride(Language.GetTextValue("Mods.VanillaTweaks.Items.SandstoneBrickWall.DisplayName"));
+					}
+					return;
+				case ItemID.SandstoneSlab:
+					if (GetInstance<ClientConfig>().SandstoneRename)
+					{
+						item.SetNameOverride(Language.GetTextValue("Mods.VanillaTweaks.Items.SandstoneSlab.DisplayName"));
+					}
+					return;
 			}
 		}
-		
-		public override void UpdateEquip(Item item, Player player)
+
+        public override void UpdateEquip(Item item, Player player)
 		{
 			switch(item.type)
 			{
@@ -227,7 +262,10 @@ namespace VanillaTweaks
 		{
 			if(ShouldFlip(item))
 			{
-				spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[item.type].Value, position, null, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
+				Texture2D texture = TextureAssets.Item[item.type].Value;
+				DrawAnimation drawAnimation = Main.itemAnimations[item.type];
+				Rectangle currentFrame = (drawAnimation == null) ? texture.Frame(1, 1, 0, 0, 0, 0) : drawAnimation.GetFrame(texture, -1);
+				spriteBatch.Draw(texture, position, currentFrame, drawColor, 0f, origin, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
 			}
 			return true;
@@ -236,13 +274,16 @@ namespace VanillaTweaks
 		public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
 		{
 			if(ShouldFlip(item))
-			{
-				spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[item.type].Value, item.position - Main.screenPosition, null, lightColor.MultiplyRGB(alphaColor), rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
+            {
+                Texture2D texture = TextureAssets.Item[item.type].Value;
+				DrawAnimation drawAnimation = Main.itemAnimations[item.type];
+				Rectangle currentFrame = (drawAnimation == null) ? texture.Frame(1, 1, 0, 0, 0, 0) : Main.itemAnimations[item.type].GetFrame(texture, Main.itemFrameCounter[item.whoAmI]);
+				spriteBatch.Draw(texture, item.position - Main.screenPosition, currentFrame, alphaColor, rotation, Vector2.Zero, scale, SpriteEffects.FlipHorizontally, 0f);
 				return false;
 			}
 			return true;
 		}
-		
+
 		static bool ShouldFlip(Item item)
 		{
 			bool skull = item.type == ItemID.Skull && GetInstance<ClientConfig>().SkullTweak;
@@ -254,7 +295,7 @@ namespace VanillaTweaks
 		{
 			if(GetInstance<ClientConfig>().FavoriteTooltipRemove)
 				tooltips.RemoveAll(line => line.Mod == "Terraria" && line.Name.StartsWith("Favorite"));
-			switch(item.type)
+			switch (item.type)
 			{
 				case ItemID.EskimoHood:
 				case ItemID.EskimoCoat:

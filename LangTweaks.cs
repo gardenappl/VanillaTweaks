@@ -21,32 +21,12 @@ namespace VanillaTweaks
 
 			public ReplacedTooltipLine(ItemTooltip line, short itemID)
 			{
-				this.Line = line;
-				this.ItemID = itemID;
+				Line = line;
+				ItemID = itemID;
 			}
 		}
 
-		static List<ReplacedTooltipLine> ReplacedTooltips = new List<ReplacedTooltipLine>();
-
-		public static void EditNames(LanguageManager _)
-		{
-			if (GetInstance<ClientConfig>().CobaltShieldRename)
-			{
-				Lang.GetItemName(ItemID.CobaltShield).Override = Language.GetText("Mods.VanillaTweaks.ItemName.CobaltShield");
-			}
-			if (GetInstance<ClientConfig>().SandstoneRename)
-			{
-				Lang.GetItemName(ItemID.SandstoneBrick).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrick");
-				Lang.GetItemName(ItemID.SandstoneBrickWall).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneBrickWall");
-				Lang.GetItemName(ItemID.SandstoneSlab).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlab");
-				if (VanillaTweaks.Miscellania != null)
-				{
-					if (VanillaTweaks.Miscellania_SandstoneSlabWall != null)
-						Lang.GetItemName(VanillaTweaks.Miscellania_SandstoneSlabWall.Type).Override = Language.GetText("Mods.VanillaTweaks.ItemName.SandstoneSlabWall");
-					//textValueMethod.Invoke(Lang.GetItemName(type), new object[]{ Language.GetTextValue("Mods.GoldensMisc.ItemName.SandstoneSlabWall") });
-				}
-			}
-		}
+		static List<ReplacedTooltipLine> ReplacedTooltips = new ();
 
 		static void ReplaceTooltip(ItemTooltip[] tooltipArray, string newTooltip, short itemID)
 		{

@@ -12,9 +12,9 @@ namespace VanillaTweaks
 	public class NPCTweaks : GlobalNPC
 	{
 
-		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void SetDefaults(NPC npc)
 		{
-			switch(npc.type)
+			switch (npc.type)
 			{
 				case NPCID.GoldBird:
 				case NPCID.GoldBunny:
@@ -30,15 +30,39 @@ namespace VanillaTweaks
 				case NPCID.GoldSeahorse:
 				case NPCID.GoldGoldfishWalker:
 				case NPCID.GoldGoldfish:
-					if (GetInstance<ServerConfig>().GoldCritterDropTweak)
-						npcLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 1, 2, 2));
+					npc.value = 10000f;
 					break;
+			}
+		}
+
+
+		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+		{
+			switch(npc.type)
+			{
 				case NPCID.ZombieEskimo:
 				case NPCID.ArmedZombieEskimo:
 					if (GetInstance<ServerConfig>().SnowArmorDropTweak)
-                    {
-						int[] eskimoPool = new int[] { ItemID.EskimoCoat, ItemID.EskimoHood, ItemID.EskimoPants };
-						npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(10, 5, eskimoPool));
+					{
+						int[] eskimoOptions = new int[] { (int)ItemID.EskimoHood, (int)ItemID.EskimoCoat, (int)ItemID.EskimoPants };
+
+						foreach (var rule in npcLoot.Get(false))
+						{
+							if (rule is OneFromOptionsDropRule drop)
+                            {
+								if (drop.dropIds[0] == eskimoOptions[0] &&
+									drop.dropIds[1] == eskimoOptions[1] &&
+									drop.dropIds[2] == eskimoOptions[2])
+								{
+									npcLoot.Remove(drop);
+									var expertRule = new OneFromOptionsDropRule(5, 1, eskimoOptions);
+									var normalRule = new OneFromOptionsDropRule(10, 1, eskimoOptions);
+									var newDrop = new DropBasedOnExpertMode(normalRule, expertRule);
+									npcLoot.Add(newDrop);
+								}
+							}
+							
+						}
 					}
 					break;
 			}

@@ -23,21 +23,40 @@ namespace VanillaTweaks
 			public int UseTime;
 			public int UseAnimation;
 			public string Name;
-		}
+        }
 
-		static int[] VanillaExtractables = { ItemID.SiltBlock, ItemID.SlushBlock, ItemID.DesertFossil };
-		static Dictionary<int, ExtractableItem> ExtractItemsCache = new Dictionary<int, ExtractableItem>();
+        static readonly int[] VanillaExtractables = { 
+			//Blocks
+			ItemID.SiltBlock, ItemID.SlushBlock, ItemID.DesertFossil, 
+			//Fishing Junk
+			ItemID.OldShoe, ItemID.TinCan, ItemID.Seaweed,
+            //Glowing Moss
+			ItemID.KryptonMoss, ItemID.ArgonMoss, ItemID.LavaMoss, 
+			ItemID.RainbowMoss, ItemID.XenonMoss, ItemID.VioletMoss
+		};
+
+        static Dictionary<int, ExtractableItem> ExtractItemsCache = new ();
 
 		static void SpeedUpExtract(Item item)
 		{
+			Tile extractinatorTile;
 			if(GetInstance<ServerConfig>().ExtractSpeedMultiplier == 1f)
 				return;
 			
-			if(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType == TileID.Extractinator)
-			{
-				if(!ExtractItemsCache.ContainsKey(item.type) && IsExtractable(item))
-					ExtractItemsCache.Add(item.type, new ExtractableItem(item));
+			switch(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType)
+            {
+				case TileID.Extractinator:
+					extractinatorTile = Main.tile[Player.tileTargetX, Player.tileTargetY];
+					break;
+				case TileID.ChlorophyteExtractinator:
+					extractinatorTile = Main.tile[Player.tileTargetX, Player.tileTargetY];
+					break;
+				default:
+					return;
 			}
+
+			if(!ExtractItemsCache.ContainsKey(item.type) && IsExtractable(item, extractinatorTile))
+				ExtractItemsCache.Add(item.type, new ExtractableItem(item));
 			
 			if(ExtractItemsCache.ContainsKey(item.type))
 			{
@@ -63,14 +82,14 @@ namespace VanillaTweaks
 			return base.CanUseItem(item, player);
 		}
 		
-		static bool IsExtractable(Item item)
+		static bool IsExtractable(Item item, Tile tile)
 		{
 			if(VanillaExtractables.Contains(item.type))
 				return true;
 			
 			int resultType = 0;
 			int resultStack = 0;
-			ItemLoader.ExtractinatorUse(ref resultType, ref resultStack, item.type);
+			ItemLoader.ExtractinatorUse(ref resultType, ref resultStack, item.type, tile.TileType);
 			return resultType != 0 || resultStack != 0;
 		}
 	}
