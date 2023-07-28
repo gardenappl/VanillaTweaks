@@ -89,18 +89,18 @@ Mods: {
 				}
 
 				SnowArmorDropTweak: {
-					Label: Броня эскимоса - частый дроп
-					// Tooltip: Snow Armor drop rate becomes 6% in expert+.
+					Label: Снежная одежда - частый дроп
+					Tooltip: Снежнея одежда выпадает с шансом 6% в режиме эксперта или выше.
 				}
 
 				RainArmorTweak: {
-					Label: Дождевая броня - декорация
-					/* Tooltip:
+					Label: Дождевик со шляпой - декорация
+					Tooltip:
 						'''
-						For reference: 
-						The hat gives 1 defense
-						The coat gives 2 defense
-						''' */
+						Для сравнения, в обычной игре:
+						Шляпа даёт 1 защиту
+						Дождевик даёт 2 защиты
+						'''
 				}
 
 				PharaohSetTweak: {
