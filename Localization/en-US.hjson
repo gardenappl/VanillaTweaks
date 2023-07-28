@@ -97,8 +97,8 @@ Mods: {
 					Tooltip:
 						'''
 						For reference: 
-						The hat gives 1 defense
-						The coat gives 2 defense
+						The hat normally gives 1 defense
+						The coat normally gives 2 defense
 						'''
 				}
 
