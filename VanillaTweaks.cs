@@ -23,16 +23,13 @@ namespace VanillaTweaks
 			ModLoader.TryGetMod("GoldensMisc", out Miscellania);
 			if (Miscellania != null)
 			{
-				Miscellania.TryFind<ModItem>("SandstoneSlabWall", out Miscellania_SandstoneSlabWall);
-				Miscellania.TryFind<ModItem>("ReinforcedVest", out Miscellania_ReinforcedVest);
+				Miscellania.TryFind("ReinforcedVest", out Miscellania_ReinforcedVest);
+				Miscellania.TryFind("SandstoneSlabWall", out Miscellania_SandstoneSlabWall);
 			}
-			
-			
 			LangTweaks.EditTooltips();
-            LanguageManager.Instance.OnLanguageChanged += LangTweaks.EditNames;
 		}
 
-		public override void Unload()
+        public override void Unload()
 		{
 			Miscellania = null;
 			Miscellania_ReinforcedVest = null;
@@ -55,7 +52,6 @@ namespace VanillaTweaks
     {
 		public override void AddRecipes()
 		{
-			LangTweaks.EditNames(LanguageManager.Instance);
 			if (ModContent.GetInstance<ServerConfig>().MolotovBlueGelCraft > 0)
 			{
 				Recipe.Create(ItemID.MolotovCocktail, 5)

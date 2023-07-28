@@ -1,7 +1,8 @@
 ﻿displayName = Vanilla Tweaks
 author = gardenapple
-version = 3.0.15
+version = 3.1.0
 homepage = http://forums.terraria.org/index.php?threads/vanilla-tweaks-a-mod-with-no-content.37443/
 hideCode = false
 includeSource = true
 buildIgnore = .gitattributes, .gitignore, .git\*, .vs\*, .idea\*, bin\*, obj\*, Thumbs.db
+sortAfter = GoldensMisc
